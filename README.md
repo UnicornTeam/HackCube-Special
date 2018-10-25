@@ -13,7 +13,7 @@
 ##  使用
 
 > 1.将HackCube mini 电源拨码打开。状态灯显示蓝色为正常
-
+> 
 >  2.搜索并链接无线热点"HackCubeMini_XX:XX:XX",密码:"hackcube"
-
+> 
 >  3.浏览器访问 http://192.168.5.1
