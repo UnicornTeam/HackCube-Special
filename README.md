@@ -10,6 +10,15 @@
 ## What's HackCube-Special
 ### HackCube-Special is a portable hardware platform for radio security research. It works on multiple radio frequencies, and can receive & transmit RF signals. 
 
+> - [x] EM41xx reader
+> - [x] nRF24l01 transmitter and receiver
+> - [x] PT2262（3^8 Bit）transmitter and receiver
+> - [x] PT2242 （2^20 Bit）transmitter and receiver
+> - [x] HCSXXX （Keeloq）receiver
+> - [x] TPMS （CRC16）transmitter
+> - [x] Sub1G  Jam
+> - [x] WHID
+
 
 ##  How to Use
 
@@ -23,3 +32,4 @@
 ## Reference 
 * [中文](https://github.com/UnicornTeam/hackcube-mini/blob/master/README_cn.md)
 * [English](https://github.com/UnicornTeam/hackcube-mini/blob/master/README.md)
+
