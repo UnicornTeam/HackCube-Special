@@ -23,6 +23,15 @@ public:
 	void  simulation(int vd, unsigned long id);
 	int  *  parity_check(int  * x);
 
+	void Write_Bit1();
+	void Write_Bit0();
+	void Write_ID_Start();
+	void Write_ID_Block(uint32_t *ID_Data, uint8_t Data_Nun, uint8_t ID_Addr);
+	unsigned long long  parity_check_write(int vd, unsigned long id);
+	int  *  parity_check_write(int  * x);
+	void Write_ID(uint8_t WriteVD, uint32_t WriteID);
+
+
 private:
 
 };

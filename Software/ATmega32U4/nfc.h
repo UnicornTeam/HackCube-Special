@@ -111,7 +111,7 @@ void AttackEM4100(){
 
 //String nfcdata="1111111110000011000000000000001100100010100110111001100110010000";
 //
-unsigned long long nfcdata = 0xFF830003229b9990;
+//unsigned long long nfcdata = 0xFF830003229b9990;
 //0006834998
 
 

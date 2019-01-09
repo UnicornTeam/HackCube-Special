@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.2/css/bootstrap-colorpicker.css" rel="stylesheet">
+ -->
+<link href="color/colorpicker.css" type="text/css" rel="stylesheet">
+
+
+<head>
+    <meta charset="UTF-8" content='width=device-width, initial-scale=1'/>
+    <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cube manage</title></head>
+<style>
+    html {
+        font-size: 10px;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    body {
+        font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 15px;
+        line-height: 1.42857143;
+        color: #ffffff;
+        background-color: #222222;
+    }
+
+    .clearfix:before, .clearfix:after, .dl-horizontal dd:before, .dl-horizontal dd:after, .container:before, .container:after, .container-fluid:before, .container-fluid:after, .row:before, .row:after, .form-horizontal .form-group:before, .form-horizontal .form-group:after, .btn-toolbar:before, .btn-toolbar:after, .btn-group-vertical > .btn-group:before, .btn-group-vertical > .btn-group:after, .nav:before, .nav:after, .navbar:before, .navbar:after, .navbar-header:before, .navbar-header:after, .navbar-collapse:before, .navbar-collapse:after, .pager:before, .pager:after, .panel-body:before, .panel-body:after, .modal-header:before, .modal-header:after, .modal-footer:before, .modal-footer:after {
+        content: " ";
+        display: table;
+    }
+
+    *:before, *:after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .clearfix:after, .dl-horizontal dd:after, .container:after, .container-fluid:after, .row:after, .form-horizontal .form-group:after, .btn-toolbar:after, .btn-group-vertical > .btn-group:after, .nav:after, .navbar:after, .navbar-header:after, .navbar-collapse:after, .pager:after, .panel-body:after, .modal-header:after, .modal-footer:after {
+        clear: both;
+    }
+
+    .clearfix:before, .clearfix:after, .dl-horizontal dd:before, .dl-horizontal dd:after, .container:before, .container:after, .container-fluid:before, .container-fluid:after, .row:before, .row:after, .form-horizontal .form-group:before, .form-horizontal .form-group:after, .btn-toolbar:before, .btn-toolbar:after, .btn-group-vertical > .btn-group:before, .btn-group-vertical > .btn-group:after, .nav:before, .nav:after, .navbar:before, .navbar:after, .navbar-header:before, .navbar-header:after, .navbar-collapse:before, .navbar-collapse:after, .pager:before, .pager:after, .panel-body:before, .panel-body:after, .modal-header:before, .modal-header:after, .modal-footer:before, .modal-footer:after {
+        content: " ";
+        display: table;
+    }
+
+    *:before, *:after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .container {
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    @media (min-width: 768px) {
+        .container {
+            width: 750px
+        }
+    }
+
+    @media (min-width: 992px) {
+        .container {
+            width: 970px
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .container {
+            width: 1170px
+        }
+    }
+
+    .nav-tabs {
+        border-bottom: 1px solid #464545;
+    }
+
+    .nav {
+        margin-bottom: 0;
+        padding-left: 0;
+        list-style: none;
+    }
+
+    ul, ol {
+        margin-top: 0;
+        margin-bottom: 10.5px;
+    }
+
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    ul, menu, dir {
+        display: block;
+        list-style-type: disc;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-start: 40px;
+    }
+
+    .nav-tabs > li {
+        float: left;
+        margin-bottom: -1px;
+    }
+
+    .nav > li {
+        position: relative;
+        display: block;
+    }
+
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+        color: #00bc8c;
+        background-color: #222222;
+        border: 1px solid #464545;
+        border-bottom-color: transparent;
+        cursor: default;
+    }
+
+    .nav-tabs > li > a, .nav-pills > li > a {
+        color: #fff;
+    }
+
+    .nav-tabs > li > a {
+        margin-right: 2px;
+        line-height: 1.42857143;
+        border: 1px solid transparent;
+        border-radius: 4px 4px 0 0;
+    }
+
+    .nav > li > a {
+        position: relative;
+        display: block;
+        padding: 10px 15px;
+    }
+
+    a {
+        color: #0ce3ac;
+        text-decoration: none;
+    }
+
+    .alert-warning {
+        background-color: #f39c12;
+        border-color: #f39c12;
+        color: #ffffff;
+    }
+
+    .alert {
+        padding: 15px;
+        margin-bottom: 21px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .alert-dismissible {
+        padding-right: 35px;
+    }
+
+    .alert-dismissable .close, .alert-dismissible .close {
+        position: relative;
+        top: -2px;
+        right: -21px;
+        color: inherit;
+    }
+
+    button.close {
+        padding: 0;
+        cursor: pointer;
+        background: transparent;
+        border: 0;
+        -webkit-appearance: none;
+    }
+
+    .close {
+        text-decoration: none;
+        text-shadow: none;
+        opacity: 0.4;
+    }
+
+    .close {
+        float: right;
+        font-size: 22.5px;
+        font-weight: bold;
+        line-height: 1;
+        color: #ffffff;
+        text-shadow: none;
+        opacity: 0.2;
+        filter: alpha(opacity=20);
+    }
+
+    .close:hover, .close:focus {
+        opacity: 1;
+    }
+
+    .close:hover, .close:focus {
+        color: #ffffff;
+        text-decoration: none;
+        cursor: pointer;
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+    }
+
+    input, button, select, textarea {
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    button, html input[type="button"], input[type="reset"], input[type="submit"] {
+        -webkit-appearance: button;
+        cursor: pointer;
+    }
+
+    button, select {
+        text-transform: none;
+    }
+
+    button {
+        overflow: visible;
+    }
+
+    button, input, optgroup, select, textarea {
+        color: inherit;
+        font: inherit;
+        margin: 0;
+    }
+
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+        font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        line-height: 1.1;
+        color: inherit;
+    }
+
+    .alert h4 {
+        margin-top: 0;
+        color: inherit;
+    }
+
+    h4, .h4 {
+        font-size: 19px;
+    }
+
+    h4, .h4, h5, .h5, h6, .h6 {
+        margin-top: 10.5px;
+        margin-bottom: 10.5px;
+    }
+
+    .alert > p, .alert > ul {
+        margin-bottom: 0;
+    }
+
+    p {
+        margin: 0 0 10.5px;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    h1, .h1 {
+        font-size: 39px;
+    }
+
+    h1, .h1, h2, .h2, h3, .h3 {
+        margin-top: 21px;
+        margin-bottom: 10.5px;
+    }
+
+    h3, .h3 {
+        font-size: 26px;
+    }
+
+    .container-fluid {
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    label {
+        display: inline-block;
+        max-width: 100%;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    .form-control, input, textarea {
+        border: 2px hidden transparent;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    .form-control {
+        display: block;
+        width: 100%;
+        height: 45px;
+        padding: 10px 15px;
+        font-size: 15px;
+        line-height: 1.42857143;
+        color: #464545;
+        background-color: #ffffff;
+        background-image: none;
+        border: 1px solid #f1f1f1;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+    input, textarea {
+        color: #464545;
+    }
+    input, button, select, textarea {
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+    input {
+        line-height: normal;
+    }
+    button, input, optgroup, select, textarea {
+        color: inherit;
+        font: inherit;
+        margin: 0;
+    }
+
+    button, select {
+        text-transform: none;
+    }
+
+    .input-group-addon:not(:first-child):not(:last-child), .input-group-btn:not(:first-child):not(:last-child), .input-group .form-control:not(:first-child):not(:last-child) {
+        border-radius: 0;
+    }
+
+    .input-group-addon {
+        height: 45px;
+        line-height: 45px;
+        font-size: 15px;
+        font-weight: normal;
+        color: #464545;
+        text-align: center;
+        background-color: #464545;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+    .input-group-addon {
+        color: #ffffff;
+    }
+    .input-group-addon, .input-group-btn {
+        width: 1%;
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+    .input-group-addon, .input-group-btn, .input-group .form-control {
+        display: table-cell;
+    }
+
+    .btn-group-justified {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: separate;
+    }
+    .btn-group, .btn-group-vertical {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .btn-group>.btn-group {
+        float: left;
+    }
+    .btn-group, .btn-group-vertical {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .btn-group>.btn-group:first-child:not(:last-child)>.btn:last-child, .btn-group>.btn-group:first-child:not(:last-child)>.dropdown-toggle {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+    }
+    .btn-group-justified>.btn-group .btn {
+        width: 100%;
+    }
+    .btn-group>.btn:first-child {
+        margin-left: 0;
+    }
+    .btn-group>.btn, .btn-group-vertical>.btn {
+        position: relative;
+        float: left;
+    }
+    .btn {
+        border-width: 2px;
+    }
+    .btn-default {
+        color: #ffffff;
+        background-color: #464545;
+        border-color: #464545;
+    }
+    .btn {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: normal;
+        text-align: center;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        white-space: nowrap;
+        padding: 10px 15px;
+        font-size: 15px;
+        line-height: 1.42857143;
+        border-radius: 4px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    button {
+        overflow: visible;
+    }
+    .btn-group .btn+.btn, .btn-group .btn+.btn-group, .btn-group .btn-group+.btn, .btn-group .btn-group+.btn-group {
+        margin-left: -1px;
+    }
+    .btn-group-justified>.btn, .btn-group-justified>.btn-group {
+        float: none;
+        display: table-cell;
+        width: 14%;
+    }
+    .btn-group>.btn-group {
+        float: left;
+    }
+    .btn-group, .btn-group-vertical {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    input, button, select, textarea {
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+    button, html input[type="button"], input[type="reset"], input[type="submit"] {
+        -webkit-appearance: button;
+        cursor: pointer;
+    }
+    button, select {
+        text-transform: none;
+    }
+    button {
+        overflow: visible;
+    }
+    button, input, optgroup, select, textarea {
+        color: inherit;
+        font: inherit;
+        margin: 0;
+    }
+    .btn-primary {
+        color: #ffffff;
+        background-color: #375a7f;
+        border-color: #375a7f;
+    }
+    .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    list-style: none;
+    font-size: 15px;
+    text-align: left;
+    background-color: #303030;
+    border: 1px solid #cccccc;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+
+}
+    .alert-success {
+        background-color: #00bc8c;
+        border-color: #00bc8c;
+        color: #ffffff;
+    }
+    [hidden], template {
+        display: none;
+    }
+    .alert-info {
+        background-color: #3498db;
+        border-color: #3498db;
+        color: #ffffff;
+    }
+
+    input[type=range] {
+        vertical-align: middle;
+        -webkit-appearance: none;
+        width: 300px;
+        border-radius: 10px; /*这个属性设置使填充进度条时的图形为圆角*/
+        background-color: transparent;
+        border: none;
+        padding: 0;
+    }
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+        height: 15px;
+        border-radius: 10px; /*将轨道设为圆角的*/
+        box-shadow: 0 1px 1px #def3f8, inset 0 .125em .125em #0d1112; /*轨道内置阴影效果*/
+        background-color: #ffffff;
+    }
+    input[type=range]:focus {
+        outline: none;
+    }
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 40px;
+        width: 40px;
+        margin-top: -10px; /*使滑块超出轨道部分的偏移量相等*/
+        background: #ffffff;
+        border-radius: 50%; /*外观设置为圆形*/
+        border: solid 0.125em rgba(205, 224, 230, 0.5); /*设置边框*/
+        box-shadow: 0 .125em .125em #3b4547; /*添加底部阴影*/
+    }
+            /*
+        IOS button 
+        */
+         .al-toggle-button{
+            appearance: none;
+            -webkit-appearance: none;
+            position: relative;
+            width: 52px;
+            height: 32px;
+            background: #dfdfdf;
+            border-radius: 16px;
+            border: 1px solid #dfdfdf;
+            outline: 0;
+            box-sizing: border-box;
+        }
+        .al-toggle-button:checked{
+            border-color: #3498db;
+            background-color: #3498db;
+        }
+        .al-toggle-button:before, .al-toggle-button:after{
+            content: " ";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 30px;
+            border-radius: 15px;
+            transition: transform 0.3s;
+            transition: -webkit-transform 0.3s;
+            transition: transform 0.3s, -webkit-transform 0.3s;
+            -webkit-transition: -webkit-transform 0.3s;
+        }
+        .al-toggle-button:before{
+            width: 50px;
+            background-color: #fdfdfd;
+        }
+        .al-toggle-button:after{
+            width: 30px;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+        .al-toggle-button:checked:before{
+            transform: scale(0);
+            -webkit-transform: scale(0);
+        }
+        .al-toggle-button:checked:after{
+            transform: translateX(20px);
+            -webkit-transform: translateX(20px);
+        }
+    .warnning-wrapper {
+        background-image: url("image/warn.png");
+        background-position: center center;
+        height: 200px;
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        position: relative;
+    }
+    .warnning-close-btn {
+        position: absolute;
+        top: 0px;
+        right: calc(50% - 150px);
+        font-size: 18px;
+        color: orange;
+    }
+    .botton-wrapper {
+        background-image: url("image/logo.png");
+        background-position: center center;
+        height: 50px;
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        position: relative;
+        margin-top: 30px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <ul class="nav nav-tabs">
+        <!-- <li><a href="WIFI.html">WIFI</a></li> -->
+        <li><a href="NFC.html">LF</a></li>
+        <li><a href="RF.html">RF</a></li>
+        <li><a href="HID.html">HID</a></li>
+        <li class="active"><a href="Setup.html">Setup</a></li>
+    </ul> 
+    </br>
+    <div class="warnning-wrapper" id="Warning_action">
+        <div class="warnning-close-btn" id="warnning_btn">✖</div>
+    </div>
+
+    <div class="alert alert-dismissible alert-success" id="nfc_action" hidden>
+        <button type="button" class="close" id="nfc_close">&times;</button>
+        <h4 class="alert-heading">NFC</h4>
+        <label>EM41xx Tag ID:<label id="nfc_idprint"/></label></br>
+        <a href="/NFC.html" class="alert-link">查看详情</a></label>
+    </div>
+
+    <div class="alert alert-dismissible alert-info" id="rf_action" hidden>
+        <button type="button" class="close" id="rf_close">&times;</button>
+        <h4 class="alert-heading">RF</h4>
+        <label>Data:<label id="rf_print"/></label></br>
+        <a href="/RF.html" class="alert-link">查看详情</a></label>
+    </div>
+
+    <div class="alert alert-dismissible alert-info" id="rf_action_24l01" hidden>
+        <button type="button" class="close" id="rf_close_24l01">&times;</button>
+        <h4 class="alert-heading">RF</h4>
+        <label>Data:<label id="rf_print_24l01"/></label></br>
+        <a href="/RF.html" class="alert-link">查看详情</a></label>
+    </div>
+
+</div>
+
+    <div class="container">
+
+              <div style="display:inline-block;font-weight: bold; margin: 0 0px; ">
+                <h2>NFC开关</h2>
+            </div>
+            <div style="display:inline-block;vertical-align: middle;" >
+                <input id="NFC_Power" type="checkbox" class="al-toggle-button" checked >
+            </div>
+
+              <div style="display:inline-block;font-weight: bold; margin: 0 0px; ">
+                <h2>RF开关</h2>
+            </div>
+            <div style="display:inline-block;vertical-align: middle;" >
+                <input id="RF_Power" type="checkbox" class="al-toggle-button" checked >
+            </div> 
+            </br>
+            </br>
+
+
+            <div style="width:49%;display:inline-block">
+                <label>频率</label>
+                <input style="text-align: center;text-align-last: center;" type="text" class="form-control is-valid" placeholder="SnifferFreq" value='315000000' id='rf_freq' maxlength="9">
+            </div>
+            <div class="form-group" style="width:49%;display:inline-block">
+                <label for="exampleSelect1">协议</label>
+                <select class="form-control" id='SnifferClass'>
+                    <option value="fixed">固定码</option>
+                    <!-- <option value=2>PT224X</option> -->
+                    <option value="keeloq">滚动码(Keeloq)</option>
+                </select>
+            </div>
+                <div onclick="RFSetup()" id='s-btn' class="btn btn-primary" style="margin: 0px auto;display: table;margin-top: 10px;">设置更新</div>
+                </div>
+            </br>
+<!--             <div style="width:28%;display:inline-block">
+                <label>Freq</label>
+                <input style="text-align: center;text-align-last: center;" type="text" class="form-control is-valid" placeholder="SnifferFreq" value='433920000' id='Smart_freq1' maxlength="9">
+            </div>
+            <div class="form-group" style="width:28%;display:inline-block">
+                <label for="exampleSelect1">Protocol</label>
+                <select class="form-control" id='TransmitClass'>
+                    <option value=1>PT226X</option>
+                    <option value=2>PT224X</option>
+                  
+                    <option value="4">Keeloq</option>
+                </select>
+            </div>-->
+
+       
+        </div>
+        <div class="container">
+        <div style="width:49%;display:inline-block;float:right;">
+            <label>灯光颜色</label>
+            <input id="mycp" type="text" name="color" class="form-control" value="#ffffff"/>
+        </div>
+
+        <div style="width:49%;display:inline-block;float:left;">
+            <label>灯光特效</label>
+            <select class="form-control" name="action" id='tx'>
+                <option value="0">...</option>
+                <option value="1">breath</option>
+                <option value="2">randombreath</option>
+                <option value="3">colorPaletts</option>
+                <option value="4">Cylon</option>
+            </select>
+        </div>
+    </div>
+    <div class="container">
+            </br>
+        <label>灯光亮度</label>
+        </br>
+        <span class="input-group-addon" id="spanBrightness" maxsize="3" style="width:20%;display:inline-block;float:left;">128</span>
+        <input class="form-control" name="brightness" id="inputBrightness" type="range" step="1" min="0" max="255" on="console.log(this.value)"
+               style="width:80%;display:inline-block;float:right;"/>
+
+
+        <div class="btn-group btn-group-justified" role="group" style="margin-top: 8px;">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default btn-color" style="background: #FF0000;" title="Red"
+                        onclick="document.getElementById('mycp').value='#FF0000';">&nbsp;
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default btn-color" style="background: #FF8000;" title="Orange"
+                        onclick="document.getElementById('mycp').value='#FF8000';">&nbsp;
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default btn-color" style="background: #FFFF00;" title="Yellow"
+                        onclick="document.getElementById('mycp').value='#FFFF00';">&nbsp;
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default btn-color" style="background: #80FF00;" title="Chartreuse"
+                        onclick="document.getElementById('mycp').value='#80FF00';">&nbsp;
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default btn-color" style="background: #00FF00;" title="Green"
+                        onclick="document.getElementById('mycp').value='#00FF00';">&nbsp;
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default btn-color" style="background: #00FF80;" title="Spring Green"
+                        onclick="document.getElementById('mycp').value='#00FF80';">&nbsp;
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default btn-color" style="background: #000000;" title="White"
+                        onclick="document.getElementById('mycp').value='#000000';">&nbsp;
+                </button>
+            </div>
+        </div>
+        <div class="btn-group btn-group-justified" role="group">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default btn-color" style="background: #00FFFF;" title="Cyan"
+                        onclick="document.getElementById('mycp').value='#00FFFF';">&nbsp;
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default btn-color" style="background: #0080FF;" title="Azure"
+                        onclick="document.getElementById('mycp').value='#0080FF';">&nbsp;
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default btn-color" style="background: #0000FF;" title="Blue"
+                        onclick="document.getElementById('mycp').value='#0000FF';">&nbsp;
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default btn-color" style="background: #8000FF;" title="Violet"
+                        onclick="document.getElementById('mycp').value='#8000FF';">&nbsp;
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default btn-color" style="background: #FF00FF;" title="Magenta"
+                        onclick="document.getElementById('mycp').value='#FF00FF';">&nbsp;
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default btn-color" style="background: #FF0080;" title="Rose"
+                        onclick="document.getElementById('mycp').value='#FF0080';">&nbsp;
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default btn-color" style="background: #FFFFFF;" title="Black"
+                        onclick="document.getElementById('mycp').value='#FFFFFF';">&nbsp;
+                </button>
+            </div>
+        </div>
+        <!-- <input  type="text" name="action" class="form-control" value="0" /> -->
+        <div onclick="submit()" id='s-btn' class="btn btn-primary" style="margin: 0px auto;display: table;margin-top: 10px;">效果更新</div>
+    </div>
+<div class="botton-wrapper">
+
+</div>
+</body>
+
+<script src='color/jquery.min.js'></script>
+<script src="color/colorpicker.js"></script>
+<script src="js/prompt.js"></script>
+<script>
+
+    function RFSetup(){
+            var freq=document.getElementById('rf_freq').value;
+            var SnifferClass=document.getElementById('SnifferClass').value;
+
+            var ajax = new XMLHttpRequest();
+            ajax.open('get','rf_setup?SnifferClass='+ SnifferClass +'&freq='+ freq);
+            ajax.send();
+        }
+
+
+    document.getElementById("RF_Power").addEventListener('click', function(){
+        if(this.checked){
+            var ajax = new XMLHttpRequest();
+            ajax.open('get','rf_power?action=on' );
+            ajax.send();
+        }else{
+            var ajax = new XMLHttpRequest();
+            ajax.open('get','rf_power?action=off' );
+            ajax.send();
+        }
+    });
+    document.getElementById("NFC_Power").addEventListener('click', function(){
+        if(this.checked){
+            var ajax = new XMLHttpRequest();
+            ajax.open('get','nfc_read?action=on' );
+            ajax.send();
+        }else{
+            var ajax = new XMLHttpRequest();
+            ajax.open('get','nfc_read?action=off' );
+            ajax.send();
+        }
+    });
+
+    $(function () {
+      $('#mycp').colorpicker();
+    });
+
+    document.getElementById('inputBrightness').addEventListener('touchmove', function (e) {
+        document.getElementById('spanBrightness').innerText = this.value
+    })
+
+    document.getElementById('inputBrightness').addEventListener('touchstart', function (e) {
+        document.getElementById('spanBrightness').innerText = this.value
+    })
+
+    document.getElementById('inputBrightness').addEventListener('mousemove', function (e) {
+        document.getElementById('spanBrightness').innerText = this.value
+    })
+
+    document.getElementById('inputBrightness').addEventListener('click', function (e) {
+        document.getElementById('spanBrightness').innerText = this.value
+    })
+
+    function submit() {
+        var c = document.getElementById('mycp').value
+        var b = document.getElementById('inputBrightness').value
+        var t = document.getElementById('tx').value
+        var pd = {
+            'color': c,
+            'brightness': b,
+            'action': t
+        }
+
+        var postd = (function(obj){ // 转成post需要的字符串.  
+            var str = "";  
+   
+            for(var prop in obj){  
+                str += prop + "=" + obj[prop] + "&"  
+            }  
+            return str;  
+            })(pd)
+        var ajax = new XMLHttpRequest();
+        ajax.open('post','/solidColor');
+        ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        ajax.send(postd);
+        ajax.onreadystatechange = function () {
+            if (ajax.readyState==4 && ajax.status==200) {
+                console.log('success')
+            }
+        }
+    }
+</script>
+</html>

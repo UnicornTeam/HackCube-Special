@@ -169,8 +169,8 @@ void Transmit_360(byte * Transmit_data) {
   int len = 8;
   lastbit = true;
   //Cube_PRINT.println("Tesxt");
-  uint16_t crc_out = calc_crc(Transmit_data, len, 0xffff); 
-  
+  uint16_t crc_out = calc_crc(Transmit_data, len, 0xffff);
+
   //Calculate CRC on-the-fly
   /*int msb = (crc_out & 0xff00) >> 8;
     int lsb = (crc_out & 0x00ff) << 8;
@@ -189,11 +189,11 @@ void Transmit_360(byte * Transmit_data) {
     //Serial.print(Transmit_data[i],HEX);
   }
   //Serial.println("");
-  
+
   digitalWrite(Transmitpin, HIGH);
   delayMicroseconds(bit_delay_1 * 3);
   digitalWrite(Transmitpin, LOW);
-  
+
 }
 
 
@@ -236,10 +236,10 @@ void CC1101_TPMS_TX() {
   }
   //20 93 EF 85 A0 40 58 0 27 31
   //byte TPMS_data_1[11]={0x20,0x95,0x91,0x85,0xb1,0x11,0x52,0x08};
-  
+
   Cube_PRINT.println("TPMS_ok");
   Cube_PRINT_data = "";
-  
+
   CC1101_TPMS();
   delay(100);
   cc1101.cmdStrobe(CC1101_SCAL);
@@ -356,7 +356,7 @@ void RF_Jam() {
   setfreqx(freq);
   cc1101.cmdStrobe(CC1101_STX);
   digitalWrite(RF433_GDO0, HIGH);
-  
+
   //cc1101.PrintConfig();
   Jam_RSSI = -73;
   int a;
@@ -396,11 +396,20 @@ void RF_Jam() {
             digitalWrite(RF433_GDO0, LOW);
             Jam_flag = true;
             Jam_OutTime = millis();
+            //2018年12月26日17:03:23
+            if (millis() - SerialLastTime < Print_Time-200) {
+              //return;
+            } else {
+              String Jam_DATA = "[RF][Jam]RSSI:" + String(RSSI_db) + "dB,FREQ:" + String(freq).substring(0, 3) + "Mhz";
+              Cube_PRINT.println(Jam_DATA);
+              SerialLastTime=Jam_OutTime=millis();
+            }
           }
-          if (Jam_flag && millis() - Jam_OutTime > 100) {
+          if (Jam_flag && millis() - Jam_OutTime > 200) {
             Cube_PRINT.println("[RF][Jam]Not Jamming");
             Out_flag = true;
             Jam_flag = false;
+            //} else if (Jam_flag && Out_flag) {
           } else if (Jam_flag && Out_flag) {
             Cube_PRINT.print("[RF][Jam]RSSI:");
             Cube_PRINT.print(RSSI_db);

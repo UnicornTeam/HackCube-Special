@@ -20,6 +20,9 @@ void EM4095::bit0() {
   delayMicroseconds(delay_125);
 }
 
+
+
+
 void EM4095::transmit(int  * data) {
   Start();
   for (int i = 0; i < 11; i++) {
@@ -127,7 +130,151 @@ int  *  EM4095::parity_check(int  * x)
 }
 
 
+/*
+          +---+
+          |   |
+  --------+   +
+  400   125
+*/
+void EM4095::Write_Bit1() {
+  digitalWrite(MOD, LOW); //GPIO_ResetBits(MOD_PORT, MOD_PIN);
+  delayMicroseconds(350);
+  digitalWrite(MOD, HIGH);
+  delayMicroseconds(150);
+  digitalWrite(MOD, LOW);
+}
+/*
+      +---+
+      |   |
+  ----+   +
+  200 125
+*/
+void EM4095::Write_Bit0() {
+  digitalWrite(MOD, LOW); //GPIO_ResetBits(MOD_PORT, MOD_PIN);
+  delayMicroseconds(100);
+  digitalWrite(MOD, HIGH);
+  delayMicroseconds(150);
+  digitalWrite(MOD, LOW); //GPIO_ResetBits(MOD_PORT, MOD_PIN);
+}
+/*
+  +-----+       +---+    +---+    +---+
+  |     |       |   |    |   |    |   |
+        +-------+   +----+   +----+   +
+    250    400   125  200 125  200 125
+  logic display
+  +-----+       +---+    +---+    +---+
+  |     |       |   |    |   |    |   |
+        +-------+   +----+   +----+   +
+    181    320    90  145  90  145  90
+*/
+void EM4095::Write_ID_Start()
+{
+  digitalWrite(MOD, HIGH); //GPIO_SetBits(MOD_PORT, MOD_PIN);
+  delayMicroseconds(240);//#Delay_us(250);
+  digitalWrite(MOD, LOW); //GPIO_ResetBits(MOD_PORT, MOD_PIN);
+  Write_Bit1();
+  Write_Bit0();
+  Write_Bit0();
+}
 
+
+void  EM4095::Write_ID_Block(uint32_t *ID_Data, uint8_t Data_Nun, uint8_t ID_Addr)
+{
+  uint32_t i;
+  Write_ID_Start();
+  while (Data_Nun--)
+  {
+    for (i = 32; i > 0; i--)
+    {
+      if ((*ID_Data >> (i - 1)) & 0x0001)
+        Write_Bit1();
+      else
+        Write_Bit0();
+    }
+    ID_Data++;
+  }
+  for (i = 3; i > 0; i--)
+  {
+    if ((ID_Addr >> (i - 1)) & 0x01)
+      Write_Bit1();
+    else
+      Write_Bit0();
+  }
+}
+
+
+
+unsigned long long   EM4095::parity_check_write(int vd, unsigned long id) {
+  int  x[13];
+  int l = 2;
+  long f = 0xf;
+  x[0] = (vd & 0xF0) >> 4; x[1] = vd & 0x0F;
+  for (int i = 7; i >= 0; i--) {
+    x[l]   = (id & f << i * 4) >> i * 4;
+    l++;
+  }
+  int * xx = parity_check(x);
+  unsigned long long NFC_DATA = 0xFF80000000000000;
+  unsigned long long  temp;
+  for (int i = 0; i < 11; i++) {
+    temp = xx[i];
+    temp = temp << 50 - i * 5; //50= - (9) - (5)
+    NFC_DATA += temp;
+  }
+  return NFC_DATA;
+  /*
+    unsigned long id_data_MSB=NFC_DATA>>32;
+    unsigned long id_data_LSB=NFC_DATA&0xffffffff;
+    Serial.print(id_data_MSB,HEX);
+    Serial.print(",");
+    Serial.println(id_data_LSB,HEX);*/
+  //transmit(NFC_DATA);
+}
+
+
+
+void  EM4095::Write_ID(uint8_t WriteVD, uint32_t WriteID)
+{
+  uint32_t Config[2] = {0x264CB9E0, 0x00148040};
+  uint32_t Password = 0x00000000;
+  uint32_t CardType = 0x00148040;
+
+  //digitalWrite(SHD, LOW); //CLR_SHD
+  digitalWrite(SHD, LOW); //CLR_SHD
+  delay(36);
+  Write_ID_Block(Config, 2, 0x00);
+  delay(16);
+  Write_ID_Block(&Password, 1, 0x07);
+  delay(33);
+  Write_ID_Block(&CardType, 1, 0x00);
+  delay(16);
+  unsigned long long CardData = parity_check_write(WriteVD, WriteID);
+  uint32_t CardDataMSB = CardData >> 32;
+  uint32_t CardDataLSB = CardData & 0xffffffff;
+
+  Write_ID_Block(&CardDataMSB, 1, 0x01);
+  delay(16);
+  Write_ID_Block(&CardDataLSB , 1, 0x02);
+  delay(16);
+  digitalWrite(SHD, HIGH); //SET_SHD();
+
+
+  delay(133);
+  digitalWrite(SHD, LOW);
+  delay(133);
+  digitalWrite(SHD, HIGH);
+  digitalWrite(MOD, HIGH);
+  delay(100);
+  digitalWrite(SHD, LOW);
+  digitalWrite(MOD, LOW);
+  delay(100);
+  digitalWrite(SHD, HIGH);
+  digitalWrite(MOD, HIGH);
+  delay(100);
+  digitalWrite(SHD, LOW);
+  digitalWrite(MOD, LOW);
+  //digitalWrite(SHD, HIGH); //SET_SHD();
+}
 
 
 bool EM4095::decodeTag(unsigned long &udata,int &ReadVd)
