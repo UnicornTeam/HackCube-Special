@@ -74,13 +74,13 @@ void WebInterface() {
   server.on("/nfc_stop", []() {
     Serial.println("[NFC]stop");
     server.send(200, "text/html", "");
-    LED_STATE(LED_RUN);
+    LED_STATE(LED_POWER,true);
   });
   server.on("/nfc_read", []() {
     Serial.print("[NFC][switch]action:");
     Serial.println(server.arg("action"));
     server.send(200, "text/html", "");
-    LED_STATE(LED_RUN);
+    LED_STATE(LED_POWER,true);
   });
 
   server.on("/nfc_attack", []() {
@@ -104,17 +104,18 @@ void WebInterface() {
     Serial.print("[RF][Switch]action:");
     Serial.println(server.arg("action"));
     server.send(200, "text/html", "");
-    LED_STATE(LED_RUN);
+    LED_STATE(LED_POWER,true);
   });
 
   server.on("/rf_setup", []() {
+    
     Serial.print("[RF][Setup]chip:CC1101,class:");
     Serial.print(server.arg("SnifferClass"));
     Serial.print(",freq:");
     Serial.println(server.arg("freq"));
 
     server.send(200, "text/html", "");
-    LED_STATE(LED_RUN);
+    LED_STATE(LED_SETUP,true);
   });
 
 
