@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.2/css/bootstrap-colorpicker.css" rel="stylesheet">
  -->
 <link href="color/colorpicker.css" type="text/css" rel="stylesheet">
@@ -588,13 +587,29 @@
             transform: translateX(20px);
             -webkit-transform: translateX(20px);
         }
+    .warnning-close-btn {
+        position: absolute;
+        top: 0px;
+        right: calc(50% - 150px);
+        font-size: 18px;
+        color: orange;
+    }
+    .botton-wrapper {
+        background-image: url("image/logo.png");
+        background-position: center center;
+        height: 50px;
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        position: relative;
+        margin-top: 30px;
+    }
 </style>
 </head>
 <body>
 <div class="container">
     <ul class="nav nav-tabs">
-        <!-- <li><a href="WIFI.html">WIFI</a></li> -->
-        <li><a href="NFC.html">NFC</a></li>
+        <li><a href="WIFI.html">WIFI</a></li>
+        <li><a href="NFC.html">LF</a></li>
         <li><a href="RF.html">RF</a></li>
         <li><a href="HID.html">HID</a></li>
         <li class="active"><a href="Setup.html">Setup</a></li>
@@ -603,7 +618,7 @@
     <div class="alert alert-dismissible alert-warning" id="Warning_action">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <h4 class="alert-heading">Warning!</h4>
-        <p class="mb-0">This equipment is only for safety demonstrations. Please consciously abide by relevant laws and
+        <p class="mb-0">This device is only for security research. Please consciously abide by relevant laws and
             regulations.</p>
     </div>
 
@@ -611,56 +626,57 @@
         <button type="button" class="close" id="nfc_close">&times;</button>
         <h4 class="alert-heading">NFC</h4>
         <label>EM41xx Tag ID:<label id="nfc_idprint"/></label></br>
-        <a href="/NFC.html" class="alert-link">Click to attack</a></label>
+        <a href="/NFC.html" class="alert-link">See Details</a></label>
     </div>
 
     <div class="alert alert-dismissible alert-info" id="rf_action" hidden>
         <button type="button" class="close" id="rf_close">&times;</button>
         <h4 class="alert-heading">RF</h4>
         <label>Data:<label id="rf_print"/></label></br>
-        <a href="/RF.html" class="alert-link">Click to attack</a></label>
+        <a href="/RF.html" class="alert-link">See Details</a></label>
     </div>
 
     <div class="alert alert-dismissible alert-info" id="rf_action_24l01" hidden>
         <button type="button" class="close" id="rf_close_24l01">&times;</button>
         <h4 class="alert-heading">RF</h4>
         <label>Data:<label id="rf_print_24l01"/></label></br>
-        <a href="/RF.html" class="alert-link">Click to attack</a></label>
+        <a href="/RF.html" class="alert-link">See Details</a></label>
     </div>
 
 </div>
 
     <div class="container">
 
-            <div style="display:inline-block;font-weight: bold; margin: 0 0px; ">
-                <h2>RF_Power</h2>
+              <div style="display:inline-block;font-weight: bold; margin: 0 0px; ">
+                <h2>NFC Switch</h2>
+            </div>
+            <div style="display:inline-block;vertical-align: middle;" >
+                <input id="NFC_Power" type="checkbox" class="al-toggle-button" checked >
+            </div>
+
+              <div style="display:inline-block;font-weight: bold; margin: 0 0px; ">
+                <h2>RF Switch</h2>
             </div>
             <div style="display:inline-block;vertical-align: middle;" >
                 <input id="RF_Power" type="checkbox" class="al-toggle-button" checked >
             </div> 
-
-            <div style="display:inline-block;font-weight: bold; margin: 0 0px; ">
-                <h2>NFC_Power</h2>
-            </div>
-            <div style="display:inline-block;vertical-align: middle;" >
-                <input id="NFC_Power" type="checkbox" class="al-toggle-button" checked >
-            </div> 
+            </br>
             </br>
 
 
             <div style="width:49%;display:inline-block">
-                <label>CC1101Freq</label>
+                <label>frequency</label>
                 <input style="text-align: center;text-align-last: center;" type="text" class="form-control is-valid" placeholder="SnifferFreq" value='315000000' id='rf_freq' maxlength="9">
             </div>
             <div class="form-group" style="width:49%;display:inline-block">
-                <label for="exampleSelect1">SnifferProtocol</label>
+                <label for="exampleSelect1">Protocol</label>
                 <select class="form-control" id='SnifferClass'>
-                    <option value="fixed">PT226X</option>
+                    <option value="fixed">Fixed code</option>
                     <!-- <option value=2>PT224X</option> -->
-                    <option value="keeloq">Keeloq</option>
+                    <option value="keeloq">Rolling code(Keeloq)</option>
                 </select>
             </div>
-                <div onclick="RFSetup()" id='s-btn' class="btn btn-primary" style="margin: 0px auto;display: table;margin-top: 10px;">SetupRF</div>
+                <div onclick="RFSetup()" id='s-btn' class="btn btn-primary" style="margin: 0px auto;display: table;margin-top: 10px;">Setting up updates</div>
                 </div>
             </br>
 <!--             <div style="width:28%;display:inline-block">
@@ -681,12 +697,12 @@
         </div>
         <div class="container">
         <div style="width:49%;display:inline-block;float:right;">
-            <label>Color</label>
+            <label>Light color</label>
             <input id="mycp" type="text" name="color" class="form-control" value="#ffffff"/>
         </div>
 
         <div style="width:49%;display:inline-block;float:left;">
-            <label>Effect</label>
+            <label>Lighting effects</label>
             <select class="form-control" name="action" id='tx'>
                 <option value="0">...</option>
                 <option value="1">breath</option>
@@ -697,7 +713,8 @@
         </div>
     </div>
     <div class="container">
-        <label>Brightness</label>
+            </br>
+        <label>Light brightness</label>
         </br>
         <span class="input-group-addon" id="spanBrightness" maxsize="3" style="width:20%;display:inline-block;float:left;">128</span>
         <input class="form-control" name="brightness" id="inputBrightness" type="range" step="1" min="0" max="255" on="console.log(this.value)"
@@ -779,8 +796,11 @@
             </div>
         </div>
         <!-- <input  type="text" name="action" class="form-control" value="0" /> -->
-        <div onclick="submit()" id='s-btn' class="btn btn-primary" style="margin: 0px auto;display: table;margin-top: 10px;">SetColor</div>
+        <div onclick="submit()" id='s-btn' class="btn btn-primary" style="margin: 0px auto;display: table;margin-top: 10px;">Effect update</div>
     </div>
+<div class="botton-wrapper">
+
+</div>
 </body>
 
 <script src='color/jquery.min.js'></script>

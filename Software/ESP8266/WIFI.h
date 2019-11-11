@@ -4,6 +4,7 @@ char* password = "hackcube";
 
 //String AP_Name;
 #include "stdlib_noniso.h"
+#include <EEPROM.h>
 
 const bool debug = true;
 void sendHeader(int code, String type, size_t _size) {
@@ -28,6 +29,17 @@ void startAPScan() {
   }
   Serial.println("scanend");
 }
+
+void startClientScan() {
+
+  
+  if (server.hasArg("time") && apScan.getFirstTarget() > -1 && !clientScan.sniffing) {
+    server.send(200, "text/json", "true");
+    String timex = "15"; 
+    clientScan.start(timex.toInt());
+  } else server.send( 200, "text/json", "ERROR: No selected Wi-Fi networks!");
+}
+
 void sendBuffer() {
   if (bufc > 0) {
     server.sendContent_P(data_websiteBuffer, bufc);
@@ -45,12 +57,18 @@ void sendToBuffer(String str) {
 }
 
 void sendAPResults() {
-  apScan.sendResults();
+  String json = apScan.sendResults();
+  server.send ( 200, "text/json", json);
+}
+
+void sendClientResults() {
+  clientScan.send();
 }
 
 void selectAP() {
   if (server.hasArg("num")) {
     apScan.select(server.arg("num").toInt());
+    server.send( 200, "text/json", "true");
   }
 }
 void ResultsJSON() {
@@ -75,7 +93,6 @@ String   getmac() {
 void ConnectWif() {
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED ) {
-    delay(500);
     Serial.print(".");
   }
   Serial.print("Connected to ");
@@ -98,7 +115,6 @@ void ConfigWifi() {
   Serial.println(WiFi.softAP(AP_Name.c_str(), "hackcube") ? "Ready" : "Failed!");
   Serial.print("Soft-AP IP address = ");
   Serial.println(WiFi.softAPIP());
-  delay(100);
 }
 
 void connectWifi() {
@@ -107,7 +123,6 @@ void connectWifi() {
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED && !outflag) {
-    delay(500);
     Serial.print(".");
     if (millis() - outtime > 10000)
       outflag = true;
@@ -123,4 +138,3 @@ void connectWifi() {
     Serial.println(WiFi.localIP());
   }
 }
-

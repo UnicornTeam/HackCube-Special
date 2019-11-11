@@ -151,19 +151,6 @@ var s3L = sS + '<path d="M41 19c.7 0 1.4.1 2.1.2l4.2-5.2c-.9-.7-9.8-8-23.3-8S1.6
 var s4L = sS + '<path d="M41 19c.72 0 1.41.08 2.09.22L47.28 14c-.9-.68-9.85-8-23.28-8S1.62 13.32.72 14l23.26 28.98.02.02.02-.02 6.98-8.7V29c0-5.52 4.48-10 10-10zm5 13v-3c0-2.76-2.24-5-5-5s-5 2.24-5 5v3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-2 0h-6v-3c0-1.66 1.34-3 3-3s3 1.34 3 3v3z">' + sE;
 
 function getResults() {
-	/*
-	var table1 = document.getElementById('apscan');
-	//var table1 = document.getElementsByTagName('apscan');
-	//var table1 =$('#apscan');
-	table1.className='table';
-	apsacnHeaderHTML=table1.innerHTML;
-	//table1.innerHTML='<thead><tr class="active"><th>NAME</th><th>MAC</th><th>数据包</th><th>JAM</th></tr></thead><tr onclick="select(2)"><td><input type="checkbox" name="check2" id="check2" value="false"><label class="checkbox" for="check2"></label></td><td class="WiFi" id="resizeEventTD"><div><svg viewBox="0 0 48 48"xmlns=http://www.w3.org/2000/svg><path d="M24.02 42.98L47.28 14c-.9-.68-9.85-8-23.28-8S1.62 13.32.72 14l23.26 28.98.02.02.02-.02z"/></svg></div><div><span style="background:linear-gradient(135deg, hsl(100,60%,50%) 100%,rgba(0,0,0,0.15) 100%)"></span><span style="color:hsl(100,60%,90%)">100</span></div></td><td>Example network 3</td><td>Open</td><td>10</td></tr><tr class="selected" onclick="select(1)"><td><input type="checkbox" name="check1" id="check1" value="false" checked><label class="checkbox" for="check1"></label></td><td class="WiFi"><div><svg viewBox="0 0 48 48"xmlns=http://www.w3.org/2000/svg><path d="M41 19c.7 0 1.4.1 2.1.2l4.2-5.2c-.9-.7-9.8-8-23.3-8S1.6 13.3.7 14L24 43l7-8.7V29c0-5.5 4.5-10 10-10z"enable-background=new opacity=.3 /><path d="M46 32v-3c0-2.8-2.2-5-5-5s-5 2.2-5 5v3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-2 0h-6v-3c0-1.7 1.3-3 3-3s3 1.3 3 3v3zM7.1 21.9L24 43l7-8.7V29c0-4.3 2.7-8 6.5-9.4C34.6 18 29.9 16 24 16c-9.6 0-16.1 5.2-16.9 5.9z"></svg></div><div><span style="background:linear-gradient(135deg, hsl(34.48275862068966,75%,50%) 43%,rgba(0,0,0,0.15) 43%)"></span><span style="color:hsl(34.48275862068966,75%,90%)">43</span></div></td><td>Example network 11</td><td>WPA2 &nbsp;&#128274;&#128123;</td><td>9</td></tr><tr class="selected" onclick="select(0)"><td><input type="checkbox" name="check0" id="check0" value="false" checked><label class="checkbox" for="check0"></label></td><td class="WiFi"><div><svg viewBox="0 0 48 48"xmlns=http://www.w3.org/2000/svg><path d="m41,19c0.7,0 1.4,0.1 2.1,0.2l4.2,-5.2c-0.9,-0.7 -9.8,-8 -23.3,-8s-22.4,7.3 -23.3,8l23.3,29l7,-8.7l0,-5.3c0,-5.5 4.5,-10 10,-10z"opacity=0.3 /><path d="m46,32l0,-3c0,-2.8 -2.2,-5 -5,-5s-5,2.2 -5,5l0,3c-1.1,0 -2,0.9 -2,2l0,8c0,1.1 0.9,2 2,2l10,0c1.1,0 2,-0.9 2,-2l0,-8c0,-1.1 -0.9,-2 -2,-2zm-2,0l-6,0l0,-3c0,-1.7 1.3,-3 3,-3s3,1.3 3,3l0,3z"></svg></div><div><span style="background:linear-gradient(135deg, hsl(1.1494252873563204,75%,50%) 14%,rgba(0,0,0,0.15) 14%)"></span><span style="color:hsl(1.1494252873563204,75%,90%)">14</span></div></td><td>Example network 5</td><td>WPA2 &nbsp;&#128274;</td><td>8</td></tr>';
-	//table1.innerHTML='<thead><tr class="active"><th>NAME</th><th>MAC</th><th>数据包</th><th>JAM</th></tr></tr></thead><tr onclick="select(2)"><td><input type="checkbox" name="check2" id="check2" value="false"><label class="checkbox" for="check2"></label></td><td class="WiFi" id="resizeEventTD">';
-	//table1.innerHTML='<thead><tr class="active"><th>NAME</th><th>MAC</th><th>数据包</th><th>JAM</th>';
-	console.log("logtest");
-	
-	console.log(table1.innerHTML);
-	console.log(table1);*/
 
 	toggleScan(true);
 	getResponse("APScanResults.json", function(responseText) {

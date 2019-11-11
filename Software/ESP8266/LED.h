@@ -264,7 +264,7 @@ void LED_SHOW() {
     //color
     if (millis() - system_time < 1000)
       return ;
-    led_action=1;
+    led_action = 1;
     LED_Color(0, 0, 255);
     LED_Prompt = false;
   }
@@ -272,14 +272,14 @@ void LED_SHOW() {
 }
 unsigned long CheckTime;
 void  LowBatteryCheck() {
-  if(led_action==6)
+  if (led_action == 6)
     return;
   if (millis() - CheckTime > 5000) {
     int  power = analogRead(A0);
     if (power < 868) {
       led_action = 6;
     }
-    CheckTime=millis();
+    CheckTime = millis();
   }
 
 }
@@ -290,6 +290,8 @@ void  LowBatteryCheck() {
 #define LED_CONNECT 4
 #define LED_SIMULATE 5
 #define LED_TRANSMIT 6
+#define LED_SETUP 7
+#define LED_POWER 8
 //#define
 
 void LED_STATE(int STATE, bool Change = false) {
@@ -313,6 +315,12 @@ void LED_STATE(int STATE, bool Change = false) {
       break;
     case LED_TRANSMIT:
       LED_Color(0x8B, 0, 0);
+      break;
+    case LED_SETUP:
+      LED_Color(0x00, 0xf5, 0xff);
+      break;
+    case LED_POWER:
+      LED_Color(0x93, 0x70, 0xdb);
       break;
   }
   if (Change) {

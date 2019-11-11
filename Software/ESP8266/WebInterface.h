@@ -21,7 +21,7 @@ String getContentType(String filename) {
 bool handleFileRead(String path) {
 #ifdef DEBUG
   Serial.println("handleFileRead: " + path);
-#endif
+#endif  
   if (path.endsWith("/")) path += "RF.html";
   if (SPIFFS.exists(path)) {
     File file = SPIFFS.open(path, "r");
@@ -41,7 +41,10 @@ void WebInterface() {
   server.on("/APScanResults.json", sendAPResults);
   server.on("/APScan.json", startAPScan);
   server.on("/APSelect.json", selectAP);
-  server.on("/getResultsJSON.json", ResultsJSON);
+  server.on("/getResultsJSON.json", ResultsJSON);    //没有调用
+
+  server.on("/ClientScanResults.json", sendClientResults);
+  server.on("/ClientScan.json", startClientScan);
 
 
   server.on("/rf.json", rf_json);
@@ -58,16 +61,29 @@ void WebInterface() {
     LED_STATE(LED_SIMULATE);
   });
 
+
+  server.on("/nfc_write", []() {
+    int VD = server.arg("VD").toInt();
+    unsigned long  ID = strtoul(server.arg("ID").c_str(), NULL, 10);
+    Serial.print("[NFC][write]vd:");
+    Serial.print(VD);
+    Serial.print(",data:");
+    Serial.println(ID);
+    //rf_Replay(num);
+    server.send(200, "text/html", "");
+    LED_STATE(LED_TRANSMIT, true);
+  });
+  
   server.on("/nfc_stop", []() {
     Serial.println("[NFC]stop");
     server.send(200, "text/html", "");
-    LED_STATE(LED_RUN);
+    LED_STATE(LED_POWER,true);
   });
   server.on("/nfc_read", []() {
     Serial.print("[NFC][switch]action:");
     Serial.println(server.arg("action"));
     server.send(200, "text/html", "");
-    LED_STATE(LED_RUN);
+    LED_STATE(LED_POWER,true);
   });
 
   server.on("/nfc_attack", []() {
@@ -91,19 +107,20 @@ void WebInterface() {
     Serial.print("[RF][Switch]action:");
     Serial.println(server.arg("action"));
     server.send(200, "text/html", "");
-    LED_STATE(LED_RUN);
+    LED_STATE(LED_POWER,true);
   });
 
-    server.on("/rf_setup", []() {
+  server.on("/rf_setup", []() {
+    
     Serial.print("[RF][Setup]chip:CC1101,class:");
     Serial.print(server.arg("SnifferClass"));
     Serial.print(",freq:");
     Serial.println(server.arg("freq"));
-    
+
     server.send(200, "text/html", "");
-    LED_STATE(LED_RUN);
+    LED_STATE(LED_SETUP,true);
   });
-  
+
 
   server.on("/rf_jam", []() {
     //Serial.println("[NFC]stop");
@@ -130,12 +147,12 @@ void WebInterface() {
 
 
   server.on("/rf_Replay", []() {
-    
+
     int num = server.arg("num").toInt();
     rf_Replay(num);
     server.send(200, "text/html", "");
     LED_STATE(LED_TRANSMIT, true);
-    
+
   });
 
 
@@ -152,13 +169,13 @@ void WebInterface() {
     Serial.print(",");
     Serial.println(Data);
 
-//    ajaxData_nfc = analogRead(A0);
-    
+    //    ajaxData_nfc = analogRead(A0);
+
     server.send(200, "text/html", "True");
     LED_STATE(LED_TRANSMIT, true);
   });
 
-   server.on("/rf_LigthBar", []() {
+  server.on("/rf_LigthBar", []() {
     //int num = server.arg("num").toInt();
     String Freq = server.arg("Freq");
     String Data = server.arg("Data");
@@ -169,7 +186,7 @@ void WebInterface() {
     server.send(200, "text/html", "True");
     LED_STATE(LED_TRANSMIT, true);
   });
-  
+
 
   server.on("/ajax_nfc", []() {
     server.send(200, "text/html", getajax_nfc());
@@ -244,7 +261,11 @@ void WebInterface() {
         delay(800);
       }
     }
-    sendProgmem(data_RF_gz, sizeof(data_RF_gz), W_HTML);
+    if (!WebFFS) {
+      sendProgmem(data_RF_gz, sizeof(data_RF_gz), W_HTML);
+    }else {
+      handleFileRead("/RF.html");
+    }
     //handleFileRead("/RF.html");
   });
 
@@ -273,11 +294,10 @@ void WebInterface() {
     server.send(200, "text/html", "true");
     //handleFileRead("/INFO.html");
   });
-  
+
   server.onNotFound([]() {
     if (!handleFileRead(server.uri()))
       server.send(404, "text/plain", "Archivo no encontrado");
   });
-  
-}
 
+}

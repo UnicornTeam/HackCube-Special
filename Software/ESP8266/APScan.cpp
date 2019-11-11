@@ -1,3 +1,4 @@
+// Modified from https://github.com/samdenty99/Wi-PWN
 #include "APScan.h"
 
 APScan::APScan() {
@@ -49,6 +50,7 @@ bool APScan::start() {
       //Serial.print(vendors[i]);
       Serial.println();
     }
+    delay(50);
   }
 
   //for debugging the APScan crash bug
@@ -147,7 +149,7 @@ String APScan::sanitizeJson(String input){
  return input;
 }
 
-void APScan::sendResults() {
+String APScan::sendResults() {
 //  if (debug) Serial.print(millis());
   if (debug) Serial.print("sending AP scan result JSON ");
 //  delay(1000);
@@ -168,11 +170,11 @@ void APScan::sendResults() {
   int bufc = 0; //bufferCounter
   json = "{\"aps\":[";
 
-  sendToBuffer(json);
+//  sendToBuffer(json);
 
   for (int i = 0; i < results && i < maxAPScanResults; i++) {
     if (debug) Serial.print(".");
-    json = "{";
+    json += "{";
     json += "\"i\":" + (String)i + ",";
     json += "\"c\":" + (String)getAPChannel(i) + ",";
     json += "\"m\":\"" + getAPMac(i) + "\",";
@@ -185,20 +187,20 @@ void APScan::sendResults() {
     json += "}";
     if ((i != results - 1) && (i != maxAPScanResults - 1)) json += ",";
 
-    sendToBuffer(json);
+//    sendToBuffer(json);
   }
 
-  json = "],\"multiAPs\":\"";
+  json += "],\"multiAPs\":\"";
   //if(settings.multiAPs) json += "1";
   //else json += "0";
   json += "0";
   json += "\"}";
 
 
-  sendToBuffer(json);
+//  sendToBuffer(json);
   //delay(100);
-  sendBuffer();
-
+//  sendBuffer();
+return json;
   if (debug) Serial.println("done");
 }
 

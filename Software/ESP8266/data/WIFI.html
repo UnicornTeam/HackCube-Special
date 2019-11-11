@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8" content='width=device-width, initial-scale=1'>
     <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1">
@@ -157,6 +156,8 @@
             margin-bottom: 21px;
             border: 1px solid transparent;
             border-radius: 4px;
+            position: relative;
+            text-align: left;
         }
 
         .alert-dismissible {
@@ -165,8 +166,8 @@
 
         .alert-dismissable .close, .alert-dismissible .close {
             position: relative;
-            top: -2px;
-            right: -21px;
+            top: 0px;
+            right: 0px;
             color: inherit;
         }
 
@@ -316,6 +317,7 @@
             font-size: 13px;
             line-height: 1.5;
             border-radius: 3px;
+            margin: 0;
         }
 
         .btn {
@@ -808,45 +810,60 @@
             border-color: #3498db;
             color: #ffffff;
         }
-
+        .warnning-close-btn {
+            position: absolute;
+            top: 0px;
+            right: calc(50% - 150px);
+            font-size: 18px;
+            color: orange;
+        }
+        .botton-wrapper {
+            background-image: url("image/logo.png");
+            background-position: center center;
+            height: 50px;
+            background-size: auto 100%;
+            background-repeat: no-repeat;
+            position: relative;
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <ul class="nav nav-tabs">
         <li class="active"><a href="WIFI.html">WIFI</a></li>
-        <li><a href="NFC.html">NFC</a></li>
+        <li><a href="NFC.html">LF</a></li>
         <li><a href="RF.html">RF</a></li>
         <li><a href="HID.html">HID</a></li>
-        <li><a href="INFO.html">INFO</a></li>
+        <li><a href="Setup.html">Setup</a></li>
     </ul>
 
     </br>
-    <div class="alert alert-dismissible alert-warning" id="Warning_action" >
-        <button type="button" class="close" data-dismiss="alert" id="close">&times;</button>
+    <div class="alert alert-dismissible alert-warning" id="Warning_action">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
         <h4 class="alert-heading">Warning!</h4>
-        <p class="mb-0">This equipment is only for safety demonstrations. Please consciously abide by relevant laws and
+        <p class="mb-0">This device is only for security research. Please consciously abide by relevant laws and
             regulations.</p>
     </div>
     <div class="alert alert-dismissible alert-success" id="nfc_action" hidden>
         <button type="button" class="close" id="nfc_close">&times;</button>
         <h4 class="alert-heading">NFC</h4>
         <label>EM41xx Tag ID:<label id="nfc_idprint"/></label></br>
-        <a href="/NFC.html" class="alert-link">Click to attack</a></label>
+        <a href="/NFC.html" class="alert-link">See Details</a></label>
     </div>
 
     <div class="alert alert-dismissible alert-info" id="rf_action" hidden>
         <button type="button" class="close" id="rf_close">&times;</button>
         <h4 class="alert-heading">RF</h4>
         <label>Data:<label id="rf_print"/></label></br>
-        <a href="/RF.html" class="alert-link">Click to attack</a></label>
+        <a href="/RF.html" class="alert-link">See Details</a></label>
     </div>
 
     <div class="alert alert-dismissible alert-info" id="rf_action_24l01" hidden>
         <button type="button" class="close" id="rf_close_24l01">&times;</button>
         <h4 class="alert-heading">RF</h4>
         <label>Data:<label id="rf_print_24l01"/></label></br>
-        <a href="/RF.html" class="alert-link">Click to attack</a></label>
+        <a href="/RF.html" class="alert-link">See Details</a></label>
     </div>
 
 
@@ -857,24 +874,30 @@
 
 <div class="container">
     <div class='container-fluid'>
-        <div style="display:inline-block;float:left;"><h3>Wifi List</h3>
-        </div>
-        <button id="apScanStart" style="display:inline-block;float:right;margin-top: 18px"
-                type="button" class="btn btn-success btn-sm">SCAN
-        </button>
+	
+		<div>
+			<button id="apScanStart" onclick="scan()" style="display:inline-block;float:right;margin-top: -3px"
+				type="button" class="btn btn-success btn-sm">SCAN
+                </button>
+                <h3>WiFi AP List</h3>
+		</div>
+		
 
         <div class='row'>
             <div class='col-md-12'>
                 <div class="main-wrap">
                     <div id="spinner-container" class="show-loading"></div>
+						<div id = "loading_ap_scan">						
+							<div class="alert alert-warning">
+									Tip: The AP scan will last for 5~7s. Please wait patiently. After the scan is finished, the interface will be refreshed automatically.
+							</div>						
+						</div>																	
                     <div class="card-container"></div>
                     <div class="settingsHeader button-header" style="display:inline-block;margin-bottom: 30px">
-                        Scan for networks (<span id="networksFound"></span>)
+                        Network scan result [<span id="networksFound"></span>]
                     </div>
-
-
                     <div class="card">
-                        <table id="apscan" class='table'>
+                        <table id="apscan_table" class='table'>
                             <thead>
                             <tr class='active'>
                                 <th></th>
@@ -885,71 +908,45 @@
                             </tr>
                             </thead>
                         </table>
-
-                        <div class="card-action">
-                            <a onclick="window.location='./users'" class="button light">Users</a>
-                            <a onclick="window.location='./attack'" class="button right">Attack</a>
-                        </div>
-                        <table id="apscan1" class='table'></table>
                     </div>
                     <div class="network-info">
                         <div id="apMAC"></div>
                     </div>
                 </div>
-
-
-<!--                <h3>Client List</h3>
-                 <table class='table'>
+				<button id="ClientScanStart" onclick="scan_client()" style="display:inline-block;float:right;margin-top: -3px"
+						type="button" class="btn btn-success btn-sm">SCAN CLIENT
+				</button>
+                <h3>Mount the client list</h3>				
+				<div id = "loading_client_scan">				
+							<div class="alert alert-warning">
+								Tip: Select one or more of the WiFi AP lists as the scan target AP.
+							</div>
+				</div>
+				<div class="card">		
+                 <table id='clientscan_table' class='table'>
                     <thead>
-                    <tr class='active'>
+                 
                         <th class="text-center">NAME</th>
                         <th class="text-center">MAC</th>
-                        <th class="text-center">数据包</th>
-                        <th class="text-center">JAM</th>
+                        <th class="text-center">Pkts</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td>XX<span class='badge'>iPhone</span></td>
-                        <td>11:22:33:44:55:66</td>
-                        <td>552</td>
-                        <td>
-                            <input name="status" type="checkbox" data-size="mini">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>XX<span class='badge'>Android</span></td>
-                        <td>11:22:33:44:55:66</td>
-                        <td>92</td>
-                        <td>
-                            <input name="status" type="checkbox" data-size="mini">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>XX<span class='badge'>iPhone</span></td>
-                        <td>11:22:33:44:55:66</td>
-                        <td>102</td>
-                        <td>
-                            <input name="status" type="checkbox" data-size="mini">
-                        </td>
-                    </tr>
-                    </tbody>
-                </table> -->
+                </table> 
+				</div>
             </div>
         </div>
     </div>
 
 </div>
+<div class="botton-wrapper">
+
+</div>
 </body>
 <script>
-    document.getElementById('apScanStart').addEventListener('click', scan)
-    document.getElementById('apScanStart').addEventListener('touchstart', scan)
     mainWrap = document.getElementsByClassName("main-wrap")[0]
-
     function getE(name) {
         return document.getElementById(name);
     }
-
     function showLoading(state) {
         if (state == "hide") {
             sL.className = "";
@@ -957,7 +954,6 @@
             sL.classList.add("show-loading");
         }
     }
-
     function notify(msg, closeAfter) {
         if (msg) {
             //notification.innerHTML = msg;
@@ -1031,24 +1027,29 @@
     }
 
 
-    var table = document.getElementsByTagName('table')[0],
+    var table = getE('apscan_table'),
 
-//var table = $("#apscan");
         mainWrap = document.getElementsByClassName("main-wrap")[0],
         sL = getE('spinner-container'),
         networkInfo = getE('networksFound'),
+		table_client = getE('clientscan_table'),
         scanInfo = getE('spinner-container'),
         apMAC = getE('apMAC'),
         startStopScan = getE('startStopScan'),
         selectAll = getE('selectAll'),
         autoScan = false,
-        //tableHeaderHTML = '<thead><tr class="active"><th width="8%"></th><th width="17%">Signal</th><th width="22%">SSID</th><th width="15%">Security</th><th width="8%">Ch.</th></tr></thead>',
+		scanTime = '',
+		button_ap_scan = getE('apScanStart'),
+		button_client_scan = getE('ClientScanStart'),
+		loading_ap_scan = getE('loading_ap_scan'),
+		loading_client_scan = getE('loading_client_scan'),
 
         tableHeaderHTML = table.innerHTML,
+		tableHeaderHTML_client = table_client.innerHTML,
         selectAllState = 'not-checked',
         previousCall = new Date().getTime(),
         url = window.location.href,
-        wifiIndicator, securityState, res;
+        wifiIndicator, securityState, res,res_client;
 
     function toggleScan(onoff) {
         if (onoff && !autoScan) {
@@ -1086,11 +1087,6 @@
         }
     }
 
-    /* Dynamically add footer *//*
-    document.getElementsByTagName("footer")[0].innerHTML = "";*/
-
-    /* Dynamically add spinner */
-/*    document.getElementById("spinner-container").innerHTML = "<svg class=spinner viewBox='0 0 66 66'><circle class=path cx=33 cy=33 fill=none r=30 stroke-linecap=round stroke-width=6></circle></svg><svg class=success-svg viewBox='0 0 1000 1000'><path d=M908.3,132.5L336.7,704.2l-245-245L10,540.8l326.7,326.7l81.7-81.7L990,214.2L908.3,132.5z /></svg> <svg class=failed-svg viewBox='0 0 19 19'><line stroke-width=2 x1=1 x2=18 y1=1 y2=18></line><line stroke-width=2 x1=18 x2=1 y1=1 y2=18></line></svg>"*/
 
     var sS = '<svg width="30" height="30" viewBox="0 0 48 48" xmlns=http://www.w3.org/2000/svg>';
     var sN = '<path d="M24.02 42.98L47.28 14c-.9-.68-9.85-8-23.28-8S1.62 13.32.72 14l23.26 28.98.02.02.02-.02z"fill-opacity=.3 />'
@@ -1100,7 +1096,7 @@
     var s2 = sS + sN + '<path d="M9.58 25.03l14.41 17.95.01.02.01-.02 14.41-17.95C37.7 24.47 32.2 20 24 20s-13.7 4.47-14.42 5.03z"/>' + sE;
     var s3 = sS + sN + '<path d="M7.07 21.91l16.92 21.07.01.02.02-.02 16.92-21.07C40.08 21.25 33.62 16 24 16c-9.63 0-16.08 5.25-16.93 5.91z"/>' + sE;
     var s4 = sS + '<path d="M24.02 42.98L47.28 14c-.9-.68-9.85-8-23.28-8S1.62 13.32.72 14l23.26 28.98.02.02.02-.02z"/>' + sE;
-    /* Combine strings to form WiFi icons with lock icon */
+
     var s0L = sS + '<path d="m41,19c0.7,0 1.4,0.1 2.1,0.2l4.2,-5.2c-0.9,-0.7 -9.8,-8 -23.3,-8s-22.4,7.3 -23.3,8l23.3,29l7,-8.7l0,-5.3c0,-5.5 4.5,-10 10,-10z"opacity=0.3 /><path d="m46,32l0,-3c0,-2.8 -2.2,-5 -5,-5s-5,2.2 -5,5l0,3c-1.1,0 -2,0.9 -2,2l0,8c0,1.1 0.9,2 2,2l10,0c1.1,0 2,-0.9 2,-2l0,-8c0,-1.1 -0.9,-2 -2,-2zm-2,0l-6,0l0,-3c0,-1.7 1.3,-3 3,-3s3,1.3 3,3l0,3z">' + sE;
     var s1L = sS + '<path d="M41 19c.7 0 1.4.1 2.1.2l4.2-5.2c-.9-.7-9.8-8-23.3-8S1.6 13.3.7 14L24 43l7-8.7V29c0-5.5 4.5-10 10-10z"opacity=.3 /><path d="M46 32v-3c0-2.8-2.2-5-5-5s-5 2.2-5 5v3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-2 0h-6v-3c0-1.7 1.3-3 3-3s3 1.3 3 3v3zm-30.7-2.3l9 11.2L24 43l7-8.8V29c0-.5 0-1 .1-1.4-1.8-.8-4.2-1.6-7.1-1.6-6.1 0-10.1 3.3-10.7 3.7z">' + sE;
     var s2L = sS + '<path d="M41 19c.7 0 1.4.1 2.1.2l4.2-5.2c-.9-.7-9.9-8-23.3-8S1.6 13.3.7 14L24 43l7-8.7V29c0-5.5 4.5-10 10-10z"opacity=.3 /><path d="M46 32v-3c0-2.8-2.2-5-5-5s-5 2.2-5 5v3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-2 0h-6v-3c0-1.7 1.3-3 3-3s3 1.3 3 3v3zM9.6 25L24 43l7-8.7V29c0-2.6 1-5 2.7-6.8C31.2 21 27.9 20 24 20c-8.2 0-13.7 4.5-14.4 5z">' + sE;
@@ -1127,6 +1123,9 @@
             if (res.multiAPs == 1) tableHeaderHTML = '<tr><th width="8%"><input type="checkbox" name="selectAll" id="selectAll" value="false" onclick="selAll()" ' + selectAllState + '><label class="checkbox" for="selectAll"></th><th width="17%">Signal</th><th width="22%">SSID</th><th width="15%">Security</th><th width="8%">Ch.</th></tr>';
             var tr = '';
             if (res.aps.length > 0) tr += tableHeaderHTML;
+			
+			var maclist = '';
+			
 
             for (var i = 0; i < res.aps.length; i++) {
 
@@ -1135,7 +1134,7 @@
 
                 if (res.aps[i].se) {
                     tr += '<td><input type="checkbox" name="check' + res.aps[i].i + '" id="check' + res.aps[i].i + '" value="false" checked><label class="checkbox" for="check' + res.aps[i].i + '"></label></td>';
-                    apMAC.innerHTML = res.aps[i].m;
+                    maclist += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + escapeHTML(res.aps[i].ss) + '&nbsp;:&nbsp;' +res.aps[i].m + '<br>';
                 } else tr += '<td><input type="checkbox" name="check' + res.aps[i].i + '" id="check' + res.aps[i].i + '" value="false"><label class="checkbox" for="check' + res.aps[i].i + '"></label></td>';
 
                 if (getStatus(res.aps[i].e) != 'Open') {
@@ -1156,20 +1155,28 @@
                 }
 
                 var signalPercent = Math.round((1 - ((res.aps[i].r + 30) / -70)) * 100);
-                //if (signalPercent > 100) signalPercent = 100;
-                //if (i == 0) {var tdID = ' id="resizeEventTD"'} else {var tdID = ''}
+
                 if (i == 0) {
                     var tdID = ''
                 } else {
                     var tdID = ''
                 }
-                tr += '<td class="WiFi"' + tdID + '><div>' + eval(wifiIndicator) + '</div><div><span style="background:linear-gradient(135deg, ' + getColor(signalPercent) + ' ' + signalPercent + '%,rgba(0,0,0,0.15) ' + signalPercent + '%)"></span><span style="color:' + getColor(signalPercent, true) + '">' + signalPercent + '</span></div></td>';
+                tr += '<td class="WiFi"' + tdID + '><div>' + eval(wifiIndicator) + '</div><div><span style="background:linear-gradient(135deg, ' + getColor(signalPercent) + ' ' + signalPercent + '%,rgba(0,1,0,0.15) ' + signalPercent + '%)"></span><span style="color:' + getColor(signalPercent, true) + '">' + signalPercent + '</span></div></td>';
                 tr += '<td>' + escapeHTML(res.aps[i].ss) + '</td>';
                 tr += '<td>' + getStatus(res.aps[i].e, res.aps[i].h) + '</td>';
                 tr += '<td>' + res.aps[i].c + '</td>';
                 tr += '</tr>';
             }
             table.innerHTML = tr;
+			
+			loading_ap_scan.innerHTML = '<div class="alert alert-success">  The scan was successful. </div>';
+			
+			if (maclist == ''){
+			}else{
+				maclist = '<font size=4><b>Selected AP MAC：</b></font><br>' + maclist;
+				apMAC.innerHTML = maclist;
+			}
+			
             checkSize()
             fadeIn();
         }, function () {
@@ -1177,7 +1184,101 @@
             fadeIn();
             notify("Failed to scan for networks! E0")
         });
+		button_ap_scan.disabled = false;
     }
+
+
+function getResults_client() {
+        toggleScan(true);
+    getResponse("ClientScanResults.json", function(responseText) {
+        try {
+            res_client = JSON.parse(responseText);
+			log("RESPONSE  ~ ", res_client, true)
+            notify()
+        } catch (e) {
+		    log("INVALID   ~ ", responseText, false)
+            console.error(e)
+            notify("ERROR: Clear the client list. (E5)");
+            return;
+        }
+
+        res_client.res_client = res_client.clients.sort(compare);
+
+        var tr = '';
+        tr += tableHeaderHTML_client;
+
+        for (var i = 0; i < res_client.clients.length; i++) {		
+			if (res_client.clients[i].l >= 0) {
+                tr += '<td class="darken-on-hover" ><span class="a b">' + escapeHTML(res_client.clients[i].n) + '</span><br>' +  escapeHTML(res_client.clients[i].v)  +'</td>';
+            } else {
+                tr += '<td class="darken-on-hover" ><span class="a light-6">save</span><br>' + escapeHTML(res_client.clients[i].v) + '</td>';
+            }
+            tr += '<td ><b>' + res_client.clients[i].m + '</b><br>' +  escapeHTML(res_client.clients[i].a) + '</td>';
+            tr += '<td >' + res_client.clients[i].p + '</td>';
+
+            tr += '</tr>';
+        }
+        if (tr != tableHeaderHTML_client) table_client.innerHTML = tr;
+        if (res_client.nameList.length != 0) {
+            document.getElementById('saved-users').className = "";
+        }
+        clientNames.innerHTML = "(" + res_client.nameList.length + "/50)";
+        var tr = '<tr><th>Name</th><th><a onclick="clearNameList()" class="right" style="padding-right:10px">Reset</a></th></tr>';
+        for (var i = 0; i < res_client.nameList.length; i++) {
+
+            tr += '<tr>';
+            tr += '<td><b>' + escapeHTML(res_client.nameList[i].n) + '</b><br>' + res_client.nameList[i].m + '</td>';
+            tr += '<td><div class="edit delete" onclick="deleteName(' + i + ')">&times;</div><div class="clearfix"></div><div class="edit add" onclick="add(' + i + ')">+</div><div class="clearfix"></div><div class="edit" onclick="editNameList(' + i + ')"><svg style=width:22px;height:24px viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z"></path></svg></div></td>';
+            tr += '</tr>';
+        }
+			table_client.innerHTML = tr;
+		loading_client_scan = '';
+            checkSize()
+            fadeIn();
+
+    }, function() {
+	    toggleScan(true);
+        fadeIn();
+        notify("Reconnect to Wi-Fi network (E6)");
+    });
+	
+	button_client_scan.disabled = false;
+
+}
+
+function scan_client() {
+
+		if(res == null  || res == undefined ){
+					loading_client_scan.innerHTML = '<div class="alert alert-info ">  Tip: Please complete the AP scan. </div>';
+		}else{				
+			var flag = false;
+			
+			for (var i = 0; i < res.aps.length; i++){
+				if (res.aps[i].se == 1) flag = true;			
+			}
+			
+			if (flag == true){
+				button_client_scan.disabled = true;
+				loading_client_scan.innerHTML = '<div class="alert alert-info">  Hint: CLIENT scan will last for 15s Please be patient. After the scan is completed, the device will automatically disconnect from the network and display the scan results after manually reconnecting. </div>';
+				toggleScan(false);
+
+				getResponse("ClientScan.json?time=" + scanTime, function(responseText) {
+					if (responseText == "true") {
+						toggleBtn(true);
+            
+					} else {
+					notify("INFO: No Wi-Fi network(s) selected! (E7)");
+					}
+					setTimeout(function () {
+						toggleScan(true)
+					}, 700);
+					});
+			}else{
+				loading_client_scan.innerHTML = '<div class="alert alert-info ">  Tip: The target AP is not set. </div>';
+			}				
+		}
+	
+}
 
     function getColor(value, lighten) {
         var lightness = 50;
@@ -1191,6 +1292,10 @@
     }
 
     function scan() {
+		button_ap_scan.disabled = true;
+	
+		loading_ap_scan.innerHTML = '<div class="alert alert-warning ">  Tip: The AP scan will last for 5~7s. Please wait patiently. After the scan is finished, the interface will be refreshed automatically. </div>';
+
         toggleScan(false);
         getResponse("APScan.json", function (responseText) {
             if (responseText == "true") getResults();
@@ -1201,16 +1306,17 @@
         });
     }
 
-    function select(num) {
-        var time = new Date().getTime();
-        if ((time - previousCall) >= 80) {
-            previousCall = time;
-            getResponse("APSelect.json?num=" + num, function (responseText) {
-                if (responseText == "true") getResults();
-                else notify("ERROR: Bad response 'APSelect.json' (E4)");
-            });
-        }
+	
+	function select(num) {
+		var time = new Date().getTime();
+    if ((time - previousCall) >= 80) {
+        previousCall = time;
+        getResponse("APSelect.json?num=" + num, function(responseText) {
+            if (responseText == "true") getResults();
+            else notify("ERROR: Bad response 'APSelect.json' (E4)");
+        });
     }
+}
 
     function selAll() {
         if (selectAllState == 'not-checked') {
@@ -1222,7 +1328,6 @@
         }
     }
 
-    /* Add event listener for WiFi signal icons */
     window.onresize = function (event) {
         checkSize()
     }
@@ -1239,9 +1344,11 @@
         }
     }
 
+getResponse("ClientScanTime.json", function(responseText) {
+    scanTime = responseText;
+});
+	getResults_client();
     getResults();
 </script>
 <script src="js/prompt.js"></script>
-<!-- <script src="//cdn.jsdelivr.net/npm/eruda"></script>
-<script>eruda.init();</script> -->
 </html>

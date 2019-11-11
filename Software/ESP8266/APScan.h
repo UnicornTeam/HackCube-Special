@@ -1,7 +1,7 @@
 #ifndef APScan_h
 #define APScan_h
 
-#define maxAPScanResults 80
+#define maxAPScanResults 20
 
 #include <ESP8266WiFi.h>
 #include "Mac.h"
@@ -22,11 +22,12 @@ class APScan {
   public:
     APScan();
 
+    // Modified from https://github.com/samdenty99/Wi-PWN
     bool start();
     void sort();
     String getResultsJSON();
     void select(int num);
-    void sendResults();
+    String sendResults();
 
     String getAPName(int num);
     String getAPEncryption(int num);
