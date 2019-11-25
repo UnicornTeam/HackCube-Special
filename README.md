@@ -18,6 +18,7 @@
 > - [x] TPMS （CRC16）transmitter
 > - [x] Sub1G  Jam
 > - [x] WHID
+> - [x] WiFi AP and client scan
 
 
 ##  How to Use
