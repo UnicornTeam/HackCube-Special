@@ -1206,7 +1206,7 @@
                         <tr class='active'>
                             <th class="text-center">VID</th>
                             <th class="text-center">ID</th>
-                            <th class="text-center">Attack</th>
+                            <th class="text-center">Simulate</th>
                         </tr>
                         </thead>
                         <tbody id="NFC-LIST">
@@ -1232,6 +1232,20 @@
                placeholder="ID">
     </div>
 
+	<div class='container-fluid'>
+        <div style="display:inline-block;float:left;"><h2>write</h2>
+        </div>
+
+        <div style="display:inline-block;float:right;margin-top: 16px">
+                    <button onclick="NFC_Write()" type="submit" class="btn btn-info">write</button>
+        </div>
+    </div>
+    <!-- <div style="display:inline-block;"> -->
+    <div>
+        <input style="width:24%;display:inline-block" type="text" class="form-control is-valid" id="Write_VD" placeholder="VID">
+        <input style="width:74%;display:inline-block;float:right" type="text" class="form-control is-valid" id="Write_ID"
+               placeholder="ID">
+    </div>
 
 
     <div class='container-fluid'>
@@ -1279,8 +1293,10 @@
                 <div id="NFC_prog" class="progress-bar progress-bar-striped progress-bar-danger" role="progressbar"
                      aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
             </div>
+</div>
+<div class="botton-wrapper">
 
-
+</div>
 </body>
 <script src="js/prompt.js"></script>
 <script>
@@ -1404,6 +1420,20 @@ function NFC_simulate(v,i){
     document.getElementById('NFC_simulate').checked = true;
     var ajax = new XMLHttpRequest();
         ajax.open('get','nfc_simulate?VD=' + v +'&ID=' + i);
+        ajax.send();
+        ajax.onreadystatechange = function () {
+            if (ajax.readyState==4 && ajax.status==200) {
+                //console.log(ajax.responseText)
+            }
+    }
+}
+
+function NFC_Write(v,i){
+    i=document.getElementById('Write_ID').value;
+    v=document.getElementById('Write_VD').value;
+    console.log(i,v);
+    var ajax = new XMLHttpRequest();
+        ajax.open('get','nfc_write?VD=' + v +'&ID=' + i);
         ajax.send();
         ajax.onreadystatechange = function () {
             if (ajax.readyState==4 && ajax.status==200) {
