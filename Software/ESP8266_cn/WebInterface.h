@@ -172,11 +172,11 @@ void WebInterface() {
     LED_STATE(LED_TRANSMIT, true);
   });
 
-  server.on("/rf_LigthBar", []() {
+  server.on("/rf_LightBar", []() {
     //int num = server.arg("num").toInt();
     String Freq = server.arg("Freq");
     String Data = server.arg("Data");
-    Serial.print("[RF][Transmit]LigthBar,freq:");
+    Serial.print("[RF][Transmit]LightBar,freq:");
     Serial.print(Freq);
     Serial.print(",data:");
     Serial.println(Data);

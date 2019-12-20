@@ -4,7 +4,7 @@
 //#if defined(__AVR_ATmega1280__)
 
 //#if defined (MCU_STM32F103R)
-#if defined(__STM32F1__) 
+#if defined(__STM32F1__)
 #include "itoa.h"
 #endif
 //
@@ -74,7 +74,6 @@ void HackRadio::transmit(int nHighPulses, int nLowPulses) {
 
 
 void HackRadio::Send0() {
-      
       this->transmit(721,390);//690 420
       //Serial.print("0");
 }
@@ -184,13 +183,13 @@ void HackRadio::handleInterrupt() {
   static unsigned int changeCount;
   static unsigned long lastTime;
   static unsigned int repeatCount;
- 
+
   long time = micros();
   duration = time - lastTime;
 
   if (
      changeCount > 155
-    && duration > HackRadio::timings[0] - 4000 
+    && duration > HackRadio::timings[0] - 4000
     && duration < HackRadio::timings[0] + 4000
      &&  HackRadio::timings[24]<4500
      &&  HackRadio::timings[24]>3500
@@ -204,13 +203,13 @@ void HackRadio::handleInterrupt() {
   }
 
 
-  
+
   if (changeCount >= HackRadio_MAX_CHANGES) {
     changeCount = 0;
     repeatCount = 0;
   }
   HackRadio::timings[changeCount++] = duration;
-  lastTime = time;  
+  lastTime = time;
 }
 
 bool HackRadio::receiveProtocol2(unsigned int changeCount){
@@ -218,15 +217,15 @@ bool HackRadio::receiveProtocol2(unsigned int changeCount){
   String tiaoma;
   String action;
   unsigned long delay = HackRadio::timings[0] / 31;
-  unsigned long delayTolerance = delay * HackRadio::nReceiveTolerance * 0.01; 
+  unsigned long delayTolerance = delay * HackRadio::nReceiveTolerance * 0.01;
       for (int i = 25 ; i< 89 ; i=i+2){
-        if (HackRadio::timings[i] < HackRadio::timings[i+1]){      
+        if (HackRadio::timings[i] < HackRadio::timings[i+1]){
           tiaoma +="0";
         } else if (HackRadio::timings[i] > HackRadio::timings[i+1]) {
           tiaoma +="1";
         }
     }
-    for (int i = 89 ; i< 145 ; i=i+2) { 
+    for (int i = 89 ; i< 145 ; i=i+2) {
         if (HackRadio::timings[i] < HackRadio::timings[i+1]) {
           sn +="0";
         } else if (HackRadio::timings[i] > HackRadio::timings[i+1]) {

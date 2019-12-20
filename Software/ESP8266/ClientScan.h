@@ -20,26 +20,39 @@ extern NameList nameList;
 
 //extern String data_getVendor(uint8_t first, uint8_t second, uint8_t third);
 extern void PrintHex8(uint8_t *data, uint8_t length);
+
 extern const bool debug;
 
 class ClientScan {
-  public:
+public:
     ClientScan();
 
     void start(int _time);
+
     void clearList();
+
     bool stop();
+
     void packetSniffer(uint8_t *buf, uint16_t len);
+
     int add(Mac adr);
+
     void send();
+
     void select(int num);
 
     String getClientName(int num);
+
     int getClientPackets(int num);
+
     String getClientVendor(int num);
+
     Mac getClientMac(int num);
+
     bool getClientSelected(int num);
+
     int getClientConnectedAp(int num);
+
     int getFirstClient();
 
     int results = 0;
@@ -47,9 +60,9 @@ class ClientScan {
     int timeout = 0;
 
     bool sniffing = false;
-  private:
+private:
     size_t getSize();
-    
+
     long startTime = 0;
 
     Mac from;

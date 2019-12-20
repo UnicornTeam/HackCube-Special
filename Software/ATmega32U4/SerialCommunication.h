@@ -18,7 +18,7 @@
   通过CC1101 发射固定码信号
   [RF][Transmit]315,1,B710
   通过CC1101 发射灯光棒信号
-  [RF][Transmit]LigthBar,freq:315,data:2600
+  [RF][Transmit]LightBar,freq:315,data:2600
   爆破固定码
   [RF][Attack]Class2,freq:315,start:B701,end:B710,func:1
   通过CC1101 发射FSK调制胎压信号
@@ -45,86 +45,100 @@
 */
 
 void SerialCommunication() {
-  while (Cube_PRINT.available() > 0) {
-    Cube_PRINT_data += char(Cube_PRINT.read());
-    delay(4);
-  }
-  if (Cube_PRINT_data.length() > 0) {
-    if (Cube_PRINT_data.substring(1, 4) == "HID") { //h
-      hid_attack();
-    } else if (Cube_PRINT_data.substring(1, 3) == "RF") {
-
-      if (int(Cube_PRINT_data.indexOf("Jam")) > 0) {
-        String Jam_Class = Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("class") + 6, Cube_PRINT_data.indexOf(",freq"));
-        if (Jam_Class == "Smart") {
-          freq1 = strtoul(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("freq1") + 6, Cube_PRINT_data.indexOf(",freq2")).c_str(), NULL, 10);
-          freq2 = strtoul(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("freq2") + 6, Cube_PRINT_data.length()).c_str(), NULL, 10);
-          RF_action = 1;
-
-          RF_Jam();
-        } else if (Jam_Class == "Rude") {
-          freq = strtoul(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("freq") + 5, Cube_PRINT_data.length()).c_str(), NULL, 10);
-          //Serial.println(freq);
-          RF_action = 2;
-          RF_Jam();
-        }
-
-      } else if (int(Cube_PRINT_data.indexOf("TPMS")) > 0) {
-        CC1101_TPMS_TX();
-      } else if (int(Cube_PRINT_data.indexOf("Transmit")) > 0) {
-        if (int(Cube_PRINT_data.indexOf("LigthBar")) > 0) {
-          RF_LigthBar();
-        } else {
-          RF_Transmit();
-        }
-      } else if (int(Cube_PRINT_data.indexOf("Attack")) > 0) {
-        RF_Attack();
-      } else if (int(Cube_PRINT_data.indexOf("Switch")) > 0) {
-        RF_Switch(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("action") + 7, Cube_PRINT_data.indexOf('\r')));
-      } else if (int(Cube_PRINT_data.indexOf("Setup")) > 0) {
-        if (int(Cube_PRINT_data.indexOf("CC1101")) > 0) {
-          cc1101_Setup();
-        } else if (int(Cube_PRINT_data.indexOf("nRF24L01")) > 0) {
-
-        }
-      }
-    } else if (Cube_PRINT_data.substring(1, 4) == "NFC") {
-      if (Cube_PRINT_data.substring(6, 16) == "simulation") {
-        NFC_action = 1;
-        NFC_VD = atoi(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("vd") + 3, Cube_PRINT_data.indexOf(",data")).c_str());
-        NFC_ID = strtoul(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("data") + 5, Cube_PRINT_data.length()).c_str(), NULL, 10);
-        Cube_PRINT.print("VD:");
-        Cube_PRINT.print(NFC_VD);
-        Cube_PRINT.print("ID:");
-        Cube_PRINT.println(NFC_ID);
-      } else if (Cube_PRINT_data.substring(6, 12) == "attack") {
-        NFC_action = 2;
-        NFC_VD = atoi(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("vd") + 3, Cube_PRINT_data.indexOf(",start")).c_str());
-        NFC_START = strtoul(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("start") + 6, Cube_PRINT_data.indexOf(",end")).c_str(), NULL, 10);
-        NFC_END = strtoul(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("end") + 4, Cube_PRINT_data.length()).c_str(), NULL, 10);
-        NFC_ID = NFC_START;
-        Cube_PRINT.print("VD:");
-        Cube_PRINT.print(NFC_VD);
-        Cube_PRINT.print(";Start ID:");
-        Cube_PRINT.print(NFC_START);
-        Cube_PRINT.print(";END ID:");
-        Cube_PRINT.println(NFC_END);
-      } else if (Cube_PRINT_data.substring(6, 12) == "switch") {
-        NFC_Switch(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("action") + 7, Cube_PRINT_data.indexOf('\r')));
-      }  else if (int(Cube_PRINT_data.indexOf("write")) > 0) {
-        //NFC_action = 3;
-        NFC_VD = atoi(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("vd") + 3, Cube_PRINT_data.indexOf(",data")).c_str());
-        NFC_ID = strtoul(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("data") + 5, Cube_PRINT_data.length()).c_str(), NULL, 10);
-        Cube_PRINT.print("w,VD:");
-        Cube_PRINT.print(NFC_VD);
-        Cube_PRINT.print("ID:");
-        Cube_PRINT.println(NFC_ID);
-        EM4095.Write_ID(NFC_VD,NFC_ID);
-      }
-    } else {
-      Cube_PRINT.print("error:");
-      Cube_PRINT.println(Cube_PRINT_data[0], HEX);
+    while (Cube_PRINT.available() > 0) {
+        Cube_PRINT_data += char(Cube_PRINT.read());
+        delay(4);
     }
-    Cube_PRINT_data = "";
-  }
+    if (Cube_PRINT_data.length() > 0) {
+        if (Cube_PRINT_data.substring(1, 4) == "HID") { //h
+            hid_attack();
+        } else if (Cube_PRINT_data.substring(1, 3) == "RF") {
+
+            if (int(Cube_PRINT_data.indexOf("Jam")) > 0) {
+                String Jam_Class = Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("class") + 6,
+                                                             Cube_PRINT_data.indexOf(",freq"));
+                if (Jam_Class == "Smart") {
+                    freq1 = strtoul(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("freq1") + 6,
+                                                              Cube_PRINT_data.indexOf(",freq2")).c_str(), NULL, 10);
+                    freq2 = strtoul(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("freq2") + 6,
+                                                              Cube_PRINT_data.length()).c_str(), NULL, 10);
+                    RF_action = 1;
+
+                    RF_Jam();
+                } else if (Jam_Class == "Rude") {
+                    freq = strtoul(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("freq") + 5,
+                                                             Cube_PRINT_data.length()).c_str(), NULL, 10);
+                    //Serial.println(freq);
+                    RF_action = 2;
+                    RF_Jam();
+                }
+
+            } else if (int(Cube_PRINT_data.indexOf("TPMS")) > 0) {
+                CC1101_TPMS_TX();
+            } else if (int(Cube_PRINT_data.indexOf("Transmit")) > 0) {
+                if (int(Cube_PRINT_data.indexOf("LightBar")) > 0) {
+                    RF_LightBar();
+                } else {
+                    RF_Transmit();
+                }
+            } else if (int(Cube_PRINT_data.indexOf("Attack")) > 0) {
+                RF_Attack();
+            } else if (int(Cube_PRINT_data.indexOf("Switch")) > 0) {
+                RF_Switch(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("action") + 7,
+                                                    Cube_PRINT_data.indexOf('\r')));
+            } else if (int(Cube_PRINT_data.indexOf("Setup")) > 0) {
+                if (int(Cube_PRINT_data.indexOf("CC1101")) > 0) {
+                    cc1101_Setup();
+                } else if (int(Cube_PRINT_data.indexOf("nRF24L01")) > 0) {
+
+                }
+            }
+        } else if (Cube_PRINT_data.substring(1, 4) == "NFC") {
+            if (Cube_PRINT_data.substring(6, 16) == "simulation") {
+                NFC_action = 1;
+                NFC_VD = atoi(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("vd") + 3,
+                                                        Cube_PRINT_data.indexOf(",data")).c_str());
+                NFC_ID = strtoul(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("data") + 5,
+                                                           Cube_PRINT_data.length()).c_str(), NULL, 10);
+                Cube_PRINT.print("VD:");
+                Cube_PRINT.print(NFC_VD);
+                Cube_PRINT.print("ID:");
+                Cube_PRINT.println(NFC_ID);
+            } else if (Cube_PRINT_data.substring(6, 12) == "attack") {
+                NFC_action = 2;
+                NFC_VD = atoi(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("vd") + 3,
+                                                        Cube_PRINT_data.indexOf(",start")).c_str());
+                NFC_START = strtoul(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("start") + 6,
+                                                              Cube_PRINT_data.indexOf(",end")).c_str(), NULL, 10);
+                NFC_END = strtoul(
+                        Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("end") + 4, Cube_PRINT_data.length()).c_str(),
+                        NULL, 10);
+                NFC_ID = NFC_START;
+                Cube_PRINT.print("VD:");
+                Cube_PRINT.print(NFC_VD);
+                Cube_PRINT.print(";Start ID:");
+                Cube_PRINT.print(NFC_START);
+                Cube_PRINT.print(";END ID:");
+                Cube_PRINT.println(NFC_END);
+            } else if (Cube_PRINT_data.substring(6, 12) == "switch") {
+                NFC_Switch(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("action") + 7,
+                                                     Cube_PRINT_data.indexOf('\r')));
+            } else if (int(Cube_PRINT_data.indexOf("write")) > 0) {
+                //NFC_action = 3;
+                NFC_VD = atoi(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("vd") + 3,
+                                                        Cube_PRINT_data.indexOf(",data")).c_str());
+                NFC_ID = strtoul(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("data") + 5,
+                                                           Cube_PRINT_data.length()).c_str(), NULL, 10);
+                Cube_PRINT.print("w,VD:");
+                Cube_PRINT.print(NFC_VD);
+                Cube_PRINT.print("ID:");
+                Cube_PRINT.println(NFC_ID);
+                EM4095.Write_ID(NFC_VD, NFC_ID);
+            }
+        } else {
+            Cube_PRINT.print("error:");
+            Cube_PRINT.println(Cube_PRINT_data[0], HEX);
+        }
+        Cube_PRINT_data = "";
+    }
 }

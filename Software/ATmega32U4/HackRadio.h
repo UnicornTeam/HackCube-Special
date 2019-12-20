@@ -45,9 +45,9 @@ public:
 	static void handleInterrupt();
     static bool receiveProtocol2(unsigned int changeCount);
     static String dec4bin(String data);
-    String getkey();
-    String getsn();
-    String getaction();
+    String getKey();
+    String getSN();
+    String getAction();
 
     bool available();
     void resetAvailable();

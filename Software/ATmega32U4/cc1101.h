@@ -1,18 +1,18 @@
 #ifndef _CC1101_H
 #define _CC1101_H
+
 #include "Arduino.h"
 #include "cc1101_spi.h"
 #include "ccpacket.h"
 
 
-enum CFREQ
-{
-  CFREQ_868 = 0,
-  CFREQ_915,
-  CFREQ_433,
-  CFREQ_315,
-  CFREQ_870,
-  CFREQ_LAST
+enum CFREQ {
+    CFREQ_868 = 0,
+    CFREQ_915,
+    CFREQ_433,
+    CFREQ_315,
+    CFREQ_870,
+    CFREQ_LAST
 };
 
 /**
@@ -50,16 +50,16 @@ enum CFREQ
  */
 #define CC1101_SRES              0x30        // Reset CC1101 chip
 #define CC1101_SFSTXON           0x31        // Enable and calibrate frequency synthesizer (if MCSM0.FS_AUTOCAL=1). If in RX (with CCA):
-                                             // Go to a wait state where only the synthesizer is running (for quick RX / TX turnaround).
+// Go to a wait state where only the synthesizer is running (for quick RX / TX turnaround).
 #define CC1101_SXOFF             0x32        // Turn off crystal oscillator
 #define CC1101_SCAL              0x33        // Calibrate frequency synthesizer and turn it off. SCAL can be strobed from IDLE mode without
-                                             // setting manual calibration mode (MCSM0.FS_AUTOCAL=0)
+// setting manual calibration mode (MCSM0.FS_AUTOCAL=0)
 #define CC1101_SRX               0x34        // Enable RX. Perform calibration first if coming from IDLE and MCSM0.FS_AUTOCAL=1
 #define CC1101_STX               0x35        // In IDLE state: Enable TX. Perform calibration first if MCSM0.FS_AUTOCAL=1.
-                                             // If in RX state and CCA is enabled: Only go to TX if channel is clear
+// If in RX state and CCA is enabled: Only go to TX if channel is clear
 #define CC1101_SIDLE             0x36        // Exit RX / TX, turn off frequency synthesizer and exit Wake-On-Radio mode if applicable
 #define CC1101_SWOR              0x38        // Start automatic RX polling sequence (Wake-on-Radio) as described in Section 19.5 if
-                                             // WORCTRL.RC_PD=0
+// WORCTRL.RC_PD=0
 #define CC1101_SPWD              0x39        // Enter power down mode when CSn goes high
 #define CC1101_SFRX              0x3A        // Flush the RX FIFO buffer. Only issue SFRX in IDLE or RXFIFO_OVERFLOW states
 #define CC1101_SFTX              0x3B        // Flush the TX FIFO buffer. Only issue SFTX in IDLE or TXFIFO_UNDERFLOW states
@@ -196,7 +196,7 @@ enum CFREQ
 #define CC1101_DEFVAL_FREQ2_870  0x21        // Frequency Control Word, High Byte
 #define CC1101_DEFVAL_FREQ1_870  0x76        // Frequency Control Word, Middle Byte
 #define CC1101_DEFVAL_FREQ0_870  0x27        // Frequency Control Word, Low Byte
- 
+
 
 #define CC1101_DEFVAL_FREQ2_315            0x0C
 #define CC1101_DEFVAL_FREQ1_315            0x1D
@@ -204,7 +204,7 @@ enum CFREQ
 
 #define CC1101_DEFVAL_MDMCFG4          0xF8
 #define CC1101_DEFVAL_MDMCFG3          0x9B
- //#define CC1101_DEFVAL_MDMCFG4          0xC9
+//#define CC1101_DEFVAL_MDMCFG4          0xC9
 //#define CC1101_DEFVAL_MDMCFG3          0xFF
 #define CC1101_DEFVAL_MDMCFG2          0x33
 #define CC1101_DEFVAL_MDMCFG1          0x22
@@ -306,74 +306,86 @@ enum CFREQ
 #define CC1101_Data_TEST0            0x0B
 
 
-
-
-
-
-class CC1101
-{
-  private:
+class CC1101 {
+private:
     SPI spi;
-    void setDefaultRegs_2(void);
-    void setTmpsRegs(void);
-  public:
 
-    void readBurstReg(byte * buffer, byte regAddr, byte len);
+    void setDefaultRegs_2(void);
+
+    void setTmpsRegs(void);
+
+public:
+
+    void readBurstReg(byte *buffer, byte regAddr, byte len);
 
     byte rfState;
-    int SS_PIN=10;
-    int GDO0_PIN=2;
+    int SS_PIN = 10;
+    int GDO0_PIN = 2;
     byte paTableByte;
     byte carrierFreq;
     byte channel;
     byte syncWord[2];
     byte devAddress;
+
     CC1101(void);
-    byte ReadByte(char * name ,byte regadd);
-	byte * ReadByte(char * name ,byte regadd,int num );
-    byte * ReadByte(byte regadd,int num);
+
+    byte ReadByte(char *name, byte regadd);
+
+    byte *ReadByte(char *name, byte regadd, int num);
+
+    byte *ReadByte(byte regadd, int num);
+
     void PrintConfig();
 
 
-	void writeBurstReg(byte regAddr, byte* buffer, byte len);
-	/*
-	void SendPacket(byte * txbuffer,int length);
-  	void SendPacket_1(byte * txbuffer,int length);
-  	byte RecPacket(byte * rxBuffer);
+    void writeBurstReg(byte regAddr, byte *buffer, byte len);
 
-  	void init_2(void);
-  	void init_Hackpwn(void);
+    /*
+    void SendPacket(byte * txbuffer,int length);
+      void SendPacket_1(byte * txbuffer,int length);
+      byte RecPacket(byte * rxBuffer);
 
-  	
-  	boolean sendData(CCPACKET packet);
+      void init_2(void);
+      void init_Hackpwn(void);
+
+
+      boolean sendData(CCPACKET packet);
     boolean sendData_1(CCPACKET packet);
     void halRfSendData(CCPACKET txData);
     void Send_Data(CCPACKET packet);
     byte receiveData(CCPACKET *packet);
     byte receiveData_1(CCPACKET *packet);
     byte receive(CCPACKET *packet);
-  	*/
+      */
     void setCarrierFreq(byte freq);
 
-  	byte readrssi();
+    byte readrssi();
+
     void cmdStrobe(byte cmd);
+
     void wakeUp(void);
 
     byte readReg(byte regAddr, byte regType);
+
     void writeReg(byte regAddr, byte value);
+
     void reset(void);
+
     void init(void);
+
     void initTmps(void);
-    
-    
+
+
     void setSyncWord(uint8_t syncH, uint8_t syncL);
+
     void setSyncWord(byte *sync);
 
 
     void setDevAddress(byte addr);
-    
+
     void setChannel(byte chnl);
-    void setPowerDownState();  
+
+    void setPowerDownState();
 
     void Write_Cmd(uint8_t cmd);
 

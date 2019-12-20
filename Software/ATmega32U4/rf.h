@@ -188,7 +188,7 @@ void Fixed_Config_433_RX() {
 
 
 /*
-    LigthBar
+    LightBar
     Freq 315
 */
 int Ligth_Transmitpin = RF315_GDO0;
@@ -234,7 +234,7 @@ void ligth_bar_bit_1() {
 
 }
 
-void LigthBar_Transmit(unsigned long data) {
+void LightBar_Transmit(unsigned long data) {
   //Serial.println(data,BIN);
 
   delay(2);
@@ -250,16 +250,16 @@ void LigthBar_Transmit(unsigned long data) {
     }
   }
 }
-//[RF][Transmit]LigthBar,freq:315,data:2600
-void RF_LigthBar() {
+//[RF][Transmit]LightBar,freq:315,data:2600
+void RF_LightBar() {
   unsigned int freq = strtoul(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("freq") + 5, Cube_PRINT_data.indexOf(",data")).c_str(), NULL, 10);
   unsigned long  data = strtoul(Cube_PRINT_data.substring(Cube_PRINT_data.indexOf("data:") + 5, Cube_PRINT_data.length()).c_str(), NULL, 16);
 
   if (freq == 315) {
     Ligth_Config_315();
   }
-  LigthBar_Transmit(data);
-  Cube_PRINT.print("*Transmit LigthBar ");
+  LightBar_Transmit(data);
+  Cube_PRINT.print("*Transmit LightBar ");
   Cube_PRINT.print("Freq:");
   Cube_PRINT.print(freq);
   Cube_PRINT.print(",Data:");

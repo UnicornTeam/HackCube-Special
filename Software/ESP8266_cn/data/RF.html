@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <head>
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
-    <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1, text/html;charset=utf-8">
+    <meta http-equiv="Content-Type" name="viewport"
+          content="width=device-width, initial-scale=1, text/html;charset=utf-8">
     <title>Cube manage</title></head>
-    
+
 <style type="text/css">
     html {
         font-size: 10px;
@@ -804,9 +805,11 @@
         border-color: #00bc8c;
         color: #ffffff;
     }
+
     [hidden], template {
         display: none;
     }
+
     .alert-info {
         background-color: #3498db;
         border-color: #3498db;
@@ -816,11 +819,13 @@
     h2, .h2 {
         font-size: 32px;
     }
+
     .form-control, input, textarea {
         border: 2px hidden transparent;
         -webkit-box-shadow: none;
         box-shadow: none;
     }
+
     .form-control {
         display: block;
         width: 100%;
@@ -833,33 +838,39 @@
         background-image: none;
         border: 1px solid #f1f1f1;
         border-radius: 4px;
-        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-        box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     }
+
     input, button, select, textarea {
         font-family: inherit;
         font-size: inherit;
         line-height: inherit;
     }
+
     button, select {
         text-transform: none;
     }
+
     button, input, optgroup, select, textarea {
         color: inherit;
         font: inherit;
         margin: 0;
     }
+
     input, button, select, textarea {
         font-family: inherit;
         font-size: inherit;
         line-height: inherit;
     }
+
     button, select {
         text-transform: none;
     }
+
     button, input, optgroup, select, textarea {
         color: inherit;
         font: inherit;
@@ -869,25 +880,29 @@
     .btn {
         border-width: 2px;
     }
+
     .btn-info {
         color: #ffffff;
         background-color: #3498db;
         border-color: #3498db;
     }
+
     .progress {
         overflow: hidden;
         height: 21px;
         margin-bottom: 21px;
         background-color: #ebebeb;
         border-radius: 4px;
-        -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-        box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
     }
+
     .progress {
         height: 10px;
         -webkit-box-shadow: none;
         box-shadow: none;
     }
+
     form {
         margin-bottom: 1em;
     }
@@ -897,17 +912,20 @@
         -o-animation: progress-bar-stripes 2s linear infinite;
         animation: progress-bar-stripes 2s linear infinite;
     }
+
     .progress .progress-bar {
         font-size: 10px;
         line-height: 10px;
     }
+
     .progress-striped .progress-bar, .progress-bar-striped {
-        background-image: -webkit-linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent);
-        background-image: -o-linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent);
-        background-image: linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent);
+        background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+        background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+        background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
         -webkit-background-size: 40px 40px;
         background-size: 40px 40px;
     }
+
     .progress-bar {
         float: left;
         width: 0%;
@@ -917,8 +935,8 @@
         color: #ffffff;
         text-align: center;
         background-color: #375a7f;
-        -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
-        box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
+        -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
         -webkit-transition: width 0.6s ease;
         -o-transition: width 0.6s ease;
         transition: width 0.6s ease;
@@ -929,55 +947,61 @@
     }
 
 
+    /*
+    IOS button
+    */
+    .al-toggle-button {
+        appearance: none;
+        -webkit-appearance: none;
+        position: relative;
+        width: 52px;
+        height: 32px;
+        background: #dfdfdf;
+        border-radius: 16px;
+        border: 1px solid #dfdfdf;
+        outline: 0;
+        box-sizing: border-box;
+    }
 
-        /*
-        IOS button 
-        */
-         .al-toggle-button{
-            appearance: none;
-            -webkit-appearance: none;
-            position: relative;
-            width: 52px;
-            height: 32px;
-            background: #dfdfdf;
-            border-radius: 16px;
-            border: 1px solid #dfdfdf;
-            outline: 0;
-            box-sizing: border-box;
-        }
-        .al-toggle-button:checked{
-            border-color: #3498db;
-            background-color: #3498db;
-        }
-        .al-toggle-button:before, .al-toggle-button:after{
-            content: " ";
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 30px;
-            border-radius: 15px;
-            transition: transform 0.3s;
-            transition: -webkit-transform 0.3s;
-            transition: transform 0.3s, -webkit-transform 0.3s;
-            -webkit-transition: -webkit-transform 0.3s;
-        }
-        .al-toggle-button:before{
-            width: 50px;
-            background-color: #fdfdfd;
-        }
-        .al-toggle-button:after{
-            width: 30px;
-            background-color: white;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-        }
-        .al-toggle-button:checked:before{
-            transform: scale(0);
-            -webkit-transform: scale(0);
-        }
-        .al-toggle-button:checked:after{
-            transform: translateX(20px);
-            -webkit-transform: translateX(20px);
-        }
+    .al-toggle-button:checked {
+        border-color: #3498db;
+        background-color: #3498db;
+    }
+
+    .al-toggle-button:before, .al-toggle-button:after {
+        content: " ";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 30px;
+        border-radius: 15px;
+        transition: transform 0.3s;
+        transition: -webkit-transform 0.3s;
+        transition: transform 0.3s, -webkit-transform 0.3s;
+        -webkit-transition: -webkit-transform 0.3s;
+    }
+
+    .al-toggle-button:before {
+        width: 50px;
+        background-color: #fdfdfd;
+    }
+
+    .al-toggle-button:after {
+        width: 30px;
+        background-color: white;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+
+    .al-toggle-button:checked:before {
+        transform: scale(0);
+        -webkit-transform: scale(0);
+    }
+
+    .al-toggle-button:checked:after {
+        transform: translateX(20px);
+        -webkit-transform: translateX(20px);
+    }
+
     .warnning-wrapper {
         background-image: url("image/warn.png");
         background-position: center center;
@@ -986,6 +1010,7 @@
         background-repeat: no-repeat;
         position: relative;
     }
+
     .warnning-close-btn {
         position: absolute;
         top: 0px;
@@ -993,6 +1018,7 @@
         font-size: 18px;
         color: orange;
     }
+
     .botton-wrapper {
         background-image: url("image/logo.png");
         background-position: center center;
@@ -1007,7 +1033,7 @@
 <body>
 <div class="container">
     <ul class="nav nav-tabs">
-<!--         <li><a href="WIFI.html">WIFI</a></li> -->
+        <!--         <li><a href="WIFI.html">WIFI</a></li> -->
         <li><a href="NFC.html">LF</a></li>
         <li class="active"><a href="RF.html">RF</a></li>
         <li><a href="HID.html">HID</a></li>
@@ -1043,117 +1069,120 @@
 
     <h1 class=text-center>HackCUBE-Special RF</h1>
     <h4 class=text-center>无线控制系统 (2.4Ghz,315Mhz&433Mhz&868/915Mhz) 安全评估
-</h4>
+    </h4>
     </br>
 
 </div>
 <div class="container">
     <div class='container-fluid'>
         <div style="display:inline-block;float:left;"><h2>信号检测</h2></div>
-<!--         <div style="width:28%;display:inline-block">
-            <label>Freq</label>
-            <input style="text-align: center;text-align-last: center;" type="text" class="form-control is-valid" placeholder="SnifferFreq" value='433920000' id='Smart_freq1' maxlength="9">
-        </div>
-        <div class="form-group" style="width:28%;display:inline-block">
-            <label for="exampleSelect1">Protocol</label>
-            <select class="form-control" id='TransmitClass'>
-                <option value=1>PT226X</option>
-                <option value=2>PT224X</option>
-              
-                <option value="4">Keeloq</option>
-            </select>
-        </div>
-        <div style="display:inline-block;float:right;margin-top: 22px" >
-            <input id="RF_Sniffer" type="checkbox" class="al-toggle-button" checked >
-        </div> -->
-<!--     </div>
-    <div class='container-fluid'> -->
-        <div class='row'>
-                <div class='col-md-12'>
-                    <table class='table'>
-                        <thead>
-                        <tr class='active'>
-                            <th class="text-center">Freq</th>
-                            <th class="text-center">Pac</th>
-                            <th class="text-center">Modu</th>
-                            <th class="text-center">Func</th>
-                            <th class="text-center">Data</th>
-                            <th class="text-center">Play</th>
-                        </tr>
-                        </thead>
-                        <tbody id="t-sn">
-                        </tbody>
-                    </table>
+        <!--         <div style="width:28%;display:inline-block">
+                    <label>Freq</label>
+                    <input style="text-align: center;text-align-last: center;" type="text" class="form-control is-valid" placeholder="SnifferFreq" value='433920000' id='Smart_freq1' maxlength="9">
                 </div>
-            </div>
-        </div>
-<div class='container-fluid'>
-            <div style="display:inline-block;float:left;"><h2>安全强度检测</h2>
-    </div>
-<div style="display:inline-block;float:right;margin-top: 16px">
-                    <button onclick="rfTransmitSubmit()" type="submit" class="btn btn-info">开始</button>
-                </div>
-        </div>
-        <div>
-                <div class="form-group" style="width:49%;display:inline-block">
-                    <label for="exampleSelect1">Freq</label>
-                    <select class="form-control" id="TransmitFreq">
-                        <option value=315>315Mhz</option>
-                        <option value=433>433Mhz</option>
-                    </select>
-                </div>
-                <div class="form-group" style="width:49%;display:inline-block">
+                <div class="form-group" style="width:28%;display:inline-block">
                     <label for="exampleSelect1">Protocol</label>
                     <select class="form-control" id='TransmitClass'>
                         <option value=1>PT226X</option>
                         <option value=2>PT224X</option>
-                        <!-- <option value="3">Keeloq</option> -->
-                        <option value="4">LigthBar</option>
+
+                        <option value="4">Keeloq</option>
                     </select>
                 </div>
-                </br>
-                <div id="h-1" style="display:block;">
-                    <div style="width:49%;display:inline-block">
-                    <label for="exampleSelect1">Data</label>
-                    <input type="text" class="form-control is-valid" placeholder="Data"  id='TransmitData'>
-                </div>
-                <div style="width:49%;display:inline-block">
-                    <label for="exampleSelect1">Func</label>
-                    <input type="text" class="form-control is-valid" placeholder="Func"  size="1" id='TransmitFunc' maxlength="1">
-                </div>
-                </div>
-                <div id="LigthBar" style="display:none;">
-                    <div style="width:98%;display:inline-block">
-                    <label for="exampleSelect1">Data</label>
-                    <input type="text" class="form-control is-valid" placeholder="Data"  id='LigthBarData'>
-                </div>
-                </div>
-                <div id='h-2' style="display: none;">
-                    <div id="h-1">
-                    <div style="width:32%;display:inline-block">
+                <div style="display:inline-block;float:right;margin-top: 22px" >
+                    <input id="RF_Sniffer" type="checkbox" class="al-toggle-button" checked >
+                </div> -->
+        <!--     </div>
+            <div class='container-fluid'> -->
+        <div class='row'>
+            <div class='col-md-12'>
+                <table class='table'>
+                    <thead>
+                    <tr class='active'>
+                        <th class="text-center">Freq</th>
+                        <th class="text-center">Pac</th>
+                        <th class="text-center">Modu</th>
+                        <th class="text-center">Func</th>
+                        <th class="text-center">Data</th>
+                        <th class="text-center">Play</th>
+                    </tr>
+                    </thead>
+                    <tbody id="t-sn">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class='container-fluid'>
+        <div style="display:inline-block;float:left;"><h2>安全强度检测</h2>
+        </div>
+        <div style="display:inline-block;float:right;margin-top: 16px">
+            <button onclick="rfTransmitSubmit()" type="submit" class="btn btn-info">开始</button>
+        </div>
+    </div>
+    <div>
+        <div class="form-group" style="width:49%;display:inline-block">
+            <label for="exampleSelect1">Freq</label>
+            <select class="form-control" id="TransmitFreq">
+                <option value=315>315Mhz</option>
+                <option value=433>433Mhz</option>
+            </select>
+        </div>
+        <div class="form-group" style="width:49%;display:inline-block">
+            <label for="exampleSelect1">Protocol</label>
+            <select class="form-control" id='TransmitClass'>
+                <option value=1>PT226X</option>
+                <option value=2>PT224X</option>
+                <!-- <option value="3">Keeloq</option> -->
+                <option value="4">LightBar</option>
+            </select>
+        </div>
+        </br>
+        <div id="h-1" style="display:block;">
+            <div style="width:49%;display:inline-block">
+                <label for="exampleSelect1">Data</label>
+                <input type="text" class="form-control is-valid" placeholder="Data" id='TransmitData'>
+            </div>
+            <div style="width:49%;display:inline-block">
+                <label for="exampleSelect1">Func</label>
+                <input type="text" class="form-control is-valid" placeholder="Func" size="1" id='TransmitFunc'
+                       maxlength="1">
+            </div>
+        </div>
+        <div id="LightBar" style="display:none;">
+            <div style="width:98%;display:inline-block">
+                <label for="exampleSelect1">Data</label>
+                <input type="text" class="form-control is-valid" placeholder="Data" id='LightBarData'>
+            </div>
+        </div>
+        <div id='h-2' style="display: none;">
+            <div id="h-1">
+                <div style="width:32%;display:inline-block">
                     <label for="exampleSelect1">Data</label>
                     <input type="text" class="form-control is-valid" placeholder="Transmit Data" id='start_1'>
                 </div>
                 <div style="width:32%;display:inline-block">
                     <label for="exampleSelect1">Serial</label>
-                    <input type="text" class="form-control is-valid" placeholder="Serial Number"  size="1" id='func_2' maxlength="1">
+                    <input type="text" class="form-control is-valid" placeholder="Serial Number" size="1" id='func_2'
+                           maxlength="1">
                 </div>
                 <div style="width:32%;display:inline-block">
                     <label for="exampleSelect1">Func</label>
-                    <input type="text" class="form-control is-valid" placeholder="Func"  size="1" id='func_1' maxlength="1">
-                </div>
+                    <input type="text" class="form-control is-valid" placeholder="Func" size="1" id='func_1'
+                           maxlength="1">
                 </div>
             </div>
-    <div class='container-fluid'>
+        </div>
+        <div class='container-fluid'>
             <div style="display:inline-block;float:left;"><h2>安全强度检测(穷举)</h2>
-    </div>
+            </div>
 
             <div style="display:inline-block;float:right;margin-top: 22px">
-<!--                 off<input type="radio" name="RF_attack" value="0" checked>
-                on<input type="radio" name="RF_attack" value="1"> -->
+                <!--                 off<input type="radio" name="RF_attack" value="0" checked>
+                                on<input type="radio" name="RF_attack" value="1"> -->
                 <input name="RF_attack" id='RF_attack' type="checkbox" class="al-toggle-button">
             </div>
-    </div>
+        </div>
 
         <form id="rf_blast" action="/rf_blast_c2" method="post">
             <div>
@@ -1176,17 +1205,19 @@
 
                 <div style="width:42%;display:inline-block">
                     <label for="exampleSelect1">Start</label>
-                    <input type="text" class="form-control is-valid" placeholder="Start address"  id='start' maxlength="5">
+                    <input type="text" class="form-control is-valid" placeholder="Start address" id='start'
+                           maxlength="5">
                 </div>
 
                 <div style="width:42%;display:inline-block">
                     <label for="exampleSelect1">End</label>
-                    <input type="text" class="form-control is-valid" placeholder="Stop address"  id='end' maxlength="5">
+                    <input type="text" class="form-control is-valid" placeholder="Stop address" id='end' maxlength="5">
                 </div>
 
                 <div style="width:13%;display:inline-block">
                     <label for="exampleSelect1">Func</label>
-                    <input type="text" class="form-control is-valid" placeholder="Func"  size="1" id='func' maxlength="1">
+                    <input type="text" class="form-control is-valid" placeholder="Func" size="1" id='func'
+                           maxlength="1">
                 </div>
 
             </div>
@@ -1196,19 +1227,19 @@
                  aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
         </div>
 
-    <div class='container-fluid'>
+        <div class='container-fluid'>
             <div style="display:inline-block;float:left;"><h2>无线频率检测</h2>
-    </div>
-    <div style="display:inline-block;float:right;margin-top: 22px">
-<!--    off<input type="radio" name="RF_attack" value="0" checked>
-        on<input type="radio" name="RF_attack" value="1"> -->
-        <input name="RF_Jam" id='RF_Jam' type="checkbox" class="al-toggle-button">
-    </div>
-    </div>
+            </div>
+            <div style="display:inline-block;float:right;margin-top: 22px">
+                <!--    off<input type="radio" name="RF_attack" value="0" checked>
+                        on<input type="radio" name="RF_attack" value="1"> -->
+                <input name="RF_Jam" id='RF_Jam' type="checkbox" class="al-toggle-button">
+            </div>
+        </div>
 
 
-        <div class="form-group" style="width:100%;display:inline-block" id = "RF_Jam_form">
-            <label >Method</label>
+        <div class="form-group" style="width:100%;display:inline-block" id="RF_Jam_form">
+            <label>Method</label>
             <select class="form-control" id="Jam_class" style="text-align: center;text-align-last: center;">
                 <option value=1>Smart</option>
                 <option value=2>Rude</option>
@@ -1217,37 +1248,41 @@
             <div id=Smart_select>
                 <div style="width:49%;display:inline-block">
                     <label>Freq1</label>
-                    <input style="text-align: center;text-align-last: center;" type="text" class="form-control is-valid" placeholder="Freq1" value='433920000' id='Smart_freq1' maxlength="9">
+                    <input style="text-align: center;text-align-last: center;" type="text" class="form-control is-valid"
+                           placeholder="Freq1" value='433920000' id='Smart_freq1' maxlength="9">
                 </div>
 
                 <div style="width:49%;display:inline-block;float:right;">
                     <label>Freq2</label>
-                    <input style="text-align: center;text-align-last: center;" type="text" class="form-control is-valid" placeholder="Freq2" value='315000000' id='Smart_freq2' maxlength="9">
+                    <input style="text-align: center;text-align-last: center;" type="text" class="form-control is-valid"
+                           placeholder="Freq2" value='315000000' id='Smart_freq2' maxlength="9">
                 </div>
             </div>
 
             <div id=Rude_select hidden>
                 <div style="width:99%;display:inline-block">
                     <label>Freq </label>
-                    <input style="text-align: center;text-align-last: center;" type="text" class="form-control is-valid" placeholder="Freq" value='433920000' id='Rude_freq' maxlength="9">
+                    <input style="text-align: center;text-align-last: center;" type="text" class="form-control is-valid"
+                           placeholder="Freq" value='433920000' id='Rude_freq' maxlength="9">
                 </div>
             </div>
 
         </div>
         <div id="RF_Jam_action" hidden>
-        </br>
+            </br>
 
-        <input style="background-color:#3498db;border:#3498db;color:#ffffff;text-align: center;text-align-last: center;" type="text" class="form-control is-valid" placeholder="Jam"  id='Jam_string'  onfocus="this.blur();" >
+            <input style="background-color:#3498db;border:#3498db;color:#ffffff;text-align: center;text-align-last: center;"
+                   type="text" class="form-control is-valid" placeholder="Jam" id='Jam_string' onfocus="this.blur();">
         </div>
 
-<!--         <div id="RF_Jam_action" hidden>
-            </br>
-            <table class='table'>
-            <tr class='active'>
-                <th class="text-center" id="Jam_string" >None</th>
-            </tr>
-            </table>
-        </div> -->
+        <!--         <div id="RF_Jam_action" hidden>
+                    </br>
+                    <table class='table'>
+                    <tr class='active'>
+                        <th class="text-center" id="Jam_string" >None</th>
+                    </tr>
+                    </table>
+                </div> -->
 
         <!--
         <button type="submit" class="btn btn-danger">Transmit</button>
@@ -1262,148 +1297,147 @@
         </br>
 
 
+        <form action="/tpms" method="post">
+            <div class="container">
+                <div class='container-fluid'>
+                    <div style="display:inline-block;float:left;"><h2>TPMS安全检测</h2>
+                    </div>
 
-    <form action="/tpms" method="post">
-        <div class="container">
-            <div class='container-fluid'>
-                <div style="display:inline-block;float:left;"><h2>TPMS安全检测</h2>
+                    <div style="display:inline-block;float:right;margin-top: 16px">
+                        <button type="submit" class="btn btn-info">开始</button>
+                    </div>
                 </div>
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <table class='table'>
+                            <thead>
+                            <tr class='active'>
+                                <th class="text-center" style="width: 30%;">ID</th>
+                                <th class="text-center">Voltage</th>
+                                <th class="text-center">Pre.re</th>
+                                <th class="text-center">Temp</th>
+                                <th class="text-center">Valve</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td style="vertical-align: middle !important;text-align: center;">
 
-                <div style="display:inline-block;float:right;margin-top: 16px">
-                    <button type="submit" class="btn btn-info">开始</button>
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width:100%" value="20959185" name="tpms[0][0]" size="8" maxlength="8">
+                                </td>
+                                <td>
+                                    <!-- <input type="text"  class="form-control is-valid input-sm" id="VID" placeholder="VID" > -->
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width: 100%" value="a0" name="tpms[0][4]" size="2" maxlength="2">
+                                </td>
+                                <td>
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width: 100%" value="20" name="tpms[0][5]" size="2" maxlength="2">
+                                </td>
+                                <td>
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width: 100%" value="60" name="tpms[0][6]" size="2" maxlength="2">
+                                </td>
+                                </td>
+                                <td>
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width: 100%" value="08" name="tpms[0][7]" size="2" maxlength="2">
+                                </td>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="vertical-align: middle !important;text-align: center;">
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width:100%" value="eb107f85" name="tpms[1][0]" size="8" maxlength="8">
+                                </td>
+                                <td>
+                                    <!-- <input type="text"  class="form-control is-valid input-sm" id="VID" placeholder="VID" > -->
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width: 100%" value="a0" name="tpms[1][4]" size="2" maxlength="2">
+                                </td>
+                                <td>
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width: 100%" value="20" name="tpms[1][5]" size="2" maxlength="2">
+                                </td>
+                                <td>
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width: 100%" value="60" name="tpms[1][6]" size="2" maxlength="2">
+                                </td>
+                                </td>
+                                <td>
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width: 100%" value="08" name="tpms[1][7]" size="2" maxlength="2">
+                                </td>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="vertical-align: middle !important;text-align: center;">
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width:100%" value="F0FB2385" name="tpms[2][0]" size="8" maxlength="8">
+                                </td>
+                                <td>
+                                    <!-- <input type="text"  class="form-control is-valid input-sm" id="VID" placeholder="VID" > -->
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width: 100%" value="a0" name="tpms[2][4]" size="2" maxlength="2">
+                                </td>
+                                <td>
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width: 100%" value="20" name="tpms[2][5]" size="2" maxlength="2">
+                                </td>
+                                <td>
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width: 100%" value="60" name="tpms[2][6]" size="2" maxlength="2">
+                                </td>
+                                </td>
+                                <td>
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width: 100%" value="08" name="tpms[2][7]" size="2" maxlength="2">
+                                </td>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="vertical-align: middle !important;text-align: center;">
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width:100%" value="2093ef85" name="tpms[3][0]" size="8" maxlength="8">
+                                </td>
+                                <td>
+                                    <!-- <input type="text"  class="form-control is-valid input-sm" id="VID" placeholder="VID" > -->
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width: 100%" value="a0" name="tpms[3][4]" size="2" maxlength="2">
+                                </td>
+                                <td>
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width: 100%" value="20" name="tpms[3][5]" size="2" maxlength="2">
+                                </td>
+                                <td>
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width: 100%" value="60" name="tpms[3][6]" size="2" maxlength="2">
+                                </td>
+                                </td>
+                                <td>
+                                    <input type="text" class="center-block text-center form-control is-valid input-sm"
+                                           style="width: 100%" value="08" name="tpms[3][7]" size="2" maxlength="2">
+                                </td>
+                                </td>
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+                        <!--    <input class="center-block  text-center" name="status"  type="checkbox" data-size="mini"> -->
+                        <!-- <button type="submit" class="btn btn-primary" style="margin: 0px auto;display: table;">Submit</button> -->
+
+                    </div>
                 </div>
             </div>
-            <div class='row'>
-                <div class='col-md-12'>
-                    <table class='table'>
-                        <thead>
-                        <tr class='active'>
-                            <th class="text-center" style="width: 30%;">ID</th>
-                            <th class="text-center">Voltage</th>
-                            <th class="text-center">Pre.re</th>
-                            <th class="text-center">Temp</th>
-                            <th class="text-center">Valve</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td style="vertical-align: middle !important;text-align: center;">
+        </form>
 
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width:100%" value="20959185" name="tpms[0][0]" size="8" maxlength="8">
-                            </td>
-                            <td>
-                                <!-- <input type="text"  class="form-control is-valid input-sm" id="VID" placeholder="VID" > -->
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width: 100%" value="a0" name="tpms[0][4]" size="2" maxlength="2">
-                            </td>
-                            <td>
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width: 100%" value="20" name="tpms[0][5]" size="2" maxlength="2">
-                            </td>
-                            <td>
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width: 100%" value="60" name="tpms[0][6]" size="2" maxlength="2">
-                            </td>
-                            </td>
-                            <td>
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width: 100%" value="08" name="tpms[0][7]" size="2" maxlength="2">
-                            </td>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td style="vertical-align: middle !important;text-align: center;">
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width:100%" value="eb107f85" name="tpms[1][0]" size="8" maxlength="8">
-                            </td>
-                            <td>
-                                <!-- <input type="text"  class="form-control is-valid input-sm" id="VID" placeholder="VID" > -->
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width: 100%" value="a0" name="tpms[1][4]" size="2" maxlength="2">
-                            </td>
-                            <td>
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width: 100%" value="20" name="tpms[1][5]" size="2" maxlength="2">
-                            </td>
-                            <td>
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width: 100%" value="60" name="tpms[1][6]" size="2" maxlength="2">
-                            </td>
-                            </td>
-                            <td>
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width: 100%" value="08" name="tpms[1][7]" size="2" maxlength="2">
-                            </td>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td style="vertical-align: middle !important;text-align: center;">
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width:100%" value="F0FB2385" name="tpms[2][0]" size="8" maxlength="8">
-                            </td>
-                            <td>
-                                <!-- <input type="text"  class="form-control is-valid input-sm" id="VID" placeholder="VID" > -->
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width: 100%" value="a0" name="tpms[2][4]" size="2" maxlength="2">
-                            </td>
-                            <td>
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width: 100%" value="20" name="tpms[2][5]" size="2" maxlength="2">
-                            </td>
-                            <td>
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width: 100%" value="60" name="tpms[2][6]" size="2" maxlength="2">
-                            </td>
-                            </td>
-                            <td>
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width: 100%" value="08" name="tpms[2][7]" size="2" maxlength="2">
-                            </td>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td style="vertical-align: middle !important;text-align: center;">
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width:100%" value="2093ef85" name="tpms[3][0]" size="8" maxlength="8">
-                            </td>
-                            <td>
-                                <!-- <input type="text"  class="form-control is-valid input-sm" id="VID" placeholder="VID" > -->
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width: 100%" value="a0" name="tpms[3][4]" size="2" maxlength="2">
-                            </td>
-                            <td>
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width: 100%" value="20" name="tpms[3][5]" size="2" maxlength="2">
-                            </td>
-                            <td>
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width: 100%" value="60" name="tpms[3][6]" size="2" maxlength="2">
-                            </td>
-                            </td>
-                            <td>
-                                <input type="text" class="center-block text-center form-control is-valid input-sm"
-                                       style="width: 100%" value="08" name="tpms[3][7]" size="2" maxlength="2">
-                            </td>
-                            </td>
-                        </tr>
-
-
-                        </tbody>
-                    </table>
-                    <!--    <input class="center-block  text-center" name="status"  type="checkbox" data-size="mini"> -->
-                    <!-- <button type="submit" class="btn btn-primary" style="margin: 0px auto;display: table;">Submit</button> -->
-
-                </div>
-            </div>
-        </div>
-    </form>
-
-</div>
+    </div>
 </div>
 <div class="botton-wrapper">
 
@@ -1413,184 +1447,185 @@
 <script src="js/prompt.js"></script>
 <script>
 
-function rfTransmitSubmit() {
-    var Class = document.getElementById('TransmitClass').value
+    function rfTransmitSubmit() {
+        var Class = document.getElementById('TransmitClass').value
 
-    if(Class==4){ //LigthBar
-        var Freq = document.getElementById('TransmitFreq').value
-        var LigthBarData = document.getElementById('LigthBarData').value
-        var ajax = new XMLHttpRequest();
-            ajax.open('get','rf_LigthBar?Freq=' + Freq +'&Data=' + LigthBarData);
+        if (Class == 4) { //LightBar
+            var Freq = document.getElementById('TransmitFreq').value
+            var LightBarData = document.getElementById('LightBarData').value
+            var ajax = new XMLHttpRequest();
+            ajax.open('get', 'rf_LightBar?Freq=' + Freq + '&Data=' + LightBarData);
             ajax.send();
             ajax.onreadystatechange = function () {
-                if (ajax.readyState==4 && ajax.status==200) {
+                if (ajax.readyState == 4 && ajax.status == 200) {
                     console.log(ajax.responseText)
                 }
             }
-    }else if(Class<3){
-        var Freq = document.getElementById('TransmitFreq').value
-        var Data = document.getElementById('TransmitData').value
-        var Func = document.getElementById('TransmitFunc').value
-        
-        var pd = {
-            'Freq': Freq,
-            'Data': Data,
-            'Func': Func,
-            //'Class': Class
-        }
+        } else if (Class < 3) {
+            var Freq = document.getElementById('TransmitFreq').value
+            var Data = document.getElementById('TransmitData').value
+            var Func = document.getElementById('TransmitFunc').value
 
-        var postd = (function(obj){ 
-            var str = "";  
-            for(var prop in obj){  
-                str += prop + "=" + obj[prop] + "&"  
-            }  
-            return str;  
+            var pd = {
+                'Freq': Freq,
+                'Data': Data,
+                'Func': Func,
+                //'Class': Class
+            }
+
+            var postd = (function (obj) {
+                var str = "";
+                for (var prop in obj) {
+                    str += prop + "=" + obj[prop] + "&"
+                }
+                return str;
             })(pd)
-        var ajax = new XMLHttpRequest();
-        ajax.open('post','/rf_Transmit');
-        ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        ajax.send(postd);
-        ajax.onreadystatechange = function () {
-            if (ajax.readyState==4 && ajax.status==200) {
-                console.log('Transmit success')
+            var ajax = new XMLHttpRequest();
+            ajax.open('post', '/rf_Transmit');
+            ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            ajax.send(postd);
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    console.log('Transmit success')
+                }
             }
         }
+
     }
 
-}
-/*
-document.getElementById("RF_Sniffer").addEventListener('click', function(){
-    if(this.checked){
-        var ajax = new XMLHttpRequest();
-        ajax.open('get','RF_Sniffer?action=on' );
-        ajax.send();
-    }else{
-        var ajax = new XMLHttpRequest();
-        ajax.open('get','RF_Sniffer?action=off' );
-        ajax.send();
-    }
-});
-*/
+    /*
+    document.getElementById("RF_Sniffer").addEventListener('click', function(){
+        if(this.checked){
+            var ajax = new XMLHttpRequest();
+            ajax.open('get','RF_Sniffer?action=on' );
+            ajax.send();
+        }else{
+            var ajax = new XMLHttpRequest();
+            ajax.open('get','RF_Sniffer?action=off' );
+            ajax.send();
+        }
+    });
+    */
 
-document.getElementById('TransmitClass').addEventListener('change', function() {
-    if(this.value === '3') {
-        document.getElementById('h-1').style.display = 'none'
-        document.getElementById('h-2').style.display = 'block'
-    }else if (this.value === '4'){
-        document.getElementById('LigthBar').style.display = 'block'
-        document.getElementById('h-1').style.display = 'none'
-    } else {
-        document.getElementById('LigthBar').style.display = 'none'
-        document.getElementById('h-1').style.display = 'block'
-        document.getElementById('h-2').style.display = 'none'
-    }
-})
+    document.getElementById('TransmitClass').addEventListener('change', function () {
+        if (this.value === '3') {
+            document.getElementById('h-1').style.display = 'none'
+            document.getElementById('h-2').style.display = 'block'
+        } else if (this.value === '4') {
+            document.getElementById('LightBar').style.display = 'block'
+            document.getElementById('h-1').style.display = 'none'
+        } else {
+            document.getElementById('LightBar').style.display = 'none'
+            document.getElementById('h-1').style.display = 'block'
+            document.getElementById('h-2').style.display = 'none'
+        }
+    })
 
-document.getElementById('Jam_class').addEventListener('change', function() {
-    if(this.value === '2') {
-        document.getElementById('Smart_select').style.display = 'none'
-        document.getElementById('Rude_select').style.display = 'block'
-    } else {
-        document.getElementById('Smart_select').style.display = 'block'
-        document.getElementById('Rude_select').style.display = 'none'
-    }
-})
+    document.getElementById('Jam_class').addEventListener('change', function () {
+        if (this.value === '2') {
+            document.getElementById('Smart_select').style.display = 'none'
+            document.getElementById('Rude_select').style.display = 'block'
+        } else {
+            document.getElementById('Smart_select').style.display = 'block'
+            document.getElementById('Rude_select').style.display = 'none'
+        }
+    })
 
-/*
-document.getElementsByName('RF_attack')[0].addEventListener('click', function (e) {
-    document.getElementById('rf_blast').style.display = 'block'
-    document.getElementById('RF_prog_1').style.display = 'none'
-    document.getElementById('RF_prog').style.width = '0%'
-    removeProg()
-})
-document.getElementsByName('RF_attack')[1].addEventListener('click', function (e) {
-    document.getElementById('rf_blast').style.display = 'none'
-    document.getElementById('RF_prog_1').style.display = 'block'
-    getProg()
-})*/
-
-
-document.getElementById("RF_attack").addEventListener('click', function(){
-    if(this.checked){
-        //document.getElementsByName('RF_attack').checked = true;
-        //document.getElementById('RF_attack').checked = false;
-        document.getElementById('rf_blast').style.display = 'none'
-        document.getElementById('RF_prog_1').style.display = 'block'
-        getProg();
-    }else{
+    /*
+    document.getElementsByName('RF_attack')[0].addEventListener('click', function (e) {
         document.getElementById('rf_blast').style.display = 'block'
         document.getElementById('RF_prog_1').style.display = 'none'
         document.getElementById('RF_prog').style.width = '0%'
-        removeProg();
-    }
-    
-});
-var rf_jam_i
-document.getElementById("RF_Jam").addEventListener('click', function(){
-    if(this.checked){
-        document.getElementById("Jam_string").value="None";
-        document.getElementById("Jam_string").style.backgroundColor="#3498db";
-        //document.getElementById("Jam_string").innerHTML="tset"
-        document.getElementById('RF_Jam_form').style.display = 'none'
-        document.getElementById('RF_Jam_action').style.display = 'block'
+        removeProg()
+    })
+    document.getElementsByName('RF_attack')[1].addEventListener('click', function (e) {
+        document.getElementById('rf_blast').style.display = 'none'
+        document.getElementById('RF_prog_1').style.display = 'block'
+        getProg()
+    })*/
 
-        if(document.getElementById("Jam_class").value=='1'){
-            var ajax = new XMLHttpRequest();
-            ajax.open('get','rf_jam?'+'class=Smart'+'&freq1='
-                +document.getElementById('Smart_freq1').value+'&freq2='
-                +document.getElementById('Smart_freq2').value);
-            ajax.send();
 
-        rf_jam_i = setInterval(function () {
-            var ajax = new XMLHttpRequest();
-            ajax.open('get','ajax_rf_jam');
-            ajax.send();
-            ajax.onreadystatechange = function () {
-                if (ajax.readyState==4 && ajax.status==200) {
-                    var action = ajax.responseText
-                    if(action){
-                        document.getElementById("Jam_string").value=action;
-                        if(action=="Not Jamming")
-                            document.getElementById("Jam_string").style.backgroundColor="#3498db";
-                        else 
-                            document.getElementById("Jam_string").style.backgroundColor="#e33b3b";
+    document.getElementById("RF_attack").addEventListener('click', function () {
+        if (this.checked) {
+            //document.getElementsByName('RF_attack').checked = true;
+            //document.getElementById('RF_attack').checked = false;
+            document.getElementById('rf_blast').style.display = 'none'
+            document.getElementById('RF_prog_1').style.display = 'block'
+            getProg();
+        } else {
+            document.getElementById('rf_blast').style.display = 'block'
+            document.getElementById('RF_prog_1').style.display = 'none'
+            document.getElementById('RF_prog').style.width = '0%'
+            removeProg();
+        }
+
+    });
+    var rf_jam_i
+    document.getElementById("RF_Jam").addEventListener('click', function () {
+        if (this.checked) {
+            document.getElementById("Jam_string").value = "None";
+            document.getElementById("Jam_string").style.backgroundColor = "#3498db";
+            //document.getElementById("Jam_string").innerHTML="tset"
+            document.getElementById('RF_Jam_form').style.display = 'none'
+            document.getElementById('RF_Jam_action').style.display = 'block'
+
+            if (document.getElementById("Jam_class").value == '1') {
+                var ajax = new XMLHttpRequest();
+                ajax.open('get', 'rf_jam?' + 'class=Smart' + '&freq1='
+                    + document.getElementById('Smart_freq1').value + '&freq2='
+                    + document.getElementById('Smart_freq2').value);
+                ajax.send();
+
+                rf_jam_i = setInterval(function () {
+                    var ajax = new XMLHttpRequest();
+                    ajax.open('get', 'ajax_rf_jam');
+                    ajax.send();
+                    ajax.onreadystatechange = function () {
+                        if (ajax.readyState == 4 && ajax.status == 200) {
+                            var action = ajax.responseText
+                            if (action) {
+                                document.getElementById("Jam_string").value = action;
+                                if (action == "Not Jamming")
+                                    document.getElementById("Jam_string").style.backgroundColor = "#3498db";
+                                else
+                                    document.getElementById("Jam_string").style.backgroundColor = "#e33b3b";
+                            }
+                        }
                     }
-                }
+                }, 100)
+            } else if (document.getElementById("Jam_class").value == '2') {
+                var ajax = new XMLHttpRequest();
+                ajax.open('get', 'rf_jam?' + 'class=Rude' + '&freq=' +
+                    document.getElementById('Rude_freq').value);
+                ajax.send();
+                document.getElementById("Jam_string").style.backgroundColor = "#e33b3b";
+                document.getElementById("Jam_string").value = "RudeJamming...";
             }
-        }, 100)
-        }else if (document.getElementById("Jam_class").value=='2'){
+            /*
             var ajax = new XMLHttpRequest();
-            ajax.open('get','rf_jam?'+'class=Rude'+'&freq='+
-                document.getElementById('Rude_freq').value);
+                ajax.open('get','rf_Jam_action?'+'on');
+                ajax.send();*/
+
+
+        } else {
+            var ajax = new XMLHttpRequest();
+            ajax.open('get', 'rf_jam_stop');
             ajax.send();
-            document.getElementById("Jam_string").style.backgroundColor="#e33b3b";
-            document.getElementById("Jam_string").value="RudeJamming...";
-        }  
-        /*
-        var ajax = new XMLHttpRequest();
-            ajax.open('get','rf_Jam_action?'+'on');
-            ajax.send();*/
+            document.getElementById('RF_Jam_form').style.display = 'block'
+            document.getElementById('RF_Jam_action').style.display = 'none'
+            clearInterval(rf_jam_i)
+        }
+
+    });
 
 
-    }else{
-        var ajax = new XMLHttpRequest();
-        ajax.open('get','rf_jam_stop');
-        ajax.send();
-        document.getElementById('RF_Jam_form').style.display = 'block'
-        document.getElementById('RF_Jam_action').style.display = 'none'
-        clearInterval(rf_jam_i)
+    var s
+
+    function removeProg() {
+        clearInterval(s)
     }
-    
-});
 
-
-
-var s
-function removeProg(){
-    clearInterval(s)
-}
-
-function getProg() {
+    function getProg() {
         var blast_freq = document.getElementById('blast_freq').value
         var blast_class = document.getElementById('blast_class').value
         var start = document.getElementById('start').value
@@ -1599,65 +1634,65 @@ function getProg() {
         var pd = {
             'freq': blast_freq,
             'class': blast_class,
-            'start':start,
+            'start': start,
             'end': end,
             'func': func
         }
 
-        var postd = (function(obj){  
-            var str = "";  
-   
-            for(var prop in obj){  
-                str += prop + "=" + obj[prop] + "&"  
-            }  
-            return str;  
-            })(pd)
+        var postd = (function (obj) {
+            var str = "";
+
+            for (var prop in obj) {
+                str += prop + "=" + obj[prop] + "&"
+            }
+            return str;
+        })(pd)
         var ajax = new XMLHttpRequest();
-        ajax.open('post','/rf_blast_c2');
-        ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        ajax.open('post', '/rf_blast_c2');
+        ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         ajax.send(postd);
         ajax.onreadystatechange = function () {
-            if (ajax.readyState==4 && ajax.status==200) {
+            if (ajax.readyState == 4 && ajax.status == 200) {
                 console.log('success')
             }
         }
-    s = setInterval(function () {
-        var ajax = new XMLHttpRequest();
-        ajax.open('get','ajax_rf_prog');
-        ajax.send();
-        ajax.onreadystatechange = function () {
-            if (ajax.readyState==4 && ajax.status==200) {
-                var prog = ajax.responseText
-                document.getElementById('RF_prog').style.width = prog + '%'
-                if(prog === '100') {
-                    document.getElementById('rf_blast').style.display = 'block'
-                    document.getElementById('RF_prog_1').style.display = 'none'
-                    document.getElementById('RF_prog').style.width = '0%'
-                    document.getElementById('RF_attack').checked = false
-                    clearInterval(s)
+        s = setInterval(function () {
+            var ajax = new XMLHttpRequest();
+            ajax.open('get', 'ajax_rf_prog');
+            ajax.send();
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var prog = ajax.responseText
+                    document.getElementById('RF_prog').style.width = prog + '%'
+                    if (prog === '100') {
+                        document.getElementById('rf_blast').style.display = 'block'
+                        document.getElementById('RF_prog_1').style.display = 'none'
+                        document.getElementById('RF_prog').style.width = '0%'
+                        document.getElementById('RF_attack').checked = false
+                        clearInterval(s)
+                    }
                 }
             }
-        }
-    }, 1000)
-}
+        }, 1000)
+    }
 
-function rf_Replay(i) {
-var ajax = new XMLHttpRequest();
-        ajax.open('get','rf_Replay?num=' + i);
+    function rf_Replay(i) {
+        var ajax = new XMLHttpRequest();
+        ajax.open('get', 'rf_Replay?num=' + i);
         ajax.send();
         ajax.onreadystatechange = function () {
-            if (ajax.readyState==4 && ajax.status==200) {
+            if (ajax.readyState == 4 && ajax.status == 200) {
                 console.log(ajax.responseText)
             }
         }
-}
+    }
 
-function rflist(){
-    var ajax = new XMLHttpRequest();
-        ajax.open('get','rf.json');
+    function rflist() {
+        var ajax = new XMLHttpRequest();
+        ajax.open('get', 'rf.json');
         ajax.send();
         ajax.onreadystatechange = function () {
-            if (ajax.readyState==4 && ajax.status==200) {
+            if (ajax.readyState == 4 && ajax.status == 200) {
                 var prog = JSON.parse(ajax.responseText)
                 var data = prog.rf
                 var html = ''
@@ -1673,8 +1708,9 @@ function rflist(){
             }
         }
 
-}
-rflist();
+    }
+
+    rflist();
 
 
 </script>

@@ -44,7 +44,7 @@
 #define SPI_SCK  15     // PB5 = SCK
 
 
-#define GDO0	 2      // PD2 = INT0*/
+#define GDO0     2      // PD2 = INT0*/
 
 #define PORT_SPI_MISO  PINB
 #define BIT_SPI_MISO  4
@@ -67,9 +67,8 @@
  * Description:
  * Basic SPI class
  */
-class SPI
-{
-  public:
+class SPI {
+public:
     /**
      * init
      * 
@@ -90,4 +89,5 @@ class SPI
      */
     byte send(byte value);
 };
+
 #endif

@@ -797,19 +797,23 @@
             vertical-align: top;
             border-top: 1px solid #464545;
         }
+
         .alert-success {
             background-color: #00bc8c;
             border-color: #00bc8c;
             color: #ffffff;
         }
+
         [hidden], template {
             display: none;
         }
+
         .alert-info {
             background-color: #3498db;
             border-color: #3498db;
             color: #ffffff;
         }
+
         .warnning-close-btn {
             position: absolute;
             top: 0px;
@@ -817,6 +821,7 @@
             font-size: 18px;
             color: orange;
         }
+
         .botton-wrapper {
             background-image: url("image/logo.png");
             background-position: center center;
@@ -874,24 +879,25 @@
 
 <div class="container">
     <div class='container-fluid'>
-	
-		<div>
-			<button id="apScanStart" onclick="scan()" style="display:inline-block;float:right;margin-top: -3px"
-				type="button" class="btn btn-success btn-sm">SCAN
-                </button>
-                <h3>WiFi AP List</h3>
-		</div>
-		
+
+        <div>
+            <button id="apScanStart" onclick="scan()" style="display:inline-block;float:right;margin-top: -3px"
+                    type="button" class="btn btn-success btn-sm">SCAN
+            </button>
+            <h3>WiFi AP List</h3>
+        </div>
+
 
         <div class='row'>
             <div class='col-md-12'>
                 <div class="main-wrap">
                     <div id="spinner-container" class="show-loading"></div>
-						<div id = "loading_ap_scan">						
-							<div class="alert alert-warning">
-									Tip: The AP scan will last for 5~7s. Please wait patiently. After the scan is finished, the interface will be refreshed automatically.
-							</div>						
-						</div>																	
+                    <div id="loading_ap_scan">
+                        <div class="alert alert-warning">
+                            Tip: The AP scan will last for 5~7s. Please wait patiently. After the scan is finished, the
+                            interface will be refreshed automatically.
+                        </div>
+                    </div>
                     <div class="card-container"></div>
                     <div class="settingsHeader button-header" style="display:inline-block;margin-bottom: 30px">
                         Network scan result [<span id="networksFound"></span>]
@@ -913,26 +919,27 @@
                         <div id="apMAC"></div>
                     </div>
                 </div>
-				<button id="ClientScanStart" onclick="scan_client()" style="display:inline-block;float:right;margin-top: -3px"
-						type="button" class="btn btn-success btn-sm">SCAN CLIENT
-				</button>
-                <h3>Mount the client list</h3>				
-				<div id = "loading_client_scan">				
-							<div class="alert alert-warning">
-								Tip: Select one or more of the WiFi AP lists as the scan target AP.
-							</div>
-				</div>
-				<div class="card">		
-                 <table id='clientscan_table' class='table'>
-                    <thead>
-                 
+                <button id="ClientScanStart" onclick="scan_client()"
+                        style="display:inline-block;float:right;margin-top: -3px"
+                        type="button" class="btn btn-success btn-sm">SCAN CLIENT
+                </button>
+                <h3>Mount the client list</h3>
+                <div id="loading_client_scan">
+                    <div class="alert alert-warning">
+                        Tip: Select one or more of the WiFi AP lists as the scan target AP.
+                    </div>
+                </div>
+                <div class="card">
+                    <table id='clientscan_table' class='table'>
+                        <thead>
+
                         <th class="text-center">NAME</th>
                         <th class="text-center">MAC</th>
                         <th class="text-center">Pkts</th>
-                    </tr>
-                    </thead>
-                </table> 
-				</div>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -944,9 +951,11 @@
 </body>
 <script>
     mainWrap = document.getElementsByClassName("main-wrap")[0]
+
     function getE(name) {
         return document.getElementById(name);
     }
+
     function showLoading(state) {
         if (state == "hide") {
             sL.className = "";
@@ -954,6 +963,7 @@
             sL.classList.add("show-loading");
         }
     }
+
     function notify(msg, closeAfter) {
         if (msg) {
             //notification.innerHTML = msg;
@@ -1032,24 +1042,24 @@
         mainWrap = document.getElementsByClassName("main-wrap")[0],
         sL = getE('spinner-container'),
         networkInfo = getE('networksFound'),
-		table_client = getE('clientscan_table'),
+        table_client = getE('clientscan_table'),
         scanInfo = getE('spinner-container'),
         apMAC = getE('apMAC'),
         startStopScan = getE('startStopScan'),
         selectAll = getE('selectAll'),
         autoScan = false,
-		scanTime = '',
-		button_ap_scan = getE('apScanStart'),
-		button_client_scan = getE('ClientScanStart'),
-		loading_ap_scan = getE('loading_ap_scan'),
-		loading_client_scan = getE('loading_client_scan'),
+        scanTime = '',
+        button_ap_scan = getE('apScanStart'),
+        button_client_scan = getE('ClientScanStart'),
+        loading_ap_scan = getE('loading_ap_scan'),
+        loading_client_scan = getE('loading_client_scan'),
 
         tableHeaderHTML = table.innerHTML,
-		tableHeaderHTML_client = table_client.innerHTML,
+        tableHeaderHTML_client = table_client.innerHTML,
         selectAllState = 'not-checked',
         previousCall = new Date().getTime(),
         url = window.location.href,
-        wifiIndicator, securityState, res,res_client;
+        wifiIndicator, securityState, res, res_client;
 
     function toggleScan(onoff) {
         if (onoff && !autoScan) {
@@ -1123,9 +1133,9 @@
             if (res.multiAPs == 1) tableHeaderHTML = '<tr><th width="8%"><input type="checkbox" name="selectAll" id="selectAll" value="false" onclick="selAll()" ' + selectAllState + '><label class="checkbox" for="selectAll"></th><th width="17%">Signal</th><th width="22%">SSID</th><th width="15%">Security</th><th width="8%">Ch.</th></tr>';
             var tr = '';
             if (res.aps.length > 0) tr += tableHeaderHTML;
-			
-			var maclist = '';
-			
+
+            var maclist = '';
+
 
             for (var i = 0; i < res.aps.length; i++) {
 
@@ -1134,7 +1144,7 @@
 
                 if (res.aps[i].se) {
                     tr += '<td><input type="checkbox" name="check' + res.aps[i].i + '" id="check' + res.aps[i].i + '" value="false" checked><label class="checkbox" for="check' + res.aps[i].i + '"></label></td>';
-                    maclist += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + escapeHTML(res.aps[i].ss) + '&nbsp;:&nbsp;' +res.aps[i].m + '<br>';
+                    maclist += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + escapeHTML(res.aps[i].ss) + '&nbsp;:&nbsp;' + res.aps[i].m + '<br>';
                 } else tr += '<td><input type="checkbox" name="check' + res.aps[i].i + '" id="check' + res.aps[i].i + '" value="false"><label class="checkbox" for="check' + res.aps[i].i + '"></label></td>';
 
                 if (getStatus(res.aps[i].e) != 'Open') {
@@ -1168,15 +1178,15 @@
                 tr += '</tr>';
             }
             table.innerHTML = tr;
-			
-			loading_ap_scan.innerHTML = '<div class="alert alert-success">  The scan was successful. </div>';
-			
-			if (maclist == ''){
-			}else{
-				maclist = '<font size=4><b>Selected AP MAC：</b></font><br>' + maclist;
-				apMAC.innerHTML = maclist;
-			}
-			
+
+            loading_ap_scan.innerHTML = '<div class="alert alert-success">  The scan was successful. </div>';
+
+            if (maclist == '') {
+            } else {
+                maclist = '<font size=4><b>Selected AP MAC：</b></font><br>' + maclist;
+                apMAC.innerHTML = maclist;
+            }
+
             checkSize()
             fadeIn();
         }, function () {
@@ -1184,101 +1194,101 @@
             fadeIn();
             notify("Failed to scan for networks! E0")
         });
-		button_ap_scan.disabled = false;
+        button_ap_scan.disabled = false;
     }
 
 
-function getResults_client() {
+    function getResults_client() {
         toggleScan(true);
-    getResponse("ClientScanResults.json", function(responseText) {
-        try {
-            res_client = JSON.parse(responseText);
-			log("RESPONSE  ~ ", res_client, true)
-            notify()
-        } catch (e) {
-		    log("INVALID   ~ ", responseText, false)
-            console.error(e)
-            notify("ERROR: Clear the client list. (E5)");
-            return;
-        }
-
-        res_client.res_client = res_client.clients.sort(compare);
-
-        var tr = '';
-        tr += tableHeaderHTML_client;
-
-        for (var i = 0; i < res_client.clients.length; i++) {		
-			if (res_client.clients[i].l >= 0) {
-                tr += '<td class="darken-on-hover" ><span class="a b">' + escapeHTML(res_client.clients[i].n) + '</span><br>' +  escapeHTML(res_client.clients[i].v)  +'</td>';
-            } else {
-                tr += '<td class="darken-on-hover" ><span class="a light-6">save</span><br>' + escapeHTML(res_client.clients[i].v) + '</td>';
+        getResponse("ClientScanResults.json", function (responseText) {
+            try {
+                res_client = JSON.parse(responseText);
+                log("RESPONSE  ~ ", res_client, true)
+                notify()
+            } catch (e) {
+                log("INVALID   ~ ", responseText, false)
+                console.error(e)
+                notify("ERROR: Clear the client list. (E5)");
+                return;
             }
-            tr += '<td ><b>' + res_client.clients[i].m + '</b><br>' +  escapeHTML(res_client.clients[i].a) + '</td>';
-            tr += '<td >' + res_client.clients[i].p + '</td>';
 
-            tr += '</tr>';
-        }
-        if (tr != tableHeaderHTML_client) table_client.innerHTML = tr;
-        if (res_client.nameList.length != 0) {
-            document.getElementById('saved-users').className = "";
-        }
-        clientNames.innerHTML = "(" + res_client.nameList.length + "/50)";
-        var tr = '<tr><th>Name</th><th><a onclick="clearNameList()" class="right" style="padding-right:10px">Reset</a></th></tr>';
-        for (var i = 0; i < res_client.nameList.length; i++) {
+            res_client.res_client = res_client.clients.sort(compare);
 
-            tr += '<tr>';
-            tr += '<td><b>' + escapeHTML(res_client.nameList[i].n) + '</b><br>' + res_client.nameList[i].m + '</td>';
-            tr += '<td><div class="edit delete" onclick="deleteName(' + i + ')">&times;</div><div class="clearfix"></div><div class="edit add" onclick="add(' + i + ')">+</div><div class="clearfix"></div><div class="edit" onclick="editNameList(' + i + ')"><svg style=width:22px;height:24px viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z"></path></svg></div></td>';
-            tr += '</tr>';
-        }
-			table_client.innerHTML = tr;
-		loading_client_scan = '';
+            var tr = '';
+            tr += tableHeaderHTML_client;
+
+            for (var i = 0; i < res_client.clients.length; i++) {
+                if (res_client.clients[i].l >= 0) {
+                    tr += '<td class="darken-on-hover" ><span class="a b">' + escapeHTML(res_client.clients[i].n) + '</span><br>' + escapeHTML(res_client.clients[i].v) + '</td>';
+                } else {
+                    tr += '<td class="darken-on-hover" ><span class="a light-6">save</span><br>' + escapeHTML(res_client.clients[i].v) + '</td>';
+                }
+                tr += '<td ><b>' + res_client.clients[i].m + '</b><br>' + escapeHTML(res_client.clients[i].a) + '</td>';
+                tr += '<td >' + res_client.clients[i].p + '</td>';
+
+                tr += '</tr>';
+            }
+            if (tr != tableHeaderHTML_client) table_client.innerHTML = tr;
+            if (res_client.nameList.length != 0) {
+                document.getElementById('saved-users').className = "";
+            }
+            clientNames.innerHTML = "(" + res_client.nameList.length + "/50)";
+            var tr = '<tr><th>Name</th><th><a onclick="clearNameList()" class="right" style="padding-right:10px">Reset</a></th></tr>';
+            for (var i = 0; i < res_client.nameList.length; i++) {
+
+                tr += '<tr>';
+                tr += '<td><b>' + escapeHTML(res_client.nameList[i].n) + '</b><br>' + res_client.nameList[i].m + '</td>';
+                tr += '<td><div class="edit delete" onclick="deleteName(' + i + ')">&times;</div><div class="clearfix"></div><div class="edit add" onclick="add(' + i + ')">+</div><div class="clearfix"></div><div class="edit" onclick="editNameList(' + i + ')"><svg style=width:22px;height:24px viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z"></path></svg></div></td>';
+                tr += '</tr>';
+            }
+            table_client.innerHTML = tr;
+            loading_client_scan = '';
             checkSize()
             fadeIn();
 
-    }, function() {
-	    toggleScan(true);
-        fadeIn();
-        notify("Reconnect to Wi-Fi network (E6)");
-    });
-	
-	button_client_scan.disabled = false;
+        }, function () {
+            toggleScan(true);
+            fadeIn();
+            notify("Reconnect to Wi-Fi network (E6)");
+        });
 
-}
+        button_client_scan.disabled = false;
 
-function scan_client() {
+    }
 
-		if(res == null  || res == undefined ){
-					loading_client_scan.innerHTML = '<div class="alert alert-info ">  Tip: Please complete the AP scan. </div>';
-		}else{				
-			var flag = false;
-			
-			for (var i = 0; i < res.aps.length; i++){
-				if (res.aps[i].se == 1) flag = true;			
-			}
-			
-			if (flag == true){
-				button_client_scan.disabled = true;
-				loading_client_scan.innerHTML = '<div class="alert alert-info">  Hint: CLIENT scan will last for 15s Please be patient. After the scan is completed, the device will automatically disconnect from the network and display the scan results after manually reconnecting. </div>';
-				toggleScan(false);
+    function scan_client() {
 
-				getResponse("ClientScan.json?time=" + scanTime, function(responseText) {
-					if (responseText == "true") {
-						toggleBtn(true);
-            
-					} else {
-					notify("INFO: No Wi-Fi network(s) selected! (E7)");
-					}
-					setTimeout(function () {
-						toggleScan(true)
-					}, 700);
-					});
-			}else{
-				loading_client_scan.innerHTML = '<div class="alert alert-info ">  Tip: The target AP is not set. </div>';
-			}				
-		}
-	
-}
+        if (res == null || res == undefined) {
+            loading_client_scan.innerHTML = '<div class="alert alert-info ">  Tip: Please complete the AP scan. </div>';
+        } else {
+            var flag = false;
+
+            for (var i = 0; i < res.aps.length; i++) {
+                if (res.aps[i].se == 1) flag = true;
+            }
+
+            if (flag == true) {
+                button_client_scan.disabled = true;
+                loading_client_scan.innerHTML = '<div class="alert alert-info">  Hint: CLIENT scan will last for 15s Please be patient. After the scan is completed, the device will automatically disconnect from the network and display the scan results after manually reconnecting. </div>';
+                toggleScan(false);
+
+                getResponse("ClientScan.json?time=" + scanTime, function (responseText) {
+                    if (responseText == "true") {
+                        toggleBtn(true);
+
+                    } else {
+                        notify("INFO: No Wi-Fi network(s) selected! (E7)");
+                    }
+                    setTimeout(function () {
+                        toggleScan(true)
+                    }, 700);
+                });
+            } else {
+                loading_client_scan.innerHTML = '<div class="alert alert-info ">  Tip: The target AP is not set. </div>';
+            }
+        }
+
+    }
 
     function getColor(value, lighten) {
         var lightness = 50;
@@ -1292,9 +1302,9 @@ function scan_client() {
     }
 
     function scan() {
-		button_ap_scan.disabled = true;
-	
-		loading_ap_scan.innerHTML = '<div class="alert alert-warning ">  Tip: The AP scan will last for 5~7s. Please wait patiently. After the scan is finished, the interface will be refreshed automatically. </div>';
+        button_ap_scan.disabled = true;
+
+        loading_ap_scan.innerHTML = '<div class="alert alert-warning ">  Tip: The AP scan will last for 5~7s. Please wait patiently. After the scan is finished, the interface will be refreshed automatically. </div>';
 
         toggleScan(false);
         getResponse("APScan.json", function (responseText) {
@@ -1306,17 +1316,17 @@ function scan_client() {
         });
     }
 
-	
-	function select(num) {
-		var time = new Date().getTime();
-    if ((time - previousCall) >= 80) {
-        previousCall = time;
-        getResponse("APSelect.json?num=" + num, function(responseText) {
-            if (responseText == "true") getResults();
-            else notify("ERROR: Bad response 'APSelect.json' (E4)");
-        });
+
+    function select(num) {
+        var time = new Date().getTime();
+        if ((time - previousCall) >= 80) {
+            previousCall = time;
+            getResponse("APSelect.json?num=" + num, function (responseText) {
+                if (responseText == "true") getResults();
+                else notify("ERROR: Bad response 'APSelect.json' (E4)");
+            });
+        }
     }
-}
 
     function selAll() {
         if (selectAllState == 'not-checked') {
@@ -1344,10 +1354,10 @@ function scan_client() {
         }
     }
 
-getResponse("ClientScanTime.json", function(responseText) {
-    scanTime = responseText;
-});
-	getResults_client();
+    getResponse("ClientScanTime.json", function (responseText) {
+        scanTime = responseText;
+    });
+    getResults_client();
     getResults();
 </script>
 <script src="js/prompt.js"></script>
