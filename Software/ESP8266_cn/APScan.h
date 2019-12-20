@@ -10,40 +10,55 @@
 #include <ESP8266WebServer.h>
 
 extern String data_getVendor(uint8_t first, uint8_t second, uint8_t third);
+
 extern ESP8266WebServer server;
+
 extern void sendBuffer();
+
 extern void sendToBuffer(String str);
+
 extern void sendHeader(int code, String type, size_t _size);
+
 extern const bool debug;
 
 
-
 class APScan {
-  public:
+public:
     APScan();
 
     bool start();
+
     void sort();
+
     String getResultsJSON();
+
     void select(int num);
+
     void sendResults();
 
     String getAPName(int num);
+
     String getAPEncryption(int num);
+
     //String getAPVendor(int num);
     String getAPMac(int num);
+
     bool isHidden(int num);
+
     int getAPRSSI(int num);
+
     int getAPChannel(int num);
 
     int getFirstTarget();
+
     bool isSelected(int num);
+
     String sanitizeJson(String input);
 
     int results = 0;
     int selectedSum;
     MacList aps;
-  private:
+private:
 
     int channels[maxAPScanResults];
     int rssi[maxAPScanResults];

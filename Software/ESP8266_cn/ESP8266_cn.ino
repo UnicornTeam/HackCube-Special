@@ -60,44 +60,44 @@ ESP8266WebServer server(80);
 #include "WebInterface.h"
 
 void setup() {
-  Serial.begin(9600);
-  FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
-  fill_solid(leds, NUM_LEDS, CRGB::White);
-  LED_STATE(LED_CONNECT);
-  ConfigWifi(); //建立"HackCUBESpecial_XXXXXX"热点
-  //ConnectWif();
-  delay(100);
-  LED_STATE(LED_RUN);
-  SPIFFS.begin();
-  Serial.swap(); //将串口切换到和ATmega32u4通信串口中
-  delay(100);
-  WebFileSetup(); //量产使用压缩后的网页,如需使用data目录中网页,请设置WebFFS变量,并使用SPIFFS上传数据
-  WebInterface(); //初始化网页端接口
-  server.begin(); 
+    Serial.begin(9600);
+    FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
+    fill_solid(leds, NUM_LEDS, CRGB::White);
+    LED_STATE(LED_CONNECT);
+    ConfigWifi(); //建立"HackCUBESpecial_XXXXXX"热点
+    //ConnectWif();
+    delay(100);
+    LED_STATE(LED_RUN);
+    SPIFFS.begin();
+    Serial.swap(); //将串口切换到和ATmega32u4通信串口中
+    delay(100);
+    WebFileSetup(); //量产使用压缩后的网页,如需使用data目录中网页,请设置WebFFS变量,并使用SPIFFS上传数据
+    WebInterface(); //初始化网页端接口
+    server.begin();
 
-  /*
-  AddRfList("[RF][Sniffer]freq:433,protocol:Fixed-1,modulation:ask,func:0,data:41013");
-  AddRfList("[RF][Sniffer]freq:433,protocol:Fixed-1,modulation:ask,func:c,data:41010");
-  AddRfList("[RF][Sniffer]freq:315,protocol:Fixed-1,modulation:ask,func:1,data:B710");
-  */
-  /*
-  AddRfList("[RF][Sniffer]freq:315,protocol:LigthBar,modulation:ask,func:red,data:2600");
-  AddRfList("[RF][Sniffer]freq:315,protocol:LigthBar,modulation:ask,func:green,data:2680");
-  AddRfList("[RF][Sniffer]freq:315,protocol:LigthBar,modulation:ask,func:blue,data:2640");
-  AddRfList("[RF][Sniffer]freq:315,protocol:LigthBar,modulation:ask,func:effect_1,data:26f0");
-  AddRfList("[RF][Sniffer]freq:315,protocol:LigthBar,modulation:ask,func:effect_2,data:2688");
-  AddRfList("[RF][Sniffer]freq:315,protocol:LigthBar,modulation:ask,func:clear,data:26d8");
-  */
-  //[RF][Sniffer]freq:433,protocol:keeloq,modulation:ask,data:8e56d5b5,SerialNumber:39182da
-  delay(100);
-  led_action = 1;
-  delay(100);
+    /*
+    AddRfList("[RF][Sniffer]freq:433,protocol:Fixed-1,modulation:ask,func:0,data:41013");
+    AddRfList("[RF][Sniffer]freq:433,protocol:Fixed-1,modulation:ask,func:c,data:41010");
+    AddRfList("[RF][Sniffer]freq:315,protocol:Fixed-1,modulation:ask,func:1,data:B710");
+    */
+    /*
+    AddRfList("[RF][Sniffer]freq:315,protocol:LightBar,modulation:ask,func:red,data:2600");
+    AddRfList("[RF][Sniffer]freq:315,protocol:LightBar,modulation:ask,func:green,data:2680");
+    AddRfList("[RF][Sniffer]freq:315,protocol:LightBar,modulation:ask,func:blue,data:2640");
+    AddRfList("[RF][Sniffer]freq:315,protocol:LightBar,modulation:ask,func:effect_1,data:26f0");
+    AddRfList("[RF][Sniffer]freq:315,protocol:LightBar,modulation:ask,func:effect_2,data:2688");
+    AddRfList("[RF][Sniffer]freq:315,protocol:LightBar,modulation:ask,func:clear,data:26d8");
+    */
+    //[RF][Sniffer]freq:433,protocol:keeloq,modulation:ask,data:8e56d5b5,SerialNumber:39182da
+    delay(100);
+    led_action = 1;
+    delay(100);
 }
 
 
 void loop() {
-  SerialCmd();
-  LowBatteryCheck();
-  LED_SHOW();
-  server.handleClient();
+    SerialCmd();
+    LowBatteryCheck();
+    LED_SHOW();
+    server.handleClient();
 }

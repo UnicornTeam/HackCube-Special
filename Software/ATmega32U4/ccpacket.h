@@ -15,9 +15,8 @@
  * Description:
  * CC1101 data packet class
  */
-class CCPACKET
-{
-  public:
+class CCPACKET {
+public:
     /**
      * Data length
      */
