@@ -1,0 +1,1232 @@
+﻿<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8" content='width=device-width, initial-scale=1'>
+    <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cube Wifi beheer</title>
+ <style type="text/css">
+        html {
+            font-size: 10px;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        body {
+            font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.42857143;
+            color: #ffffff;
+            background-color: #222222;
+        }
+
+        .clearfix:before, .clearfix:after, .dl-horizontal dd:before, .dl-horizontal dd:after, .container:before, .container:after, .container-fluid:before, .container-fluid:after, .row:before, .row:after, .form-horizontal .form-group:before, .form-horizontal .form-group:after, .btn-toolbar:before, .btn-toolbar:after, .btn-group-vertical > .btn-group:before, .btn-group-vertical > .btn-group:after, .nav:before, .nav:after, .navbar:before, .navbar:after, .navbar-header:before, .navbar-header:after, .navbar-collapse:before, .navbar-collapse:after, .pager:before, .pager:after, .panel-body:before, .panel-body:after, .modal-header:before, .modal-header:after, .modal-footer:before, .modal-footer:after {
+            content: " ";
+            display: table;
+        }
+
+        *:before, *:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .clearfix:after, .dl-horizontal dd:after, .container:after, .container-fluid:after, .row:after, .form-horizontal .form-group:after, .btn-toolbar:after, .btn-group-vertical > .btn-group:after, .nav:after, .navbar:after, .navbar-header:after, .navbar-collapse:after, .pager:after, .panel-body:after, .modal-header:after, .modal-footer:after {
+            clear: both;
+        }
+
+        .clearfix:before, .clearfix:after, .dl-horizontal dd:before, .dl-horizontal dd:after, .container:before, .container:after, .container-fluid:before, .container-fluid:after, .row:before, .row:after, .form-horizontal .form-group:before, .form-horizontal .form-group:after, .btn-toolbar:before, .btn-toolbar:after, .btn-group-vertical > .btn-group:before, .btn-group-vertical > .btn-group:after, .nav:before, .nav:after, .navbar:before, .navbar:after, .navbar-header:before, .navbar-header:after, .navbar-collapse:before, .navbar-collapse:after, .pager:before, .pager:after, .panel-body:before, .panel-body:after, .modal-header:before, .modal-header:after, .modal-footer:before, .modal-footer:after {
+            content: " ";
+            display: table;
+        }
+
+        *:before, *:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .container {
+            margin-right: auto;
+            margin-left: auto;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                width: 750px
+            }
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                width: 970px
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                width: 1170px
+            }
+        }
+
+        .nav-tabs {
+            border-bottom: 1px solid #464545;
+        }
+
+        .nav {
+            margin-bottom: 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        ul, ol {
+            margin-top: 0;
+            margin-bottom: 10.5px;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        ul, menu, dir {
+            display: block;
+            list-style-type: disc;
+            -webkit-margin-before: 1em;
+            -webkit-margin-after: 1em;
+            -webkit-margin-start: 0px;
+            -webkit-margin-end: 0px;
+            -webkit-padding-start: 40px;
+        }
+
+        .nav-tabs > li {
+            float: left;
+            margin-bottom: -1px;
+        }
+
+        .nav > li {
+            position: relative;
+            display: block;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+            color: #00bc8c;
+            background-color: #222222;
+            border: 1px solid #464545;
+            border-bottom-color: transparent;
+            cursor: default;
+        }
+
+        .nav-tabs > li > a, .nav-pills > li > a {
+            color: #fff;
+        }
+
+        .nav-tabs > li > a {
+            margin-right: 2px;
+            line-height: 1.42857143;
+            border: 1px solid transparent;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .nav > li > a {
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+        }
+
+        a {
+            color: #0ce3ac;
+            text-decoration: none;
+        }
+
+        .alert-warning {
+            background-color: #f39c12;
+            border-color: #f39c12;
+            color: #ffffff;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 21px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-dismissible {
+            padding-right: 35px;
+        }
+
+        .alert-dismissable .close, .alert-dismissible .close {
+            position: relative;
+            top: -2px;
+            right: -21px;
+            color: inherit;
+        }
+
+        button.close {
+            padding: 0;
+            cursor: pointer;
+            background: transparent;
+            border: 0;
+            -webkit-appearance: none;
+        }
+
+        .close {
+            text-decoration: none;
+            text-shadow: none;
+            opacity: 0.4;
+        }
+
+        .close {
+            float: right;
+            font-size: 22.5px;
+            font-weight: bold;
+            line-height: 1;
+            color: #ffffff;
+            text-shadow: none;
+            opacity: 0.2;
+            filter: alpha(opacity=20);
+        }
+
+        .close:hover, .close:focus {
+            opacity: 1;
+        }
+
+        .close:hover, .close:focus {
+            color: #ffffff;
+            text-decoration: none;
+            cursor: pointer;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+        }
+
+        input, button, select, textarea {
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+        }
+
+        button, html input[type="button"], input[type="reset"], input[type="submit"] {
+            -webkit-appearance: button;
+            cursor: pointer;
+        }
+
+        button, select {
+            text-transform: none;
+        }
+
+        button {
+            overflow: visible;
+        }
+
+        button, input, optgroup, select, textarea {
+            color: inherit;
+            font: inherit;
+            margin: 0;
+        }
+
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+            font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: 400;
+            line-height: 1.1;
+            color: inherit;
+        }
+
+        .alert h4 {
+            margin-top: 0;
+            color: inherit;
+        }
+
+        h4, .h4 {
+            font-size: 19px;
+        }
+
+        h4, .h4, h5, .h5, h6, .h6 {
+            margin-top: 10.5px;
+            margin-bottom: 10.5px;
+        }
+
+        .alert > p, .alert > ul {
+            margin-bottom: 0;
+        }
+
+        p {
+            margin: 0 0 10.5px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        h1, .h1 {
+            font-size: 39px;
+        }
+
+        h1, .h1, h2, .h2, h3, .h3 {
+            margin-top: 21px;
+            margin-bottom: 10.5px;
+        }
+
+        h3, .h3 {
+            font-size: 26px;
+        }
+
+        .container-fluid {
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-bottom: 0;
+            font-weight: normal;
+            text-align: center;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            background-image: none;
+            border: 1px solid transparent;
+            white-space: nowrap;
+            padding: 10px 15px;
+            font-size: 15px;
+            line-height: 1.42857143;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .btn-success {
+            color: #ffffff;
+            background-color: #00bc8c;
+            border-color: #00bc8c;
+        }
+
+        .btn-sm, .btn-group-sm > .btn {
+            padding: 6px 9px;
+            font-size: 13px;
+            line-height: 1.5;
+            border-radius: 3px;
+        }
+
+        .btn {
+            border-width: 2px;
+        }
+
+        .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+            /*position: relative;*/
+            min-height: 1px;
+        }
+
+        @media (min-width: 992px) {
+            .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+                float: left
+            }
+
+            .col-md-12 {
+                width: 100%
+            }
+
+            .col-md-11 {
+                width: 91.66666667%
+            }
+
+            .col-md-10 {
+                width: 83.33333333%
+            }
+
+            .col-md-9 {
+                width: 75%
+            }
+
+            .col-md-8 {
+                width: 66.66666667%
+            }
+
+            .col-md-7 {
+                width: 58.33333333%
+            }
+
+            .col-md-6 {
+                width: 50%
+            }
+
+            .col-md-5 {
+                width: 41.66666667%
+            }
+
+            .col-md-4 {
+                width: 33.33333333%
+            }
+
+            .col-md-3 {
+                width: 25%
+            }
+
+            .col-md-2 {
+                width: 16.66666667%
+            }
+
+            .col-md-1 {
+                width: 8.33333333%
+            }
+
+            .col-md-pull-12 {
+                right: 100%
+            }
+
+            .col-md-pull-11 {
+                right: 91.66666667%
+            }
+
+            .col-md-pull-10 {
+                right: 83.33333333%
+            }
+
+            .col-md-pull-9 {
+                right: 75%
+            }
+
+            .col-md-pull-8 {
+                right: 66.66666667%
+            }
+
+            .col-md-pull-7 {
+                right: 58.33333333%
+            }
+
+            .col-md-pull-6 {
+                right: 50%
+            }
+
+            .col-md-pull-5 {
+                right: 41.66666667%
+            }
+
+            .col-md-pull-4 {
+                right: 33.33333333%
+            }
+
+            .col-md-pull-3 {
+                right: 25%
+            }
+
+            .col-md-pull-2 {
+                right: 16.66666667%
+            }
+
+            .col-md-pull-1 {
+                right: 8.33333333%
+            }
+
+            .col-md-pull-0 {
+                right: auto
+            }
+
+            .col-md-push-12 {
+                left: 100%
+            }
+
+            .col-md-push-11 {
+                left: 91.66666667%
+            }
+
+            .col-md-push-10 {
+                left: 83.33333333%
+            }
+
+            .col-md-push-9 {
+                left: 75%
+            }
+
+            .col-md-push-8 {
+                left: 66.66666667%
+            }
+
+            .col-md-push-7 {
+                left: 58.33333333%
+            }
+
+            .col-md-push-6 {
+                left: 50%
+            }
+
+            .col-md-push-5 {
+                left: 41.66666667%
+            }
+
+            .col-md-push-4 {
+                left: 33.33333333%
+            }
+
+            .col-md-push-3 {
+                left: 25%
+            }
+
+            .col-md-push-2 {
+                left: 16.66666667%
+            }
+
+            .col-md-push-1 {
+                left: 8.33333333%
+            }
+
+            .col-md-push-0 {
+                left: auto
+            }
+
+            .col-md-offset-12 {
+                margin-left: 100%
+            }
+
+            .col-md-offset-11 {
+                margin-left: 91.66666667%
+            }
+
+            .col-md-offset-10 {
+                margin-left: 83.33333333%
+            }
+
+            .col-md-offset-9 {
+                margin-left: 75%
+            }
+
+            .col-md-offset-8 {
+                margin-left: 66.66666667%
+            }
+
+            .col-md-offset-7 {
+                margin-left: 58.33333333%
+            }
+
+            .col-md-offset-6 {
+                margin-left: 50%
+            }
+
+            .col-md-offset-5 {
+                margin-left: 41.66666667%
+            }
+
+            .col-md-offset-4 {
+                margin-left: 33.33333333%
+            }
+
+            .col-md-offset-3 {
+                margin-left: 25%
+            }
+
+            .col-md-offset-2 {
+                margin-left: 16.66666667%
+            }
+
+            .col-md-offset-1 {
+                margin-left: 8.33333333%
+            }
+
+            .col-md-offset-0 {
+                margin-left: 0%
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+                float: left
+            }
+
+            .col-lg-12 {
+                width: 100%
+            }
+
+            .col-lg-11 {
+                width: 91.66666667%
+            }
+
+            .col-lg-10 {
+                width: 83.33333333%
+            }
+
+            .col-lg-9 {
+                width: 75%
+            }
+
+            .col-lg-8 {
+                width: 66.66666667%
+            }
+
+            .col-lg-7 {
+                width: 58.33333333%
+            }
+
+            .col-lg-6 {
+                width: 50%
+            }
+
+            .col-lg-5 {
+                width: 41.66666667%
+            }
+
+            .col-lg-4 {
+                width: 33.33333333%
+            }
+
+            .col-lg-3 {
+                width: 25%
+            }
+
+            .col-lg-2 {
+                width: 16.66666667%
+            }
+
+            .col-lg-1 {
+                width: 8.33333333%
+            }
+
+            .col-lg-pull-12 {
+                right: 100%
+            }
+
+            .col-lg-pull-11 {
+                right: 91.66666667%
+            }
+
+            .col-lg-pull-10 {
+                right: 83.33333333%
+            }
+
+            .col-lg-pull-9 {
+                right: 75%
+            }
+
+            .col-lg-pull-8 {
+                right: 66.66666667%
+            }
+
+            .col-lg-pull-7 {
+                right: 58.33333333%
+            }
+
+            .col-lg-pull-6 {
+                right: 50%
+            }
+
+            .col-lg-pull-5 {
+                right: 41.66666667%
+            }
+
+            .col-lg-pull-4 {
+                right: 33.33333333%
+            }
+
+            .col-lg-pull-3 {
+                right: 25%
+            }
+
+            .col-lg-pull-2 {
+                right: 16.66666667%
+            }
+
+            .col-lg-pull-1 {
+                right: 8.33333333%
+            }
+
+            .col-lg-pull-0 {
+                right: auto
+            }
+
+            .col-lg-push-12 {
+                left: 100%
+            }
+
+            .col-lg-push-11 {
+                left: 91.66666667%
+            }
+
+            .col-lg-push-10 {
+                left: 83.33333333%
+            }
+
+            .col-lg-push-9 {
+                left: 75%
+            }
+
+            .col-lg-push-8 {
+                left: 66.66666667%
+            }
+
+            .col-lg-push-7 {
+                left: 58.33333333%
+            }
+
+            .col-lg-push-6 {
+                left: 50%
+            }
+
+            .col-lg-push-5 {
+                left: 41.66666667%
+            }
+
+            .col-lg-push-4 {
+                left: 33.33333333%
+            }
+
+            .col-lg-push-3 {
+                left: 25%
+            }
+
+            .col-lg-push-2 {
+                left: 16.66666667%
+            }
+
+            .col-lg-push-1 {
+                left: 8.33333333%
+            }
+
+            .col-lg-push-0 {
+                left: auto
+            }
+
+            .col-lg-offset-12 {
+                margin-left: 100%
+            }
+
+            .col-lg-offset-11 {
+                margin-left: 91.66666667%
+            }
+
+            .col-lg-offset-10 {
+                margin-left: 83.33333333%
+            }
+
+            .col-lg-offset-9 {
+                margin-left: 75%
+            }
+
+            .col-lg-offset-8 {
+                margin-left: 66.66666667%
+            }
+
+            .col-lg-offset-7 {
+                margin-left: 58.33333333%
+            }
+
+            .col-lg-offset-6 {
+                margin-left: 50%
+            }
+
+            .col-lg-offset-5 {
+                margin-left: 41.66666667%
+            }
+
+            .col-lg-offset-4 {
+                margin-left: 33.33333333%
+            }
+
+            .col-lg-offset-3 {
+                margin-left: 25%
+            }
+
+            .col-lg-offset-2 {
+                margin-left: 16.66666667%
+            }
+
+            .col-lg-offset-1 {
+                margin-left: 8.33333333%
+            }
+
+            .col-lg-offset-0 {
+                margin-left: 0%
+            }
+        }
+
+        .table {
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 21px;
+        }
+
+        table {
+            width: 100%;
+            padding: 0;
+            table-layout: fixed;
+            border-collapse: collapse;
+            text-align: center;
+            border: none;
+            class: table;
+        }
+
+        table {
+            background-color: transparent;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        .table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td {
+            border-top: 0;
+        }
+
+        .table > thead > tr > td.active, .table > tbody > tr > td.active, .table > tfoot > tr > td.active, .table > thead > tr > th.active, .table > tbody > tr > th.active, .table > tfoot > tr > th.active, .table > thead > tr.active > td, .table > tbody > tr.active > td, .table > tfoot > tr.active > td, .table > thead > tr.active > th, .table > tbody > tr.active > th, .table > tfoot > tr.active > th {
+            background-color: #464545;
+        }
+
+        table > thead > tr > th, .table > thead > tr > th, table > tbody > tr > th, .table > tbody > tr > th, table > tfoot > tr > th, .table > tfoot > tr > th, table > thead > tr > td, .table > thead > tr > td, table > tbody > tr > td, .table > tbody > tr > td, table > tfoot > tr > td, .table > tfoot > tr > td {
+            border: none;
+        }
+
+        .table > thead > tr > th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #464545;
+        }
+
+        .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+            padding: 8px;
+            line-height: 1.42857143;
+            vertical-align: top;
+            border-top: 1px solid #464545;
+        }
+        .alert-success {
+            background-color: #00bc8c;
+            border-color: #00bc8c;
+            color: #ffffff;
+        }
+        [hidden], template {
+            display: none;
+        }
+        .alert-info {
+            background-color: #3498db;
+            border-color: #3498db;
+            color: #ffffff;
+        }
+
+    </style> 
+</head>
+<body>
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="WIFI.html">WIFI</a></li>
+        <li><a href="NFC.html">NFC</a></li>
+        <li><a href="RF.html">RF</a></li>
+        <li><a href="HID.html">HID</a></li>
+        <li><a href="INFO.html">INFO</a></li>
+    </ul>
+    </br>
+    <div class="alert alert-dismissible alert-warning" id="Warning_action" >
+        <button type="button" class="close" data-dismiss="alert" id="close">&times;</button>
+        <h4 class="alert-heading">Waarschuwing!</h4>
+        <p class="mb-0">Deze apparatuur is alleen voor veiligheidsdemonstraties. Houd u bewust aan relevante wet- en regelgeving.</p>
+    </div>
+    <div class="alert alert-dismissible alert-success" id="nfc_action" hidden>
+        <button type="button" class="close" id="nfc_close">&times;</button>
+        <h4 class="alert-heading">NFC</h4>
+        <label>EM41xx Tag ID:<label id="nfc_idprint"/></label></br>
+        <a href="/NFC.html" class="alert-link">Click to attack</a></label>
+    </div>
+    <div class="alert alert-dismissible alert-info" id="rf_action" hidden>
+        <button type="button" class="close" id="rf_close">&times;</button>
+        <h4 class="alert-heading">RF</h4>
+        <label>Data:<label id="rf_print"/></label></br>
+        <a href="/RF.html" class="alert-link">Click to attack</a></label>
+    </div>
+    <div class="alert alert-dismissible alert-info" id="rf_action_24l01" hidden>
+        <button type="button" class="close" id="rf_close_24l01">&times;</button>
+        <h4 class="alert-heading">RF</h4>
+        <label>Data:<label id="rf_print_24l01"/></label></br>
+        <a href="/RF.html" class="alert-link">Click to attack</a></label>
+    </div>
+    <h1 class=text-center>Cube Wifi Beheer</h1>
+    <h4 class=text-center>Gebruik de Cube om beveiligings risico's te scannen op WIFI gekoppelde apparaten</h4>
+    </br>
+</div>
+<div class="container">
+    <div class='container-fluid'>
+        <div style="display:inline-block;float:left;"><h3>Wifi List</h3>
+        </div>
+        <button id="apScanStart" style="display:inline-block;float:right;margin-top: 18px"
+                type="button" class="btn btn-success btn-sm">SCANNEN
+        </button>
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="main-wrap">
+                    <div id="spinner-container" class="show-loading"></div>
+                    <div class="card-container"></div>
+                    <div class="settingsHeader button-header" style="display:inline-block;margin-bottom: 30px">
+                        Scannen voor netwerken(<span id="networksFound"></span>)
+                    </div>
+                    <div class="card">
+                        <table id="apscan" class='table'>
+                            <thead>
+                            <tr class='active'>
+                                <th></th>
+                                <th class="text-center">Signal</th>
+                                <th class="text-center">SSID</th>
+                                <th class="text-center">Security</th>
+                                <th class="text-center">ch</th>
+                            </tr>
+                            </thead>
+                        </table>
+                        <div class="card-action">
+                            <a onclick="window.location='./users'" class="button light">Gebruikers</a>
+                            <a onclick="window.location='./attack'" class="button right">Aanval</a>
+                        </div>
+                        <table id="apscan1" class='table'></table>
+                    </div>
+                    <div class="network-info">
+                        <div id="apMAC"></div>
+                    </div>
+                </div>
+<!-- 
+               <h3>Client List</h3>
+                 <table class='table'>
+                    <thead>
+                    <tr class='active'>
+                        <th class="text-center">NAME</th>
+                        <th class="text-center">MAC</th>
+                        <th class="text-center">PAKKETTEN</th>
+                        <th class="text-center">JAM</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>XX<span class='badge'>iPhone</span></td>
+                        <td>11:22:33:44:55:66</td>
+                        <td>552</td>
+                        <td>
+                            <input name="status" type="checkbox" data-size="mini">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>XX<span class='badge'>Android</span></td>
+                        <td>11:22:33:44:55:66</td>
+                        <td>92</td>
+                        <td>
+                            <input name="status" type="checkbox" data-size="mini">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>XX<span class='badge'>iPhone</span></td>
+                        <td>11:22:33:44:55:66</td>
+                        <td>102</td>
+                        <td>
+                            <input name="status" type="checkbox" data-size="mini">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table> 
+-->
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    document.getElementById('apScanStart').addEventListener('click', scan)
+    document.getElementById('apScanStart').addEventListener('touchstart', scan)
+    mainWrap = document.getElementsByClassName("main-wrap")[0]
+    function getE(name) {
+        return document.getElementById(name);
+    }
+    function showLoading(state) {
+        if (state == "hide") {
+            sL.className = "";
+        } else {
+            sL.classList.add("show-loading");
+        }
+    }
+
+    function notify(msg, closeAfter) {
+        if (msg) {
+            //notification.innerHTML = msg;
+            document.body.className = "show";
+        } else {
+            document.body.className = "";
+        }
+        if (closeAfter !== undefined) {
+            setTimeout(function () {
+                document.body.classList.remove("show")
+            }, closeAfter);
+        }
+    }
+
+    function escapeHTML(str) {
+        return str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/\"/g, '&quot;')
+            .replace(/\'/g, '&#39;')
+            .replace(/\//g, '&#x2F;')
+    }
+
+    function log(one, two, three) {
+        var color = "#369BF2", success
+        if (typeof three !== 'undefined')
+            success = three
+        else
+            success = two
+        if (success != "default" && typeof success !== 'undefined') {
+            if (success == true)
+                color = "#3ec563"
+            else
+                color = "#de363c"
+        }
+        if (typeof three !== 'undefined')
+            console.log('%c[ ] %c' + one, 'color:' + color, 'color:#777', two)
+        else
+            console.log('%c[ ] ', 'color:' + color, one)
+    }
+
+
+    function getResponse(adr, callback, timeoutCallback, timeout, method) {
+        log('FETCH     ~ ', adr, "default")
+        if (timeoutCallback == null) {
+            timeoutCallback = function () {
+                //alert(2222)
+                getResponse("ClientScanTime.json", function () {
+                    notify("Didn't receive a response! (E97)");
+                }, function () {
+                    notify("Reconnect and reload this page (E96)");
+                    //autoReload();
+                })
+            };
+        }
+        if (timeout == null) timeout = 8000;
+        if (method == null) method = "GET";
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open(method, adr, true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4) {
+                if (xmlhttp.status == 200) {
+                    if (typeof callback !== 'undefined') callback(xmlhttp.responseText);
+                } else timeoutCallback();
+            }
+        };
+        xmlhttp.timeout = timeout;
+        xmlhttp.ontimeout = timeoutCallback;
+    }
+
+    var table = document.getElementsByTagName('table')[0],
+
+//var table = $("#apscan");
+        mainWrap = document.getElementsByClassName("main-wrap")[0],
+        sL = getE('spinner-container'),
+        networkInfo = getE('networksFound'),
+        scanInfo = getE('spinner-container'),
+        apMAC = getE('apMAC'),
+        startStopScan = getE('startStopScan'),
+        selectAll = getE('selectAll'),
+        autoScan = false,
+        //tableHeaderHTML = '<thead><tr class="active"><th width="8%"></th><th width="17%">Signal</th><th width="22%">SSID</th><th width="15%">Security</th><th width="8%">Ch.</th></tr></thead>',
+
+        tableHeaderHTML = table.innerHTML,
+        selectAllState = 'not-checked',
+        previousCall = new Date().getTime(),
+        url = window.location.href,
+        wifiIndicator, securityState, res;
+
+    function toggleScan(onoff) {
+        if (onoff && !autoScan) {
+            showLoading("hide");
+        } else {
+            showLoading();
+        }
+    }
+
+    function compare(a, b) {
+        if (a.r > b.r) return -1;
+        if (a.r < b.r) return 1;
+        return 0;
+    }
+
+    function getStatus(enc, hid) {
+        var buff = "";
+        if (enc == 8) buff = "WPA* &nbsp;&#128274;";
+        else if (enc == 4) buff = "WPA2 &nbsp;&#128274;";
+        else if (enc == 2) buff = "WPA";
+        else if (enc == 7) buff = "Open";
+        else if (enc == 5) buff = "WEP";
+        if (hid == 1) buff += "&#128123;";
+        return buff
+    }
+
+    function fadeIn() {
+        if (!mainWrap.className.match('fadeIn')) {
+            setTimeout(function () {
+                document.getElementsByClassName('main-wrap')[0].classList.add('fadeIn')
+            }, 10)
+            setTimeout(function () {
+                document.getElementsByClassName('main-wrap')[0].classList.add('animation')
+            }, 1000)
+        }
+    }
+
+    /* Dynamically add footer *//*
+    document.getElementsByTagName("footer")[0].innerHTML = "";*/
+
+    /* Dynamically add spinner */
+/*    document.getElementById("spinner-container").innerHTML = "<svg class=spinner viewBox='0 0 66 66'><circle class=path cx=33 cy=33 fill=none r=30 stroke-linecap=round stroke-width=6></circle></svg><svg class=success-svg viewBox='0 0 1000 1000'><path d=M908.3,132.5L336.7,704.2l-245-245L10,540.8l326.7,326.7l81.7-81.7L990,214.2L908.3,132.5z /></svg> <svg class=failed-svg viewBox='0 0 19 19'><line stroke-width=2 x1=1 x2=18 y1=1 y2=18></line><line stroke-width=2 x1=18 x2=1 y1=1 y2=18></line></svg>"*/
+
+    var sS = '<svg width="30" height="30" viewBox="0 0 48 48" xmlns=http://www.w3.org/2000/svg>';
+    var sN = '<path d="M24.02 42.98L47.28 14c-.9-.68-9.85-8-23.28-8S1.62 13.32.72 14l23.26 28.98.02.02.02-.02z"fill-opacity=.3 />'
+    var sE = '</svg>'
+    var s0 = sS + sN + sE;
+    var s1 = sS + sN + '<path d="M13.34 29.72l10.65 13.27.01.01.01-.01 10.65-13.27C34.13 29.31 30.06 26 24 26s-10.13 3.31-10.66 3.72z"/>' + sE;
+    var s2 = sS + sN + '<path d="M9.58 25.03l14.41 17.95.01.02.01-.02 14.41-17.95C37.7 24.47 32.2 20 24 20s-13.7 4.47-14.42 5.03z"/>' + sE;
+    var s3 = sS + sN + '<path d="M7.07 21.91l16.92 21.07.01.02.02-.02 16.92-21.07C40.08 21.25 33.62 16 24 16c-9.63 0-16.08 5.25-16.93 5.91z"/>' + sE;
+    var s4 = sS + '<path d="M24.02 42.98L47.28 14c-.9-.68-9.85-8-23.28-8S1.62 13.32.72 14l23.26 28.98.02.02.02-.02z"/>' + sE;
+    /* Combine strings to form WiFi icons with lock icon */
+    var s0L = sS + '<path d="m41,19c0.7,0 1.4,0.1 2.1,0.2l4.2,-5.2c-0.9,-0.7 -9.8,-8 -23.3,-8s-22.4,7.3 -23.3,8l23.3,29l7,-8.7l0,-5.3c0,-5.5 4.5,-10 10,-10z"opacity=0.3 /><path d="m46,32l0,-3c0,-2.8 -2.2,-5 -5,-5s-5,2.2 -5,5l0,3c-1.1,0 -2,0.9 -2,2l0,8c0,1.1 0.9,2 2,2l10,0c1.1,0 2,-0.9 2,-2l0,-8c0,-1.1 -0.9,-2 -2,-2zm-2,0l-6,0l0,-3c0,-1.7 1.3,-3 3,-3s3,1.3 3,3l0,3z">' + sE;
+    var s1L = sS + '<path d="M41 19c.7 0 1.4.1 2.1.2l4.2-5.2c-.9-.7-9.8-8-23.3-8S1.6 13.3.7 14L24 43l7-8.7V29c0-5.5 4.5-10 10-10z"opacity=.3 /><path d="M46 32v-3c0-2.8-2.2-5-5-5s-5 2.2-5 5v3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-2 0h-6v-3c0-1.7 1.3-3 3-3s3 1.3 3 3v3zm-30.7-2.3l9 11.2L24 43l7-8.8V29c0-.5 0-1 .1-1.4-1.8-.8-4.2-1.6-7.1-1.6-6.1 0-10.1 3.3-10.7 3.7z">' + sE;
+    var s2L = sS + '<path d="M41 19c.7 0 1.4.1 2.1.2l4.2-5.2c-.9-.7-9.9-8-23.3-8S1.6 13.3.7 14L24 43l7-8.7V29c0-5.5 4.5-10 10-10z"opacity=.3 /><path d="M46 32v-3c0-2.8-2.2-5-5-5s-5 2.2-5 5v3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-2 0h-6v-3c0-1.7 1.3-3 3-3s3 1.3 3 3v3zM9.6 25L24 43l7-8.7V29c0-2.6 1-5 2.7-6.8C31.2 21 27.9 20 24 20c-8.2 0-13.7 4.5-14.4 5z">' + sE;
+    var s3L = sS + '<path d="M41 19c.7 0 1.4.1 2.1.2l4.2-5.2c-.9-.7-9.8-8-23.3-8S1.6 13.3.7 14L24 43l7-8.7V29c0-5.5 4.5-10 10-10z"enable-background=new opacity=.3 /><path d="M46 32v-3c0-2.8-2.2-5-5-5s-5 2.2-5 5v3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-2 0h-6v-3c0-1.7 1.3-3 3-3s3 1.3 3 3v3zM7.1 21.9L24 43l7-8.7V29c0-4.3 2.7-8 6.5-9.4C34.6 18 29.9 16 24 16c-9.6 0-16.1 5.2-16.9 5.9z">' + sE;
+    var s4L = sS + '<path d="M41 19c.72 0 1.41.08 2.09.22L47.28 14c-.9-.68-9.85-8-23.28-8S1.62 13.32.72 14l23.26 28.98.02.02.02-.02 6.98-8.7V29c0-5.52 4.48-10 10-10zm5 13v-3c0-2.76-2.24-5-5-5s-5 2.24-5 5v3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-2 0h-6v-3c0-1.66 1.34-3 3-3s3 1.34 3 3v3z">' + sE;
+
+    function getResults() {
+        toggleScan(true);
+        getResponse("APScanResults.json", function (responseText) {
+            try {
+                res = JSON.parse(responseText);
+                log("RESPONSE  ~ ", res, true)
+                notify()
+            } catch (err) {
+                log("INVALID   ~ ", responseText, false)
+                console.error(err)
+                notify('Failed to parse scan results!');
+                return
+            }
+            res.aps = res.aps.sort(compare);
+            networkInfo.innerHTML = res.aps.length;
+            if (res.aps.length == 0) scan()
+            apMAC.innerHTML = "";
+            if (res.multiAPs == 1) tableHeaderHTML = '<tr><th width="8%"><input type="checkbox" name="selectAll" id="selectAll" value="false" onclick="selAll()" ' + selectAllState + '><label class="checkbox" for="selectAll"></th><th width="17%">Signal</th><th width="22%">SSID</th><th width="15%">Security</th><th width="8%">Ch.</th></tr>';
+            var tr = '';
+            if (res.aps.length > 0) tr += tableHeaderHTML;
+
+            for (var i = 0; i < res.aps.length; i++) {
+
+                if (res.aps[i].se == 1) tr += '<tr class="selected" onclick="select(' + res.aps[i].i + ')">';
+                else tr += '<tr onclick="select(' + res.aps[i].i + ')">';
+
+                if (res.aps[i].se) {
+                    tr += '<td><input type="checkbox" name="check' + res.aps[i].i + '" id="check' + res.aps[i].i + '" value="false" checked><label class="checkbox" for="check' + res.aps[i].i + '"></label></td>';
+                    apMAC.innerHTML = res.aps[i].m;
+                } else tr += '<td><input type="checkbox" name="check' + res.aps[i].i + '" id="check' + res.aps[i].i + '" value="false"><label class="checkbox" for="check' + res.aps[i].i + '"></label></td>';
+
+                if (getStatus(res.aps[i].e) != 'Open') {
+                    securityState = 'L'
+                } else {
+                    securityState = ''
+                }
+                if (-89 > res.aps[i].r) {
+                    wifiIndicator = 's0' + securityState
+                } else if (-88 > res.aps[i].r) {
+                    wifiIndicator = 's1' + securityState
+                } else if (-77 > res.aps[i].r) {
+                    wifiIndicator = 's2' + securityState
+                } else if (-66 > res.aps[i].r) {
+                    wifiIndicator = 's3' + securityState
+                } else {
+                    wifiIndicator = 's4' + securityState
+                }
+
+                var signalPercent = Math.round((1 - ((res.aps[i].r + 30) / -70)) * 100);
+                //if (signalPercent > 100) signalPercent = 100;
+                //if (i == 0) {var tdID = ' id="resizeEventTD"'} else {var tdID = ''}
+                if (i == 0) {
+                    var tdID = ''
+                } else {
+                    var tdID = ''
+                }
+                tr += '<td class="WiFi"' + tdID + '><div>' + eval(wifiIndicator) + '</div><div><span style="background:linear-gradient(135deg, ' + getColor(signalPercent) + ' ' + signalPercent + '%,rgba(0,0,0,0.15) ' + signalPercent + '%)"></span><span style="color:' + getColor(signalPercent, true) + '">' + signalPercent + '</span></div></td>';
+                tr += '<td>' + escapeHTML(res.aps[i].ss) + '</td>';
+                tr += '<td>' + getStatus(res.aps[i].e, res.aps[i].h) + '</td>';
+                tr += '<td>' + res.aps[i].c + '</td>';
+                tr += '</tr>';
+            }
+            table.innerHTML = tr;
+            checkSize()
+            fadeIn();
+        }, function () {
+            toggleScan(true);
+            fadeIn();
+            notify("Failed to scan for networks! E0")
+        });
+    }
+
+    function getColor(value, lighten) {
+        var lightness = 50;
+        var saturation = 75;
+        if (lighten == true) lightness = 90
+        if (value > 120) value = 100
+        if (value > 90) saturation = 60;
+        value = 100 - value;
+        var hue = ((1 - (value / 87)) * 100).toString(10);
+        return ["hsl(", hue, "," + saturation + "%," + lightness + "%)"].join("");
+    }
+
+    function scan() {
+        toggleScan(false);
+        getResponse("APScan.json", function (responseText) {
+            if (responseText == "true") getResults();
+            else notify("ERROR: Bad response 'APScan.json' (E3)");
+            setTimeout(function () {
+                toggleScan(true)
+            }, 700);
+        });
+    }
+
+    function select(num) {
+        var time = new Date().getTime();
+        if ((time - previousCall) >= 80) {
+            previousCall = time;
+            getResponse("APSelect.json?num=" + num, function (responseText) {
+                if (responseText == "true") getResults();
+                else notify("ERROR: Bad response 'APSelect.json' (E4)");
+            });
+        }
+    }
+
+    function selAll() {
+        if (selectAllState == 'not-checked') {
+            select(-1);
+            selectAllState = 'checked';
+        } else {
+            select(-2);
+            selectAllState = 'not-checked';
+        }
+    }
+
+    /* Add event listener for WiFi signal icons */
+    window.onresize = function (event) {
+        checkSize()
+    }
+
+    function checkSize() {
+        try {
+            var w = document.getElementById('resizeEventTD');
+            if (w.clientWidth <= 99) {
+                document.getElementById('apscan').className = 'pointUp'
+            } else {
+                document.getElementById('apscan').className = ''
+            }
+        } catch (e) {
+        }
+    }
+
+    getResults();
+</script>
+<script src="js/prompt.js"></script>
+<!-- <script src="//cdn.jsdelivr.net/npm/eruda"></script>
+<script>eruda.init();</script> -->
+</html>
